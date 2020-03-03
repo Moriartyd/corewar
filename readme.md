@@ -2,9 +2,9 @@
 
 ## TO-DO List:
 - [X] Написать TO-DO list
-- [ ] Asm (medium)          :boom::boom::boom:
-- [ ] VM (impossible)       :fire::boom::fire::boom:
-- [ ] Champion (easy)       :boom:
-- [ ] Validator (medium)    :boom::boom:
+- [ ] Champion      (easy)          :boom:
+- [ ] Validator     (medium)        :boom::boom:
+- [ ] Asm           (medium)        :boom::boom::boom:
+- [ ] VM            (impossible)    :fire::boom::fire::boom:
     - [ ] Понять что требуетcя
     - [ ] Написать каждое требование
