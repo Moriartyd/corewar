@@ -1,4 +1,8 @@
-- [ ] Задача 1
-    - [ ] Подзадача
-    - [ ] one more
-- [X] already did.
+# CoreWar 42
+
+## TO-DO:
+- [ ] Asm
+- [ ] VM
+- [ ] Champion
+- [ ] Validator
+    - [ ] Понять что требуетч] обрабатывать))
