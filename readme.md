@@ -4,7 +4,7 @@
 - [X] Написать TO-DO list
 - [ ] Champion      (easy)          :boom:
 - [ ] Validator     (medium)        :boom::boom:
-    - [ ] Считывать только 1 аргумент
+    - [X] Считывать только 1 аргумент
     - [ ] Проверка имени
         - [ ] Имя идет после `NAME_CMD_STRING`
         - [ ] Длина строки не больше `PROG_NAME_LENGTH`
