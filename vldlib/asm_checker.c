@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:45:47 by cpollich          #+#    #+#             */
-/*   Updated: 2020/03/10 19:06:22 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/03/11 21:16:03 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int show_usage(void)
 	return (-1);
 }
 
-int check_asm(int ac, char **av)
+int check_base_asm(int ac, char **av)
 {
 	if (ac != 2)
 		return (show_usage());
-	else if (check_asm_name(av[1]) != 1)
+	else if (check_asm(av[1]) != 1)
 		//Invalid name func
 		return (invalid_asm(INV_NAME));
 	else if (check_asm_comment(av[1]) != 1)

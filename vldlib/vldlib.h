@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/03/10 20:51:43 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/03/11 21:03:18 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #	define VLDLIB_H
 
 #include "libft.h"
+#include "op.h"
 
 #	define USAGE_VM_M "usage:"
 #	define USAGE_VM_L 6
