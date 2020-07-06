@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/03/11 21:03:18 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/06 17:24:03 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,16 @@
 #	define INV_COMMENT	2
 #	define INV_SOME		3
 
+#	define INV_NAME_M	"name invalid\n"
+#	define INV_NAME_L	13
+
+typedef struct  s_hero
+{
+    char        *name;
+    char        *comment;
+}               t_hero;
+
+int				check_base_asm(int ac, char **av);
+int				check_asm(char *file, t_hero *hero);
 
 #	endif

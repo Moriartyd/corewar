@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/06 17:18:26 by cpollich         ###   ########.fr       */
+/*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
+/*   Updated: 2020/07/06 17:25:51 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vldlib.h"
 
-int main(int ac, char **av)
+int	check_name(char *name, t_hero *hero)
 {
-    check_base_asm(ac, av);
-    return (0);
+	
+}
+
+int check_comment(char *comm, t_hero *hero)
+{
+	
 }

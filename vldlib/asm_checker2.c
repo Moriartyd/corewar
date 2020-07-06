@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_name.c                                       :+:      :+:    :+:   */
+/*   asm_checker2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 19:05:27 by cpollich          #+#    #+#             */
-/*   Updated: 2020/03/11 21:26:42 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/06 17:25:40 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 **	Метка состоит только из LABEL_CHARS
 */
 
-void	check_begin(int *p, char *str)
+void	check_begin(int *p, char *str, t_hero *hero)
 {
 	size_t	nlen;
 	size_t	clen;
@@ -37,29 +37,28 @@ void	check_begin(int *p, char *str)
 	}
 	nlen = ft_strlen(NAME_CMD_STRING);
 	if (ft_strnequ(str, NAME_CMD_STRING, nlen) && 
-			(ft_iswhitespace(str[nlen]) || str[nlen] == '"'))
+			(str[nlen] == ' ' || str[nlen] == '"'))
 	{
-		if (check_name(&str[nlen]))
+		if (check_name(&str[nlen]), hero)
 			p[0] = 1;
 		else
 			//вывести что не так и завершить прогу
 		return ;
 	}
-	clen = ft_strlen(COMMENT_CMD_STRING);
-	if (ft_strnequ(str, COMMENT_CMD_STRING, clen) && 
-			(ft_iswhitespace(str[clen]) || str[clen] == '"'))
-	{
-		if (check_comment(&str[clen]))
-			p[1] = 1;
-		else
-			//вывести что не так и завершить прогу
-		return ;
-	}
-
+	// clen = ft_strlen(COMMENT_CMD_STRING);
+	// if (ft_strnequ(str, COMMENT_CMD_STRING, clen) && 
+	// 		(ft_iswhitespace(str[clen]) || str[clen] == '"'))
+	// {
+	// 	if (check_comment(&str[clen]))
+	// 		p[1] = 1;
+	// 	else
+	// 		//вывести что не так и завершить прогу
+	// 	return ;
+	// }
 }
 
 /*
-**							Описание p[4]
+**							Описание p[5]
 **		+ p[0] - Имя
 **		+ p[1] - Комментарий чампиона
 **		+ p[2] - Комментарий к коду
@@ -67,7 +66,7 @@ void	check_begin(int *p, char *str)
 **		+ p[4] - инструкция
 */
 
-int check_asm(char *file)
+int check_asm(char *file, t_hero *hero)
 {
 	int		fd;
 	char	*line;
@@ -84,7 +83,8 @@ int check_asm(char *file)
 		trim = ft_strtrim(line);
 		ft_strdel(&line);
 		if (!p[0] || !p[1])
-			check_begin(p, trim);
+			check_begin(p, trim, hero);
 	}
 	close(fd);
+	return (1);
 }
