@@ -6,14 +6,14 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 17:20:52 by cpollich          #+#    #+#             */
-/*   Updated: 2019/09/30 20:25:38 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/08 19:55:03 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef LIBFT_H
 #	define LIBFT_H
 
-#	define BUFF_SIZE 32
+#	define BUFF_SIZE 1
 
 #include <string.h>
 #include <stdlib.h>
@@ -133,5 +133,7 @@ char				*ft_strshift(char **str, size_t n);
 int					ft_putstr_until(const char *str, char c);
 char				*ft_ltoa_base(long long int n, int base);
 char				*ft_itoa_ubase(size_t num, int base);
+
+char				*ft_str_white_trim(const char *s);
 
 #	endif

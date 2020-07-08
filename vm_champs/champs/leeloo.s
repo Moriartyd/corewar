@@ -28,7 +28,7 @@ toto:	st r15,-480
 	st r14,-485
 	zjmp %-510
 deb:	
-st1:	st r1,:lastlive1 +1
+st1:	st r1,:lastlive1
 st2:	st r1,:lastlive2 +1
 st3:	st r1,:lastlive3 +1
 st4:	st r1,:lastlive4 +1

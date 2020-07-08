@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/vldlib/test",
-			"args": ["/Users/moriartyd/42/corewar/vldlib/file"],
+			"args": [""],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
