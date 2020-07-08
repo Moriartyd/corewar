@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:28:07 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/07 23:33:38 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/08 18:11:11 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,12 @@ static int	ft_strjoinchar(char **str, char c)
 {
 	char	*tmp;
 	size_t	len;
-	size_t	k;
 
-	k = 1;
 	len = ft_strlen(*str);
-	if (!len)
-	 	k = 2;
-	if (!(tmp = (char *)malloc(sizeof(char) * (len + k))))
+	if (!(tmp = (char *)malloc(sizeof(char) * (len + 2))))
 		return (0);
 	tmp = ft_strcpy(tmp, *str);
-	if (k == 1)
+	if (len)
 	{
 		tmp[len] = c;
 		tmp[len + 1] = 0;
@@ -40,19 +36,38 @@ static int	ft_strjoinchar(char **str, char c)
 	return (1);
 }
 
-char		*ft_read_until_ch(int fd, int c)
+/*
+**	Читает открытый файл до символа c
+**	и записывает каждый символ в строку str
+**	Выделяет память для строки str
+**	Возвращаемое значение:	- количество считанных символов
+**							- -1 в случае ошибки
+**	 Аргументы: fd 		- дискриптор открытого файла
+**				c 		- символ до которого нужно читать
+**				**str	- указатель на строку
+*/
+
+int			ft_read_until_ch(int fd, int c, char **str)
 {
 	char	buff[2];
-	char	*str;
+	int		i;
+	int		r;
 
 	if (fd < 0 || read(fd, buff, 0))
-		return (NULL);
-	str = ft_strnew(1);
-	while (read(fd, buff, 1) && buff[0] != c)
+		return (-1);
+	*str = ft_strnew(1);
+	i = 0;
+	while ((r = read(fd, buff, 1)) && buff[0] != c)
 	{
 		buff[1] = 0;
-		if (!ft_strjoinchar(&str, buff[0]))
-			return (NULL);
+		i++;
+		if (!ft_strjoinchar(str, buff[0]))
+			return (-1);
 	}
-	return (str);
+	if (!r)
+	{
+		ft_strdel(str);
+		return (-1);
+	}
+	return (i);
 }
