@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:28:07 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/08 20:33:14 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/10 16:23:51 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ int			ft_read_until_ch(int fd, int c, char **str)
 	}
 	if (!r)
 		return (-3);
-	return (i);
+	return (i ? i : r);
 }

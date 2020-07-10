@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/08 20:11:39 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/10 16:21:01 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	check_file(int fd)
 	int		bytes;
 
 	ft_bzero(p, 5);
-	while ((bytes = ft_read_until_ch(fd, '\n', &str)) > 0 || bytes == -3)
+	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0 || bytes == -3)
 	{
-		t = get_type(str, bytes);
+		t = get_type(str, bytes, fd);
 		if (p[t] == 1 && (t == 0 || t == 1))
 			exit(-1); //Два имени или коммента чемпиона
 	}

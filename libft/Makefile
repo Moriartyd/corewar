@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 14:33:12 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/08 19:55:23 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/09 17:56:27 by cpollich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ SRC		=	ft_memset.c ft_bzero.c			\
 			ft_itoa_base.c ft_itoa_ubase.c	\
 			ft_nchjoinstr.c ft_putstr_until.c\
 			ft_strjoin_leak.c ft_ltoa_base.c \
-			ft_str_white_trim.c
+			ft_str_white_trim.c ft_countch.c
 
 OBJS	=	$(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 

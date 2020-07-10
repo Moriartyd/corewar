@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   ft_countch.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/10 16:26:21 by cpollich         ###   ########.fr       */
+/*   Created: 2020/07/09 17:52:28 by cpollich          #+#    #+#             */
+/*   Updated: 2020/07/09 17:55:50 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+/*
+** Считает количество символов c в строке str
+*/
+
+int	ft_countch(const char *str, int c)
 {
-    return (0);
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 0;
+	if (!str)
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] == c)
+			res++;
+		i++;
+	}
+	return (res);
 }

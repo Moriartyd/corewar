@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/08 21:30:08 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/10 16:03:53 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,46 +29,13 @@ static int	is_namecomm(char *str)
 	i = 0;
 	while (str[i] && (str[i] == NAME_CMD_STRING[i]
 					|| str[i] == COMMENT_CMD_STRING[i]))
-	{
 		i++;
-	}
-	if ((i == ft_strlen(NAME_CMD_STRING)) )
+	if (i == ft_strlen(NAME_CMD_STRING))
 		return (0);
 	else if (i == ft_strlen(COMMENT_CMD_STRING))
 		return (1);
 	else
 		return (-1);
-}
-
-int			check_namecomm(char *str, int type, int fd)
-{
-	int	len;
-	int	n;
-
-	len = !type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);
-	if (ft_strlen(str) <= len)
-		exit(-1); //Ошибка в имени/комменте
-	if (str[len] != '\t' || str[len] != ' ' || str[len] != '"')
-		exit (-1); //Смотри выше
-	while (str[len] == '\t' || str[len] == ' ')
-		len++;
-	if (str[len] == '"')
-	{
-		if (countch(&str[len]) == 2)
-		{
-			n = strrchr(&str[len], '"') - strchr(&str[len], '"');
-			len = !type ? COMMENT_LENGTH : PROG_NAME_LENGTH;
-			if (n > len)
-				exit(-1); //Слишком много символов в имени/комменте
-			return (type);
-		}
-		else
-		{
-		//Дочитать до ", а потом до \n. Проверить хвост, если он есть
-		}
-	}
-	else
-		exit(-1); // Отсутствует имя/коммент
 }
 
 int			get_type(char *str, int bytes, int fd)
@@ -88,6 +55,8 @@ int			get_type(char *str, int bytes, int fd)
 		ft_strdel(&s);
 		return (2);
 	}
-	if ((type = is_namecomm(s) != -1))
-		check_namecomm(s, type, fd);
+	if (((type = is_namecomm(s)) != -1))
+		if (check_namecomm(s, type, fd) >= 0)
+			return (type);
+	return (2);
 }

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/08 17:13:37 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:41:47 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct  s_hero
 int				check_base_asm(int ac, char **av);
 int				check_asm(char *file, t_hero *hero);
 int				ft_read_until_ch(int fd, int c, char **str);
-
+int				get_type(char *str, int bytes, int fd);
+int				check_namecomm(char *str, int type, int fd);
 
 #	endif
