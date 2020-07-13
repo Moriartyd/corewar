@@ -6,15 +6,16 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 19:05:54 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:27:39 by ddratini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef VLDLIB_H
 #	define VLDLIB_H
 
-#include "libft.h"
-#include "op.h"
+#include "../../libft/inc/libft.h"
+#include "../../inc/op.h"
+#include <stdio.h>
 
 #	define USAGE_VM_M "usage:"
 #	define USAGE_VM_L 6
