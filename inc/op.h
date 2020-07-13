@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/07/08 20:02:57 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/13 18:27:31 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,12 @@ typedef struct		header_s
 	unsigned int		prog_size;
 	char						comment[COMMENT_LENGTH + 1];
 }					header_t;
+
+typedef struct		s_op
+{
+	int				code;
+	int				types[3];
+	int				args[3];
+	struct s_op		*prev;
+	struct s_op		*next;
+}					t_op;
