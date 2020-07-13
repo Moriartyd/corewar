@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 18:42:23 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:07:15 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ static int	is_namecomm(char *str)
 
 int			get_type(char *str, int bytes, int fd)
 {
-	//проверить первый символ
-	//если не comment_char, то проверять NAME|CMD STRING
-	//скипнуть whitespaces
 	int		type;
 	char	*s;
 

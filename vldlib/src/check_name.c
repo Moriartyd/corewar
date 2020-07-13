@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/10 16:10:02 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:11:49 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ int			check_namecomm(char *str, int type, int fd)
 	int	n;
 
 	len = type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);
-	if (ft_strlen(str) <= len)
-		exit(-1); //Ошибка в имени/комменте
-	if (str[len] != '\t' && str[len] != ' ' && str[len] != '"')
-		exit (-1); //Смотри выше
+	if (ft_strlen(str) <= len ||
+				(str[len] != '\t' && str[len] != ' ' && str[len] != '"'))
+		exit (-1); //Ошибка в имени/комменте
 	while (str[len] == '\t' || str[len] == ' ')
 		len++;
 	if (str[len] == '"')

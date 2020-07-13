@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:28:07 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/10 16:23:51 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:06:29 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	ft_strjoinchar(char **str, char c)
 **	 Аргументы: fd 		- дискриптор открытого файла
 **				c 		- символ до которого нужно читать
 **				**str	- указатель на строку
-
 */
 
 int			ft_read_until_ch(int fd, int c, char **str)

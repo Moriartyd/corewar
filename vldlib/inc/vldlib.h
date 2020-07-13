@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 18:40:18 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:05:54 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ typedef struct  s_hero
 	char        *comment;
 }               t_hero;
 
-typedef struct		s_op
+typedef struct	s_op
 {
-	int				code;
-	int				types[3];
-	int				args[3];
-	struct s_op		*prev;
-	struct s_op		*next;
-}					t_op;
+	int			code;
+	int			types[3];
+	int			args[3];
+	struct s_op	*prev;
+	struct s_op	*next;
+}				t_op;
 
 int				check_base_asm(int ac, char **av);
 int				check_asm(char *file, t_hero *hero);
