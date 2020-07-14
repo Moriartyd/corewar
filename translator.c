@@ -6,7 +6,7 @@
 /*   By: ddratini <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/13 19:40:19 by ddratini         ###   ########.fr       */
+/*   Updated: 2020/07/14 18:17:37 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ void		write_magicheader()
 {
 	int fd;
 	char *fname;
+	int retw;
 
 	fname = "x.cor";
-	fd = open("name.cor", O_CREAT);////O_RDWR);
-	write(fd, "0xea83f3", 4 * 2);
+//	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
+	fd = open("name2.cor", O_CREAT| O_TRUNC | O_RDWR , 0666);////O_RDWR);
+	printf("FDopened some file CREAT=%d\n",fd);
+//	fd = open("name1.cor", O_RDWR);
+	printf("FDopened some file RDWR=%d\n",fd);
+	retw = write(fd, "0xea83f3", 4 * 2);
+	printf("RETW=%d\n", retw);
 }
 
 int			translator(t_op op)

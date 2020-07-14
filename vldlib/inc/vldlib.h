@@ -71,7 +71,7 @@ int				check_namecomm(char *str, int type, int fd);
 
 t_hero			*init_hero(void);
 void			del_hero(t_hero *hero);
-t_op			*new_op(void)
+t_op			*new_op(void);
 void			del_ops(t_op *op);
 
 
