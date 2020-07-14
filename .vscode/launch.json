@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/vldlib/test",
-			"args": ["Backward.s"],
+			"args": ["Batman.s"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/vldlib",
 			"environment": [],

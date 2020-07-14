@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   ft_strnewncp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/14 21:13:26 by cpollich         ###   ########.fr       */
+/*   Created: 2020/07/14 21:35:43 by cpollich          #+#    #+#             */
+/*   Updated: 2020/07/14 21:51:42 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+char	*ft_strnewncp(const char *str, int len)
 {
-    check_file(open(av[1], O_RDONLY));
-    return (0);
+	int		i;
+	char	*res;
+
+	i = -1;
+	if (!(res = ft_strnew(len + 1)))
+		return (NULL);
+	while (++i < len && str[i])
+		res[i] = str[i];
+	if (i != len)
+	{
+		ft_strdel(&res);
+		return (NULL);
+	}
+	return (res);
 }

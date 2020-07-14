@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 19:11:49 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/14 21:55:20 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **		+ 5 - Пустая строка
 */
 
-static int	tail_check(char *tail)
+static int	tail_check(const char *tail)
 {
 	int	i;
 
@@ -37,18 +37,42 @@ static int	tail_check(char *tail)
 		return (0);
 }
 
-static int	mnogostrok(char **str, int fd, int type)
+static char	*tail_search(char *str)
+{
+	while (*str != '"')
+		str++;
+	str++;
+	while (*str != '"')
+		str++;
+	str++;
+	return (str);
+}
+
+static int	mnogostrok(char **str, int fd, int type, int c)
 {
 	char	*protail;
 	char	*tail;
 	char	*tmp;
 
-	ft_read_until_ch(fd, '"', &protail);
-	ft_read_until_ch(fd, '\n', &tail);
-	if (!tail_check(tail))
-		exit(-1); //Мусор в окончании
-	if (!(tmp = ft_strjoin(*str, protail)))
-		exit (-1); //Malloc error
+	if (c == 1)
+	{
+		ft_read_until_ch(fd, '\n', &tail);
+		if (!tail_check(tail))
+			exit(-1); //Мусор в окончании
+		ft_read_until_ch(fd, '"', &protail);
+		if (!(tmp = ft_strjoin(*str, protail)))
+			exit (-1); //Malloc error
+	}
+	else
+	{
+		tail = tail_search(*str);
+		if (!tail_check(tail))
+			exit(-1); //Мусор в окончании
+		tmp = ft_strchr(*str, '"');
+		if (!(protail = ft_strnewncp(tmp, tail - tmp - 1)))
+			exit (-1); //Malloc error
+		tmp = protail;
+	}
 	ft_strdel(str);
 	ft_strdel(&protail);
 	*str = tmp;
@@ -59,6 +83,7 @@ int			check_namecomm(char *str, int type, int fd)
 {
 	int	len;
 	int	n;
+	int	count;
 
 	len = type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);
 	if (ft_strlen(str) <= len ||
@@ -68,7 +93,7 @@ int			check_namecomm(char *str, int type, int fd)
 		len++;
 	if (str[len] == '"')
 	{
-		if (ft_countch(&str[len], '"') == 2)
+		if ((count = ft_countch(&str[len], '"')) == 2)
 		{
 			n = strrchr(&str[len], '"') - strchr(&str[len], '"') - 1;
 			if (!tail_check(strrchr(&str[len], '"') + 1))
@@ -79,7 +104,7 @@ int			check_namecomm(char *str, int type, int fd)
 			return (type);
 		}
 		else
-			return (mnogostrok(&str, fd, type));
+			return (mnogostrok(&str, fd, type, count));
 	}
 	else
 		exit(-1); // Отсутствует имя/коммент

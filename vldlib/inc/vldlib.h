@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 21:48:09 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/14 21:16:15 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct  s_hero
 int				ft_read_until_ch(int fd, int c, char **str);
 int				get_type(char *str, int bytes, int fd);
 int				check_namecomm(char *str, int type, int fd);
+void			check_file(int fd);
 
 /*
 **		MEMORY BLOCK
@@ -71,7 +72,7 @@ int				check_namecomm(char *str, int type, int fd);
 
 t_hero			*init_hero(void);
 void			del_hero(t_hero *hero);
-t_op			*new_op(void)
+t_op			*new_op(void);
 void			del_ops(t_op *op);
 
 
