@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 17:20:52 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/14 21:49:12 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/15 15:58:45 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ char				*ft_itoa_ubase(size_t num, int base);
 char				*ft_str_white_trim(const char *s);
 int					ft_countch(const char *str, int c);
 char				*ft_strnewncp(const char *str, int len);
+int					ft_strjoinchar(char **str, char c);
 
 
 #	endif

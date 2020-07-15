@@ -6,37 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:28:07 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 20:39:26 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/15 16:05:24 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vldlib.h"
-
-static int	ft_strjoinchar(char **str, char c)
-{
-	char	*tmp;
-	size_t	len;
-
-	if (!*str)
-		return (0);
-	len = ft_strlen(*str);
-	if (!(tmp = (char *)malloc(sizeof(char) * (len + 2))))
-		return (0);
-	tmp = ft_strcpy(tmp, *str);
-	if (len)
-	{
-		tmp[len] = c;
-		tmp[len + 1] = 0;
-	}
-	else
-	{
-		tmp[0] = c;
-		tmp[1] = 0;
-	}
-	ft_strdel(str);
-	*str = tmp;
-	return (1);
-}
 
 /*
 **	Читает открытый файл до символа c
@@ -68,7 +42,10 @@ int			ft_read_until_ch(int fd, int c, char **str)
 		i++;
 		if (!ft_strjoinchar(str, buff[0]))
 			return (-2);
+		buff[0] = 0;
 	}
+	if (buff[0])
+		ft_strjoinchar(str, buff[0]);
 	if (!r)
 		return (-3);
 	return (i ? i : r);

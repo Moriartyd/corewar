@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 18:41:12 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/15 23:28:19 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 **		+ p[4] - инструкция
 */
 
-void	check_file(int fd)
+void	check_file(int fd, t_hero **hero)
 {
 	char	*str;
 	int		p[5];
@@ -41,9 +41,10 @@ void	check_file(int fd)
 	int		bytes;
 
 	ft_bzero(p, 5);
-	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0 || bytes == -3)
+	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)// || bytes == -3)
 	{
-		t = get_type(str, bytes, fd);
+		if ((t = get_type(&str, bytes, fd, hero) == -1))
+			exit(-1); //Мусорная строка
 		if (p[t] == 1 && (t == 0 || t == 1))
 			exit(-1); //Два имени или коммента чемпиона
 	}

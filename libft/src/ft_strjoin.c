@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 20:06:20 by cpollich          #+#    #+#             */
-/*   Updated: 2019/09/03 14:13:34 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/15 19:22:11 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);

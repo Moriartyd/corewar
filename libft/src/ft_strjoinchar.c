@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory_hero.c                                      :+:      :+:    :+:   */
+/*   ft_strjoinchar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/13 21:39:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/15 18:41:08 by cpollich         ###   ########.fr       */
+/*   Created: 2020/07/15 15:57:55 by cpollich          #+#    #+#             */
+/*   Updated: 2020/07/15 15:58:09 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "libft.h"
 
-t_hero	*init_hero()
+int	ft_strjoinchar(char **str, char c)
 {
-	t_hero	*hero;
+	char	*tmp;
+	size_t	len;
 
-	hero = (t_hero *)malloc(sizeof(t_hero));
-	if (!hero)
-		exit(-1);// Malloc error
-	hero->name = NULL;
-	hero->comment = NULL;
-	hero->op = NULL;
-	return (hero);
-}
-
-void	del_hero(t_hero **hero)
-{
-	if (hero && *hero)
+	if (!*str)
+		return (0);
+	len = ft_strlen(*str);
+	if (!(tmp = (char *)malloc(sizeof(char) * (len + 2))))
+		return (0);
+	tmp = ft_strcpy(tmp, *str);
+	if (len)
 	{
-		ft_strdel(&((*hero)->name));
-		ft_strdel(&((*hero)->comment));
-		del_ops((*hero)->op);
+		tmp[len] = c;
+		tmp[len + 1] = 0;
 	}
+	else
+	{
+		tmp[0] = c;
+		tmp[1] = 0;
+	}
+	ft_strdel(str);
+	*str = tmp;
+	return (1);
 }

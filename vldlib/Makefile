@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/08 16:28:00 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/14 21:15:12 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/15 23:28:55 by cpollich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC_DIR			=	./src
 OBJ_DIR			=	./obj
 
 SRC				=	asm.c ft_read_until_ch.c get_type.c check_name.c\
-					asm_parser.c
+					asm_parser.c fill_hero.c memory_hero.c memory_op.c\
+					letter_check.c check_opname.c
 SRCS			=	$(addprefix $(SRC_DIR)/,$(SRC))
 
 LIBFT			=	$(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/13 20:20:40 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/15 23:27:21 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,31 @@ static int	is_namecomm(char *str)
 		return (-1);
 }
 
-int			get_type(char *str, int bytes, int fd)
+static int	is_labelinst(char *str)
+{
+	return (1);
+}
+
+int			get_type(char **str, int bytes, int fd, t_hero **hero)
 {
 	int		type;
 	char	*s;
 
-	if (!str && bytes == -2)
+	if (!*str && bytes == -2)
 		exit(-1); // Ошибка в малоке
-	if (!(s = ft_str_white_trim(str)))
+	if (!(s = ft_str_white_trim(*str)) ||
+			(ft_strlen(*str) == 1 && **str == '\n'))
 		return (5);
+	ft_strdel(str);
 	if (s[0] == COMMENT_CHAR || s[0] == ALT_COMMENT_CHAR)
 	{
 		ft_strdel(&s);
 		return (2);
 	}
 	if (((type = is_namecomm(s)) != -1))
-		if (check_namecomm(s, type, fd) >= 0)
+		if (check_namecomm(s, type, fd, hero) >= 0)
 			return (type);
-	return (2);
+	if (is_labelinst(s))
+		return (2);
+	return (-1);
 }
