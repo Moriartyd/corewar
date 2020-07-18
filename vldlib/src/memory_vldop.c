@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   memory_vldop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 19:37:25 by cpollich         ###   ########.fr       */
+/*   Created: 2020/07/18 20:22:41 by cpollich          #+#    #+#             */
+/*   Updated: 2020/07/18 21:50:51 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vldlib.h"
-#include <stdio.h>
 
-int main(int ac, char **av)
+t_vldop *op_init(void)
 {
-    /*t_hero *hero;
+	t_vldop	*op;
+	int		i;
 
-    check_file(open(av[1], O_RDONLY), &hero);
-    printf("name: '%s'\n comment: '%s'\n", hero->name, hero->comment);*/
-    printf("%i\n", is_inst(av[1]));
-    return (0);
+	if (!(op = (t_vldop *)malloc(sizeof(t_vldop))))
+		return (NULL);
+	i = -1;
+	while (++i < LABELS)
+		op->labels[i] = NULL;
+	op->code = 0;
+	op->arg1 = NULL;
+	op->arg2 = NULL;
+	op->arg3 = NULL;
+	return(op);
 }

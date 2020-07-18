@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/15 18:33:37 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/18 19:02:54 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ t_op	*new_op(void)
 		res->types[i] = 0;
 		res->args[i] = 0;
 	}
-	res->labels = NULL;
+	i = -1;
+	while (++i < LABELS)
+		res->labels[i] = NULL;
 	res->prev = 0;
 	res->next = 0;
 	return (res);
@@ -36,12 +38,18 @@ t_op	*new_op(void)
 void	del_ops(t_op *op)
 {
 	t_op	*tmp;
+	int		i;
 
 	if (op)
 	{
 		while (op)
 		{
-			ft_doublestrdel(&(op->labels));
+			i = 0;
+			while (op->labels[i])
+			{
+				ft_strdel(&(op->labels[i]));
+				i++;
+			}
 			tmp = op->next;
 			free(op);
 			op = tmp;

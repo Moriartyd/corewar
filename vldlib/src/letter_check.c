@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 23:01:56 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/15 23:23:41 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/18 17:34:34 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int			s_check(char *str)
 	i = 0;
 	while (str[i] && str[i] >= 'a' && str[i] <= 'z')
 		i++;
-	if (str[i] && str[i + 1] && !need_char(str[i + 1]) && i != 2 && i != 3)
+	if (str[i] && !need_char(str[i]) && i != 2 && i != 3)
 		return (-1);
 	if (i == 2)
 		if (str[1] == 't')
 			return (OP_ST);
 	if (i == 3)
 	{
-		if (str[1] == 't' && str[1] == 'i')
+		if (str[1] == 't' && str[2] == 'i')
 			return (OP_STI);
-		if (str[1] == 'u' && str[1] == 'b')
+		if (str[1] == 'u' && str[2] == 'b')
 			return (OP_SUB);
 	}
 		return (-1);

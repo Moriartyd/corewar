@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/vldlib/test",
-			"args": ["Batman.s"],
+			"args": [" lld"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/vldlib",
 			"environment": [],
