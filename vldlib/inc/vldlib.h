@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 18:09:13 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 21:29:51 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct	s_vldop
 {
 	char		*labels[LABELS];
 	int			code;
+	int			args[3];
 	char		*arg1;
 	char		*arg2;
 	char		*arg3;
@@ -130,7 +131,7 @@ typedef struct	s_op
 {
 	int			code;
 	int			types[3];
-	int			args[3];
+	char		*args[3];
 	int			bytes;
 	char		*labels[LABELS];
 	struct s_op	*prev;
@@ -169,7 +170,11 @@ int				is_label(char *str);
 int				sep_char(char c);
 void			get_patterns(int code, int args[3]);
 void			read_arguments(char *str, t_vldop *op);
-void			parse_instruct(char *str, int type, int fd, t_hero **hero);
+int				parse_instruct(char *str, int type, int fd, t_hero **hero);
+int				get_dirsize(int code);
+int				get_argt(int code);
+int				check_args(t_vldop *op);
+int				convert_vldop_op(t_vldop *op, t_hero **hero, int type);
 
 
 /*

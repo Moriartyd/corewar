@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:48:08 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 18:11:35 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 20:30:50 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	get_arg_type(char c)
 {
 	if (c == DIRECT_CHAR)
 		return (T_DIR);
-	if (c == '0' || c == '-')
+	if (c == '0' || c == '-' || c == LABEL_CHAR || (c >= '0' && c <= '9'))
 		return (T_IND);
 	if (c == 'r')
 		return (T_REG);
@@ -109,13 +109,12 @@ static char	*third_arg(char *str, int args[3], t_vldop *op)
 
 void		read_arguments(char *str, t_vldop *op)
 {
-	int		args[3];
 	int		i;
 	char	*tmp;
 
 	i = 1;
-	get_patterns(op->code, args);
-	tmp = first_arg(str, args, op);
-	tmp = second_arg(tmp, args, op);
-	tmp = third_arg(tmp, args, op);
+	get_patterns(op->code, op->args);
+	tmp = first_arg(str, op->args, op);
+	tmp = second_arg(tmp,op-> args, op);
+	tmp = third_arg(tmp, op->args, op);
 }

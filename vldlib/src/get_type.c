@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 18:10:27 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 19:38:45 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 		if (check_namecomm(s, type, fd, hero) >= 0)
 			return (type);
 	if ((type = is_labelinst(s)) > 0)
-		parse_instruct(s, type, fd, hero);
+		return (parse_instruct(s, type, fd, hero));
 	return (-1);
 }

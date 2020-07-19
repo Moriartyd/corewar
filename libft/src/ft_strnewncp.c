@@ -6,22 +6,25 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:35:43 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/14 21:51:42 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 21:31:49 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnewncp(const char *str, int len)
+char	*ft_strnewncp(const char *str, size_t len)
 {
-	int		i;
+	size_t		i;
 	char	*res;
 
-	i = -1;
+	i = 0;
 	if (!(res = ft_strnew(len + 1)))
 		return (NULL);
-	while (++i < len && str[i])
+	while (i < len && str[i])
+	{
 		res[i] = str[i];
+		i++;
+	}
 	if (i != len)
 	{
 		ft_strdel(&res);
