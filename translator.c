@@ -72,7 +72,6 @@ int			get_types(t_op *op)
 	i = -1;
 	type = 0;
 	offset = 6;
-	printf("TOFF=%c\n", offset);
 	op->types[0] = 1; op->types[1] = 3; op->types[2] = 2;
 	while (++i < 3)
 	{
@@ -83,7 +82,7 @@ int			get_types(t_op *op)
 			type = type << (offset + 1) | 1;
 		else if (op->types[i] == 3)
 		{
-			//type <<= offset | 1;
+			type <<= offset | 1;
 			type = type << (offset + 1) | 1;
 		}
 		offset -= 2;
