@@ -39,9 +39,11 @@ typedef struct	s_op
 {
 	int			code;
 	int			types[3];
-	int			args[3];
+	int			nargs[3];
+	char		*arg[3];//char **args;
 	int			bytes;
 	char		**labels;
+	char 		*curlabels[3];
 	struct s_op	*prev;
 	struct s_op	*next;
 }				t_op;
@@ -73,6 +75,12 @@ t_hero			*init_hero(void);
 void			del_hero(t_hero *hero);
 t_op			*new_op(void);
 void			del_ops(t_op *op);
+
+
+void		ft_print_bits(unsigned char octet);
+int 		print_byte_int(int x);
+
+
 
 
 #	endif
