@@ -67,19 +67,17 @@ int			get_types(t_op *op)
 {
 	int 			i;
 	unsigned char	type;
-	unsigned int				offset;
+	int				offset;
 
 	i = -1;
 	type = 0;
 	offset = 6;
-	op->types[0] = 1; op->types[1] = 3; op->types[2] = 2;
 	while (++i < 3)
 	{
-		ft_print_bits(type);
 		if (op->types[i] == 1)
 			type = type << offset | 1;
 		else if (op->types[i] == 2)
-			type = type << (offset + 1) | 1;
+			type <<= offset | 1;
 		else if (op->types[i] == 3)
 		{
 			type <<= offset | 1;
