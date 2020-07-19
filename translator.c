@@ -78,16 +78,13 @@ int			get_types(t_op *op)
 	{
 		printf("TOFF=%d\n", offset);
 		if (op->types[i] == 1)
-			type |= type << offset | 1;
+			type += type << offset | 1;
 		else if (op->types[i] == 2)
-		{
-			++offset;
-			type |= type << (offset + 1) | 1;
-		}
+			type += type << (offset + 1) | 1;
 		else if (op->types[i] == 3)
 		{
 			//type <<= offset | 1;
-			type |= type << (offset + 1) | 1;
+			type += type << (offset + 1) | 1;
 		}
 		offset -= 2;
 		ft_print_bits(type);
