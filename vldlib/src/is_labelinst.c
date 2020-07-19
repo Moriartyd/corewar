@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 17:44:02 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 19:59:28 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 16:41:32 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int 			is_label(char *str) //проверено
 		return (0);
 }
 
-static int		is_correct_label(char *str) //проверено
+int		is_correct_label(char *str) //проверено
 {
 	int	i;
 

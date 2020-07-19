@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/15 19:16:51 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 18:10:54 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ static int	mnogostrok(char **str, int fd, int type, int c)
 
 int			check_namecomm(char *str, int type, int fd, t_hero **hero)
 {
-	int	len;
-	int	n;
+	size_t	len;
 	int	count;
 
 	len = type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);

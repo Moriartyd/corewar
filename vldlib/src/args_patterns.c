@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:54:05 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 22:08:02 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 17:11:24 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	get_patterns3(int code, int args[3])
 		args[1] = A2_LDI;
 		args[2] = A3_LDI;
 	}
-	else if (code == OP_ST)
+	else if (code == OP_STI)
 	{
 		args[0] = A1_STI;
 		args[1] = A2_STI;

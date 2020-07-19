@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 22:37:13 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 16:12:01 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	parse_instruct(char *str, int type, int fd, t_hero **hero)
 		exit(-1);//Malloc error
 	if (type == 3) //Metka
 	{
+		// while (is_label())
 		
 	}
 	if (type == 4) //Instruction

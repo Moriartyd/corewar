@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 22:08:17 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/19 18:09:13 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,10 @@ int				need_char(char c);
 int				is_correct_label(char *str);
 int				is_inst(char *str);
 int				is_label(char *str);
+int				sep_char(char c);
 void			get_patterns(int code, int args[3]);
+void			read_arguments(char *str, t_vldop *op);
+void			parse_instruct(char *str, int type, int fd, t_hero **hero);
 
 
 /*
