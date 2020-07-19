@@ -42,39 +42,66 @@ int			get_args(t_op *op)
 
 	i = 0;
 	j = 0;
-	if (op->arg[i][j] == 'r')
+	printf("%s\n", op->arg[i]);
+	while (	printf("%p\n", op->arg[i]) && op->arg[i])
 	{
-		op->nargs[i] = ft_atoi(op->arg[i] [j+ 1]);
-		return (0);
+		printf("%s\n", op->arg[i]);
+		if (op->arg[i][j] == 'r')
+		{
+			op->nargs[i] = ft_atoi(op->arg[i] + j + 1);
+			++i;
+			continue ;//return (0);
+		}
+		if (op->arg[i] && op->arg[i][j] == '%')
+			++j;
+		if (op->arg[i] && op->arg[i][j] == ':')//congrats you have a str!
+			op->curlabels[i] = op->arg[i] + j + 1;
+		else
+			op->nargs[i] = ft_atoi(op->arg[i] + j);
+		++i;
 	}
-	if (op->arg[i] && op->arg[i][j] == '%')
-		++j;
-	if (op->arg[i] && op->arg[i][j] == ':')//congrats you have a str!
-		op->curlabels[i] = op->arg[i] + j + 1;
-	else
-		op->nargs[i] = ft_atoi(op->arg[i]);
-	while (op->arg[i] && op->arg[i][j])
-	{
-		if ();
-	}
+	return (0);
 }
 
-int			op_live(t_op *op, int fd)
+int			get_types(t_op *op)
 {
-	unsigned char bc[1];
+	int 			i;
+	unsigned char	type;
+	int				offset;
+
+	i = -1;
+	type = 0;
+	offset = 6;
+	while (++i < 3)
+	{
+		if (op->types[i] == 1)
+			type = type << offset | 1;
+		else if (op->types[i] == 2)
+			type <<= offset | 1;
+		else if (op->types[i] == 3)
+			type <<= offset | 1;
+		offset -= 2;
+	}
+	return (1);
+}
+
+int			op_live(t_op *op, int fd, unsigned char bc[2192])
+{
+	//unsigned char bc[1];
 	char live;
 
 	live = 01;
 	write(fd, &live, 1);
+	get_types(op);
 	get_args(op);
 	return (0);
 }
 
-int			detect_op(t_op *op, int fd)
+int			detect_op(t_op *op, int fd, unsigned char bc[2192])
 {
 	if (op->code == 1)
 	{
-		op_live(op, fd);
+		op_live(op, fd, bc);
 	}
 	return (0);
 }
@@ -91,15 +118,28 @@ int			translator(t_op *op)
 	//x = 1;
 	print_byte_int(x);
 	op->code = 1;
-	detect_op(op, fd);
+	detect_op(op, fd, bc);
 	printf("ASSMCHECK");
 	return (0);
+}
+
+void		init_op_add(t_op *op)//for every op
+{
+	int i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		op->curlabels[i] = 0;
+		op->nargs[i] = INT32_MAX;
+	}
 }
 
 int 		main(int ac, char **av)
 {
 	t_op op;
 
+	init_op_add(&op);
 	translator(&op);
 	return (0);
 }

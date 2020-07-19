@@ -79,6 +79,7 @@ void			del_ops(t_op *op);
 
 void		ft_print_bits(unsigned char octet);
 int 		print_byte_int(int x);
+void		init_op_add(t_op *op);//for every op;
 
 
 
