@@ -12,17 +12,27 @@
 
 #include "vldlib/inc/vldlib.h"
 
-int		write_magicheader(unsigned char *mh)
+int		write_magicheader(unsigned char *bc, t_hero *hero)
 {
 	int fd;
 	char *fname;
 	int retw;
 
 	//mh[0] = COREWAR_EXEC_MAGIC
-	mh[0] = 243;//3;
-	mh[1] = 131;//15;
-	mh[2] = 234;//3;
-	mh[3] = 0;//8;
+//	bc[0] = 243;//3;
+//	bc[1] = 131;//15;
+//	bc[2] = 234;//3;
+//	bc[3] = 0;//8;
+	bc[0] = 0;//3;
+	bc[1] = 234;//15;
+	bc[2] = 131;//3;
+	bc[3] = 243;//8;
+	printf("MYSEGA\n");
+	ft_memcpy(bc + 4, hero->name, PROG_NAME_LENGTH);
+	ft_memcpy(bc + 140, hero->comment, COMMENT_LENGTH);
+	printf("MYSEGA\n");
+	//bc + 4 = &(*hero->name);
+	//bc + 140 = (unsigned char *)hero->comment;
 	fname = "x.cor";
 //	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
 	fd = open("name2.cor", O_CREAT| O_TRUNC | O_RDWR , 0666);////O_RDWR);
@@ -30,7 +40,12 @@ int		write_magicheader(unsigned char *mh)
 //	fd = open("name1.cor", O_RDWR);
 	/////printf("FDopened some file RDWR=%d\n",fd);
 	//retw = write(fd, "0xea83f3", 4 * 2);
-	retw = write(fd, mh, 4);
+	retw = write(fd, bc, 4);
+	retw = write(fd, bc + 4, 128);
+	write(fd, bc + 132, 4);
+	write(fd, bc + 136, 4);
+	write(fd, bc + 140, 2048);
+	write(fd, bc + 2188, 4);
 	printf("RETW=%d\n", retw);
 	return (fd);
 }
@@ -71,13 +86,10 @@ int			get_types(t_op *op)
 
 	i = -1;
 	type = 0;
-	offset = 6;
 	offset = 64;
-	printf("TOFF=%d\n", offset);
 	op->types[0] = 1; op->types[1] = 3; op->types[2] = 2;
 	while (++i < 3)
 	{
-		printf("TOFF=%d\n", offset);
 		if (op->types[i] == 1)
 			type |= offset;
 		else if (op->types[i] == 2)
@@ -114,19 +126,19 @@ int			detect_op(t_op *op, int fd, unsigned char bc[2192])
 	return (0);
 }
 
-int			translator(t_op *op)
+int			translator(t_hero *hero)
 {
 	unsigned char bc[2192] = {0};
 	unsigned char excode[CHAMP_MAX_SIZE + 1];//682 + 1
 	int fd;
 	int x;
 
-	fd = write_magicheader(bc);
+	fd = write_magicheader(bc, hero);
 	x = COREWAR_EXEC_MAGIC << 8;
 	//x = 1;
 	print_byte_int(x);
-	op->code = 1;
-	detect_op(op, fd, bc);
+	hero->op->code = 1;
+	detect_op(hero->op, fd, bc);
 	printf("ASSMCHECK");
 	return (0);
 }
@@ -145,9 +157,14 @@ void		init_op_add(t_op *op)//for every op
 
 int 		main(int ac, char **av)
 {
-	t_op op;
+	t_hero hero;
+	t_op   costil;
 
-	init_op_add(&op);
-	translator(&op);
+	hero.name = ft_strdup("Batman");
+	hero.comment = ft_strdup("BAT SPEAKS! NOCHAR01!");
+	hero.op  = &costil;
+	init_op_add(hero.op);
+	printf("MSEGHERE\n");
+	translator(&hero);
 	return (0);
 }
