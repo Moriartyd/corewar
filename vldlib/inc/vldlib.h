@@ -53,6 +53,7 @@ typedef struct  s_hero
 	char        *name;
 	char        *comment;
 	t_op		*op;
+	char		excode[CHAMP_MAX_SIZE + 1];//682 + 1
 }               t_hero;
 
 /*
@@ -84,6 +85,7 @@ int			detect_op(t_op *op, int fd, unsigned char bc[2192]);
 int			op_live(t_op *op, int fd, unsigned char bc[2192]);
 int			get_types(t_op *op);
 int			get_args(t_op *op);
+
 
 
 

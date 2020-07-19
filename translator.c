@@ -101,13 +101,14 @@ int			get_types(t_op *op)
 
 int			translator(t_hero *hero)
 {
-	unsigned char bc[2192] = {0};
-	unsigned char excode[CHAMP_MAX_SIZE + 1];//682 + 1
-	int fd;
-	int x;
+	unsigned char 	bc[2192] = {0};
+	int 			fd;
+	int 			x;
+	t_op 			tmp;
 
 	print_byte_int(x);
-	detect_op(hero->op, fd, bc);
+	tmp = *hero->op;
+	detect_op(&tmp, fd, bc);
 	fd = write_filler(bc, hero);
 	return (0);
 }
