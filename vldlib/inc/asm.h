@@ -15,6 +15,7 @@
 
 #include "libft.h"
 #include "op.h"
+#include <stdio.h>
 
 #	define USAGE_VM_M "usage:"
 #	define USAGE_VM_L 6
@@ -168,11 +169,13 @@ typedef struct	s_vldop
 
 typedef struct	s_op
 {
-	int			code;
+	int			code;//char
 	int			types[3];
-	char		*args[3];
+	int			nargs[3];//
+	char		*args[3];//
 	int			bytes;
 	char		*labels[LABELS];
+	char 		*curlabels[3];//
 	struct s_op	*prev;
 	struct s_op	*next;
 }				t_op;
@@ -182,7 +185,17 @@ typedef struct  s_hero
 	char        *name;
 	char        *comment;
 	t_op		*op;
+	char		excode[CHAMP_MAX_SIZE + 1];//682 + 1
 }               t_hero;
+
+
+void		ft_print_bits(unsigned char octet);
+int 		print_byte_int(int x);
+void		init_op_add(t_op *op);//for every op;
+int			detect_op(t_op *op, int fd, unsigned char bc[2192]);
+int			op_live(t_op *op, int fd, unsigned char bc[2192]);
+int			get_types(t_op *op);
+int			get_args(t_op *op);
 
 /*
 **	* ft_read_until_ch	-	читает файл посимвольно до символа c, 

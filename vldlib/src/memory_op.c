@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 17:22:05 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_op	*new_op(void)
 	{
 		res->types[i] = 0;
 		res->args[i] = 0;
+		res->nargs[i] = INT32_MAX;//flag
+		res->curlabels[i] = 0;//buf
 		i++;
 	}
 	i = -1;
