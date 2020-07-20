@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 17:44:02 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 16:11:54 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 20:10:20 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 int 			is_label(char *str) //and%:live
 {

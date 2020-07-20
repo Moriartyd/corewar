@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 18:20:30 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 /*
 **	От начала файла до первой записи может быть сколько угодно пустых строчек
@@ -57,11 +57,11 @@ void	read_file(int fd, t_hero **hero)
 	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)// || bytes == -3)
 	{
 		if (!ft_strchr(str, '\n'))
-			exit(-1); //\n
+			quit(EN_LASTSTR, NULL, NULL);
 		if ((t = get_type(&str, bytes, fd, hero)) == -1)
-			exit(-1); //Мусорная строка
+			quit(EN_TRASH, NULL, NULL);
 		if (p[t] == 1 && (t == 0 || t == 1))
-			exit(-1); //Два имени или коммента чемпиона
+			quit(EN_MORENAMES, NULL, NULL);
 		if (t == 3)
 		{
 			p[3] = 1;
@@ -72,7 +72,7 @@ void	read_file(int fd, t_hero **hero)
 	if (bytes == -1 || bytes == -2)
 		exit(-1); //Ошибка при чтении до символа
 	if (bytes == -3 && !ft_strchr(str, '\n') && !check_last_str(str))
-		exit(-1); //\n
+		quit(EN_LASTSTR, NULL, NULL);
 	if (str)
 		ft_strdel(&str);
 	ft_strdel(&str);

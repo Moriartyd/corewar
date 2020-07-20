@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 21:39:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/15 18:41:08 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 t_hero	*init_hero()
 {
@@ -18,7 +18,7 @@ t_hero	*init_hero()
 
 	hero = (t_hero *)malloc(sizeof(t_hero));
 	if (!hero)
-		exit(-1);// Malloc error
+		quit(EN_MALLOC, NULL, NULL);
 	hero->name = NULL;
 	hero->comment = NULL;
 	hero->op = NULL;

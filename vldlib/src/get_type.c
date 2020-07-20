@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 17:34:43 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 /*
 **							Описание p[5]
@@ -53,7 +53,7 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 	char	*s;
 
 	if (!*str && bytes == -2)
-		exit(-1); // Ошибка в малоке
+		quit(EN_MALLOC, NULL, NULL);
 	if (!(s = ft_str_white_trim(*str)) ||
 			(ft_strlen(*str) == 1 && **str == '\n'))
 		return (2);

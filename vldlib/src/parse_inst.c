@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 16:35:35 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:25:46 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 int			get_argt(int code)
 {
@@ -33,12 +33,12 @@ static char	*parse_label(char *str, t_vldop *op, int i)
 	int	j;
 
 	if (!is_correct_label(str))
-		exit(-1); //Левые символы в метке
+		quit(EN_LABEL, NULL, NULL);
 	j = 0;
 	while (j < LABELS && op->labels[j])
 		j++;
 	if (!(op->labels[j] = ft_strnewncp(str, i)))
-		exit(-1); //Malloc error
+		quit(EN_MALLOC, NULL, NULL);
 	if (str[i] == LABEL_CHAR)
 		i++;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
@@ -64,7 +64,7 @@ static void	read_inst(char *str, t_vldop *op)
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (!str[i] || str[i] == '\n')
-		exit(-1); //Syntax Error
+		quit(EN_ARGS1, op, NULL);
 	read_arguments(&str[i], op);
 	ft_strdel(&str);
 }
@@ -75,7 +75,7 @@ int		parse_instruct(char *str, int type, int fd, t_hero **hero)
 	t_vldop	*op;
 	int		t;
 
-	!(op = vldop_init()) ? exit(-1) : 0;//Malloc error
+	!(op = vldop_init()) ? quit(EN_MALLOC, NULL, NULL) : 0;
 	if (type == 3) //Metka
 	{
 		while ((t = is_label(str)))
@@ -88,7 +88,7 @@ int		parse_instruct(char *str, int type, int fd, t_hero **hero)
 			else
 			{
 				!(tmp = ft_strnewncp(tmp, ft_strlen(tmp))) ?\
-					exit(-1) : ft_strdel(&str); // malloc error
+					quit(EN_MALLOC, NULL, NULL) : ft_strdel(&str);
 				str = tmp;
 				break;
 			}

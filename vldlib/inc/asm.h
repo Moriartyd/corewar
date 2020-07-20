@@ -1,23 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vldlib.h                                           :+:      :+:    :+:   */
+/*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 17:05:44 by cpollich         ###   ########.fr       */
+/*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
+/*   Updated: 2020/07/20 21:06:45 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef VLDLIB_H
-#	define VLDLIB_H
+#	ifndef ASM_H
+#	define ASM_H
 
 #include "libft.h"
 #include "op.h"
 
 #	define USAGE_VM_M "usage:"
 #	define USAGE_VM_L 6
+
+/*
+**	Errors
+*/
+
+#	define E_DIR		"Error in T_DIR argument ["
+#	define E_IND		"Error in T_IND argument ["
+#	define E_REG		"Error in T_REG argument ["
+#	define E_LASTSTR	"It seems that you forgot \\n in the end of file\n"
+#	define E_TRASH		"Some trash in file\n"
+#	define E_MORENAMES	"You wrote more than one champion's name or comment\n"
+#	define E_READ		"I can't read this file\n"
+#	define E_MALLOC		"Malloc can't work anymore, sorry ;(\n"
+#	define E_NAMECHARS	"You wrote too much symbols in champion's name or comment\n"
+#	define E_CHAMP		"You made a mistake in chamion's name or comment\n"
+#	define E_CHAMPMISS	"You didn't write champion's name or comment\n"
+#	define E_INST		"You forgot to write an instruction after the label\n"
+#	define E_LABEL		"You made a mistake in label\n"
+#	define E_ARGS1		"You forgot to write arguments after the instruction ["
+#	define E_ARGS2		"I can't read some of the arguments of instruction ["
+#	define E_ARGS3		"Some arguments are misplaced in instruction ["
+#	define E_ARGS4		"You lost some arguments in instruction ["
+
+#	define EN_DIR		1
+#	define EN_IND		2
+#	define EN_REG		3
+#	define EN_LASTSTR	4
+#	define EN_TRASH		5
+#	define EN_MORENAMES	6
+#	define EN_READ		7
+#	define EN_MALLOC	8
+#	define EN_NAMECHARS	9
+#	define EN_CHAMP		10
+#	define EN_CHAMPMISS	11
+#	define EN_INST		12
+#	define EN_LABEL		13
+#	define EN_ARGS1		14
+#	define EN_ARGS2		15
+#	define EN_ARGS3		16
+#	define EN_ARGS4		17
 
 /*
 **	ASM
@@ -126,7 +166,6 @@ typedef struct	s_vldop
 
 }				t_vldop;
 
-
 typedef struct	s_op
 {
 	int			code;
@@ -204,5 +243,6 @@ void			del_ops(t_op *op);
 t_vldop			*vldop_init(void);
 void			vldop_del(t_vldop **op);
 
+void			quit(int e, t_vldop *op, char *arg);
 
 #	endif

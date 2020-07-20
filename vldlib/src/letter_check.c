@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 23:01:56 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 17:34:34 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 20:10:20 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 int			s_check(char *str)
 {

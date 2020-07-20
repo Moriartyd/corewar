@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 20:22:41 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 17:13:05 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 20:10:20 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 t_vldop *vldop_init(void)
 {

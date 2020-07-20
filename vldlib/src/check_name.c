@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 16:51:21 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:27:22 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 /*
 **							Описание p[5]
@@ -55,10 +55,10 @@ static int	odnostrok(char *str, int len, int type)
 
 	n = strrchr(&str[len], '"') - strchr(&str[len], '"') - 1;
 	if (!tail_check(strrchr(&str[len], '"') + 1))
-		exit(-1); //Мусор в конце строки
+		quit(EN_TRASH, NULL, NULL);
 	len = type ? COMMENT_LENGTH : PROG_NAME_LENGTH;
 	if (n > len)
-		exit(-1); //Слишком много символов в имени/комменте
+		quit(EN_NAMECHARS, NULL, NULL);
 	return (type);
 }
 
@@ -75,18 +75,18 @@ static int	mnogostrok(char **str, int fd, int type, int c)
 			exit(-1); //Ошибка В зависимости от того, что вернуло
 		ft_read_until_ch(fd, '\n', &tail);
 		if (!tail_check(tail))
-			exit(-1); //Мусор в окончании
+			quit(EN_TRASH, NULL, NULL);
 		if (!(tmp = ft_strjoin(*str, protail)))
-			exit (-1); //Malloc error
+			quit(EN_MALLOC, NULL, NULL);
 	}
 	else
 	{
 		tail = tail_search(*str);
 		if (!tail_check(tail))
-			exit(-1); //Мусор в окончании
+			quit(EN_TRASH, NULL, NULL);
 		tmp = ft_strchr(*str, '"');
 		if (!(protail = ft_strnewncp(tmp, tail - tmp)))
-			exit (-1); //Malloc error
+			quit(EN_MALLOC, NULL, NULL);
 		tmp = protail;
 	}
 	ft_strdel(str);
@@ -103,7 +103,7 @@ int			check_namecomm(char **str, int type, int fd, t_hero **hero)
 	len = type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);
 	if (ft_strlen((*str)) <= len ||
 				((*str)[len] != '\t' && (*str)[len] != ' ' && (*str)[len] != '"'))
-		exit (-1); //Ошибка в имени/комменте
+		quit(EN_CHAMP, NULL, NULL);
 	while ((*str)[len] == '\t' || (*str)[len] == ' ')
 		len++;
 	if ((*str)[len] == '"')
@@ -116,5 +116,6 @@ int			check_namecomm(char **str, int type, int fd, t_hero **hero)
 		return (type);
 	}
 	else
-		exit(-1); // Отсутствует имя/коммент
+		quit(EN_CHAMPMISS, NULL, NULL);
+	return (-1);
 }

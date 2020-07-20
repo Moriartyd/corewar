@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "vldlib.h": "c",
+        "asm.h": "c",
         "__bit_reference": "c",
         "__hash_table": "c",
         "__split_buffer": "c",

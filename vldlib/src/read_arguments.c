@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:48:08 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 18:38:58 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:28:15 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 static int	get_arg_type(char c)
 {
@@ -28,25 +28,25 @@ static char	*first_arg(char *str, int args[3], t_vldop *op)
 	int	i;
 
 	if ((t = get_arg_type(*str)) < 0)
-		exit(-1); //lexical Error in args
-	!(t & args[0]) ?	exit(-1) : 0; //Не тот аргумент
+		quit(EN_ARGS2, op, NULL);
+	!(t & args[0]) ?	quit(EN_ARGS3, op, NULL) : 0;
 	args[0] = t;
 	i = 0;
 	while (str[i] && !sep_char(str[i]))
 		i++;
 	if (!(op->arg1 = ft_strnewncp(str, i)))
-		exit(-1); //malloc error
+		quit(EN_MALLOC, NULL, NULL);
 	while (args[1] && str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	str[i] == SEPARATOR_CHAR && args[1] ? i++ : 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (args[1] && (!str[i] || str[i] == '\n'))
-		exit(-1); //Invalid parameter count for instruction
+		quit(EN_ARGS4, op, NULL);
 	if (!args[1])
 	{
 		if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
-			exit(-1); //Мусор в конце
+			quit(EN_TRASH, NULL, NULL);
 		return (NULL);
 	}
 	return (&str[i]);
@@ -59,24 +59,24 @@ static char	*second_arg(char *str, int args[3], t_vldop *op)
 
 	if (!str)
 		return (NULL);
-	(t = get_arg_type(*str)) < 0 ? exit(-1) : 0; //lexical Error in args
-	!(t & args[1]) ? exit(-1) : 0; //Не тот аргумент
+	(t = get_arg_type(*str)) < 0 ? quit(EN_ARGS2, op, NULL) : 0;
+	!(t & args[1]) ? quit(EN_ARGS3, op, NULL) : 0; //Не тот аргумент
 	args[1] = t;
 	i = 0;
 	while (str[i] && !sep_char(str[i]))
 		i++;
-	!(op->arg2 = ft_strnewncp(str, i)) ? exit(-1) : 0; //malloc error
+	!(op->arg2 = ft_strnewncp(str, i)) ? quit(EN_MALLOC, NULL, NULL) : 0;
 	while (args[1] && str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	str[i] == SEPARATOR_CHAR && args[2] ? i++ : 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (args[2] && (!str[i] || str[i] == '\n'))
-		exit(-1); //Invalid parameter count for instruction ld
+		quit(EN_ARGS4, op, NULL);
 	if (!args[2])
 	{
 		if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
-			exit(-1); //Мусор в конце
+			quit(EN_TRASH, NULL, NULL);
 		return (NULL);
 	}
 	return (&str[i]);
@@ -90,20 +90,20 @@ static char	*third_arg(char *str, int args[3], t_vldop *op)
 	if (!str)
 		return (NULL);
 	if ((t = get_arg_type(*str)) < 0)
-		exit(-1); //lexical Error in args
+		quit(EN_ARGS2, op, NULL);
 	if (!(t & args[2]))
-		exit(-1); //Не тот аргумент
+		quit(EN_ARGS3, op, NULL);
 	args[2] = t;
 	i = 0;
 	while (str[i] && str[i] != '\t' && str[i] != ' ' && str[i] != '-'
 		&& str[i] != SEPARATOR_CHAR && str[i] != '\n' && str[i] != COMMENT_CHAR)
 		i++;
 	if (!(op->arg3 = ft_strnewncp(str, i)))
-		exit(-1); //malloc error
+		quit(EN_MALLOC, NULL, NULL);
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
-		exit(-1); //Мусор в конце
+		quit(EN_TRASH, NULL, NULL);
 	return (&str[i]);
 }
 

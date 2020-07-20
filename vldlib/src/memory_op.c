@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 15:17:19 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 t_op	*new_op(void)
 {
@@ -19,7 +19,7 @@ t_op	*new_op(void)
 
 	res = (t_op *)malloc(sizeof(t_op));
 	if (!res)
-		exit(-1);//Malloc Error
+		quit(EN_MALLOC, NULL, NULL);
 	res->code = 0;
 	i = 0;
 	while (i < 3)

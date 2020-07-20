@@ -6,11 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 19:51:37 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 15:51:49 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:29:53 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vldlib.h"
+#include "asm.h"
 
 static int	check_dir(t_vldop *op, int i)
 {
@@ -20,21 +20,21 @@ static int	check_dir(t_vldop *op, int i)
 		str = op->arg1;
 	else if (i == 1)
 		str = op->arg2;
-	else if (i == 2)
+	else
 		str = op->arg3;
 	i = 1;
 	if (ft_strlen(str) == 1)
-		exit (-1);
+		quit(EN_DIR, op, str);
 	if (str[i] == LABEL_CHAR)
 	{
 		if (!(is_correct_label(&str[i])))
-			exit(-1);//Ошибка в прямом аргументе
+			quit(EN_DIR, op, str);
 	}
 	else
 		while (str[i])
 		{
 			if (str[i] < '0' || str[i] > '9')
-				exit(-1);//Ошибка в прямом аргументе
+				quit(EN_DIR, op, str);
 			i++;
 		}
 	return (1);
@@ -48,16 +48,16 @@ static int	check_ind(t_vldop *op, int i)
 		str = op->arg1;
 	else if (i == 1)
 		str = op->arg2;
-	else if (i == 2)
+	else
 		str = op->arg3;
 	i = 0;
 	if (ft_countch(str, '-') > 1 ||
 			((str[0] == '-' || str[0] == '0') && str[1] && str[1] == LABEL_CHAR))
-		exit (-1);////Ошибка в indir аргументе
+		quit(EN_IND, op, str);
 	if (str[i] == LABEL_CHAR)
 	{
 		if (!(is_correct_label(&str[i + 1])))
-			exit(-1);//Ошибка в indir аргументе
+			quit(EN_IND, op, str);
 	}
 	else
 	{
@@ -66,7 +66,7 @@ static int	check_ind(t_vldop *op, int i)
 		while (str[i])
 		{
 			if (str[i] < '0' || str[i] > '9')
-				exit(-1);//Ошибка в indir аргументе
+				quit(EN_IND, op, str);
 			i++;
 		}
 	}
@@ -82,11 +82,11 @@ static int	check_reg(t_vldop *op, int i)
 		str = op->arg1;
 	else if (i == 1)
 		str = op->arg2;
-	else if (i == 2)
+	else
 		str = op->arg3;
 	i = 1;
 	if (ft_strlen(str) > 2)
-		exit(-1);//Ощибка в reg
+		quit(EN_REG, op, str);
 	num = 0;
 	while (str[i])
 	{
@@ -97,7 +97,7 @@ static int	check_reg(t_vldop *op, int i)
 		i++;
 	}
 	if (!num)
-		exit(-1);//Ощибка в reg
+		quit(EN_REG, op, str);
 	return (1);
 }
 
