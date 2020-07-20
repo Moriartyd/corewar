@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:06:45 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 23:12:43 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ int			op_live(t_op *op, int fd, unsigned char bc[2192]);
 int			get_types(t_op *op);
 int			get_args(t_op *op);
 
+int			translator(t_hero *hero);
 /*
 **	* ft_read_until_ch	-	читает файл посимвольно до символа c, 
 **							возвращает количество прочитанного.

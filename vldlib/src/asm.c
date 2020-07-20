@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 20:11:52 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 23:17:12 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ int main(int ac, char **av)
 	arg = ac > 2 ? ac - 1 : 1;
 	if ((fd = open(av[arg], O_RDONLY)) <= 0)
 		exit(-1);//perror
-	hero = init_hero();
-	read_file(fd, &hero);
+	hero = init_hero(); printf("qweqwewqweqweqwq\n");
+	read_file(fd, &hero);printf("QW\n");
 	close(fd);
+	printf("SDASDAD\n");
+	translator(hero);//!
+	printf("ASMED\n");
 	show_hero(hero);
 	del_hero(&hero);
 	return (0);
