@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/15 23:28:19 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 18:20:30 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,47 @@
 **		+ p[4] - инструкция
 */
 
-void	check_file(int fd, t_hero **hero)
+int		check_last_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (!str[i])
+		return (1);
+	else
+		return (0);
+}
+
+void	read_file(int fd, t_hero **hero)
 {
 	char	*str;
 	int		p[5];
 	int		t;
 	int		bytes;
 
-	ft_bzero(p, 5);
+	ft_bzero(p, sizeof(int) * 5);
 	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)// || bytes == -3)
 	{
-		if ((t = get_type(&str, bytes, fd, hero) == -1))
+		if (!ft_strchr(str, '\n'))
+			exit(-1); //\n
+		if ((t = get_type(&str, bytes, fd, hero)) == -1)
 			exit(-1); //Мусорная строка
 		if (p[t] == 1 && (t == 0 || t == 1))
 			exit(-1); //Два имени или коммента чемпиона
+		if (t == 3)
+		{
+			p[3] = 1;
+			p[4] = 1;
+		}
+		p[t] = 1;
 	}
-	if (bytes == -1)
+	if (bytes == -1 || bytes == -2)
 		exit(-1); //Ошибка при чтении до символа
+	if (bytes == -3 && !ft_strchr(str, '\n') && !check_last_str(str))
+		exit(-1); //\n
+	if (str)
+		ft_strdel(&str);
+	ft_strdel(&str);
 }

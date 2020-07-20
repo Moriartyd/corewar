@@ -6,22 +6,45 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 21:35:25 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 17:18:45 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vldlib.h"
 #include <stdio.h>
 
+void    show_hero(t_hero *hero)
+{
+	t_op	*op;
+
+	op = hero->op;
+	printf("name:\t\t'%s'\ncomment:\t'%s'\n", hero->name, hero->comment);
+	while (op)
+	{
+		int i = 0;
+		while (op->labels[i])
+		{
+			printf("%s:\n", op->labels[i]);
+			i++;
+		}
+		printf("%d %s %s %s\n", op->code, op->args[0], op->args[1], op->args[2]);
+		op = op->next;
+	}
+}
+
 int main(int ac, char **av)
 {
-    /*t_hero *hero;
+	t_hero	*hero;
+	int		fd;
+	int		arg;
 
-    check_file(open(av[1], O_RDONLY), &hero);
-    printf("name: '%s'\n comment: '%s'\n", hero->name, hero->comment);*/
-    t_vldop *op;
-
-    op = op_init();
-    printf("1: '%s'\n2: '%s'\n3: '%s'\n", op->arg1, op->arg2, op->arg3);
-    return (0);
+	arg = ac > 2 ? ac - 1 : 1;
+	if ((fd = open(av[arg], O_RDONLY)) <= 0)
+		exit(-1);//perror
+	hero = init_hero();
+	read_file(fd, &hero);
+	close(fd);
+	show_hero(hero);
+	del_hero(&hero);
+	return (0);
 }

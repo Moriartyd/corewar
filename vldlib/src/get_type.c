@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 19:38:45 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 17:34:43 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 **							Описание p[5]
 **		+ 0 - Имя
 **		+ 1 - Комментарий чемпиона
-**		+ 2 - Комментарий к коду
+**		+ 2 - пустая строка
 **		+ 3 - Начало метки
 **		+ 4 - Инструкция
-**		+ 5 - Пустая строка
 */
 
 static int	is_namecomm(char *str)
@@ -57,7 +56,7 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 		exit(-1); // Ошибка в малоке
 	if (!(s = ft_str_white_trim(*str)) ||
 			(ft_strlen(*str) == 1 && **str == '\n'))
-		return (5);
+		return (2);
 	ft_strdel(str);
 	if (s[0] == COMMENT_CHAR || s[0] == ALT_COMMENT_CHAR)
 	{
@@ -65,7 +64,7 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 		return (2);
 	}
 	if (((type = is_namecomm(s)) != -1))
-		if (check_namecomm(s, type, fd, hero) >= 0)
+		if (check_namecomm(&s, type, fd, hero) >= 0)
 			return (type);
 	if ((type = is_labelinst(s)) > 0)
 		return (parse_instruct(s, type, fd, hero));

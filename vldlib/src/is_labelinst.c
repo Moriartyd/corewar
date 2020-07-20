@@ -6,18 +6,21 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 17:44:02 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 16:41:32 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 16:11:54 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vldlib.h"
 
-int 			is_label(char *str) //проверено
+int 			is_label(char *str) //and%:live
 {
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != LABEL_CHAR)
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != LABEL_CHAR
+		&& str[i] != '-' && str[i] != DIRECT_CHAR)
 		i++;
 	if (str[i] == LABEL_CHAR)
 		return (i);

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 19:51:37 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 21:34:17 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 15:51:49 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_dir(t_vldop *op, int i)
 	else
 		while (str[i])
 		{
-			if (str[i] <= '0' || str[i] >= '9')
+			if (str[i] < '0' || str[i] > '9')
 				exit(-1);//Ошибка в прямом аргументе
 			i++;
 		}
@@ -50,19 +50,26 @@ static int	check_ind(t_vldop *op, int i)
 		str = op->arg2;
 	else if (i == 2)
 		str = op->arg3;
-	i = 1;
+	i = 0;
+	if (ft_countch(str, '-') > 1 ||
+			((str[0] == '-' || str[0] == '0') && str[1] && str[1] == LABEL_CHAR))
+		exit (-1);////Ошибка в indir аргументе
 	if (str[i] == LABEL_CHAR)
 	{
 		if (!(is_correct_label(&str[i + 1])))
 			exit(-1);//Ошибка в indir аргументе
 	}
 	else
+	{
+		if (str[i] == '-')
+			i++;
 		while (str[i])
 		{
-			if (str[i] <= '0' || str[i] >= '9')
+			if (str[i] < '0' || str[i] > '9')
 				exit(-1);//Ошибка в indir аргументе
 			i++;
 		}
+	}
 	return (1);
 }
 

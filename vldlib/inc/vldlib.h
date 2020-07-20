@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 17:37:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 21:29:51 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 17:05:44 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,8 @@ typedef struct  s_hero
 
 int				ft_read_until_ch(int fd, int c, char **str);
 int				get_type(char **str, int bytes, int fd, t_hero **hero);
-int				check_namecomm(char *str, int type, int fd, t_hero **hero);
-void			check_file(int fd, t_hero **hero);
+int				check_namecomm(char **str, int type, int fd, t_hero **hero);
+void			read_file(int fd, t_hero **hero);
 void			fill_hero(int type, char **str, t_hero **hero);
 int				need_char(char c);
 
@@ -199,7 +199,10 @@ int				check_opname(char *str);
 t_hero			*init_hero(void);
 void			del_hero(t_hero **hero);
 t_op			*new_op(void);
+t_op			*add_op(t_op *op);
 void			del_ops(t_op *op);
-t_vldop			*op_init(void);
+t_vldop			*vldop_init(void);
+void			vldop_del(t_vldop **op);
+
 
 #	endif

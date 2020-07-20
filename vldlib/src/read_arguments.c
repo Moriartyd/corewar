@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:48:08 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 20:30:50 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 18:38:58 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*first_arg(char *str, int args[3], t_vldop *op)
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (args[1] && (!str[i] || str[i] == '\n'))
-		exit(-1); //Invalid parameter count for instruction ld
+		exit(-1); //Invalid parameter count for instruction
 	if (!args[1])
 	{
 		if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)

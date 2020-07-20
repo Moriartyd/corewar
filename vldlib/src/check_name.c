@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 18:10:54 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 16:51:21 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,24 +95,24 @@ static int	mnogostrok(char **str, int fd, int type, int c)
 	return (type);
 }
 
-int			check_namecomm(char *str, int type, int fd, t_hero **hero)
+int			check_namecomm(char **str, int type, int fd, t_hero **hero)
 {
 	size_t	len;
 	int	count;
 
 	len = type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);
-	if (ft_strlen(str) <= len ||
-				(str[len] != '\t' && str[len] != ' ' && str[len] != '"'))
+	if (ft_strlen((*str)) <= len ||
+				((*str)[len] != '\t' && (*str)[len] != ' ' && (*str)[len] != '"'))
 		exit (-1); //Ошибка в имени/комменте
-	while (str[len] == '\t' || str[len] == ' ')
+	while ((*str)[len] == '\t' || (*str)[len] == ' ')
 		len++;
-	if (str[len] == '"')
+	if ((*str)[len] == '"')
 	{
-		if ((count = ft_countch(&str[len], '"')) == 2)
-			odnostrok(str, len, type);
+		if ((count = ft_countch(&(*str)[len], '"')) == 2)
+			odnostrok(*str, len, type);
 		else
-			mnogostrok(&str, fd, type, count);
-		fill_hero(type, &str, hero);
+			mnogostrok(str, fd, type, count);
+		fill_hero(type, str, hero);
 		return (type);
 	}
 	else

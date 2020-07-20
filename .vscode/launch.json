@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/vldlib/test",
-			"args": ["sti r1, %:live , %1#dsad"],
+			"args": ["Batman.s"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/vldlib",
 			"environment": [],

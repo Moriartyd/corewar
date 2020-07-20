@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/18 19:02:54 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 15:17:19 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_op	*new_op(void)
 	{
 		res->types[i] = 0;
 		res->args[i] = 0;
+		i++;
 	}
 	i = -1;
 	while (++i < LABELS)
@@ -58,24 +59,26 @@ void	del_ops(t_op *op)
 }
 
 /*
-** Парсит строку на инструкцию
-*/
-
-static void	fill_op(t_op *op, const char *str)
-{
-	
-}
-
-/*
 **	Добавляет в конец списка новую инструкцию
 */
 
-void	add_op(t_op *op, const char *str)
+t_op	*add_op(t_op *op)
 {
-	while (op->next)
+	t_op	*res;
+
+	res = op;
+	while (op && op->next)
 		op = op->next;
-	op->next = new_op();
-	op->next->prev = op;
-	op->next->next = NULL;
-	// fill_op(op->next, str);
+	if (op)
+	{
+		op->next = new_op();
+		op->next->prev = op;
+		op->next->next = NULL;
+	}
+	else
+	{
+		op = new_op();
+		res = op;
+	}
+	return (res);
 }

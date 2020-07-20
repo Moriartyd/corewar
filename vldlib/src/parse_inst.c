@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/19 21:28:15 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/20 16:35:35 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,16 @@ static char	*parse_label(char *str, t_vldop *op, int i)
 
 static void	read_inst(char *str, t_vldop *op)
 {
-	int	i;
+	int		i;
+	char	*ops;
 
 	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	ops = &str[i];
 	while (str[i] && !need_char(str[i]))
 		i++;
-	op->code = check_opname(str);
+	op->code = check_opname(ops);
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (!str[i] || str[i] == '\n')
@@ -69,13 +73,14 @@ int		parse_instruct(char *str, int type, int fd, t_hero **hero)
 {
 	char	*tmp;
 	t_vldop	*op;
+	int		t;
 
-	!(op = op_init()) ? exit(-1) : 0;//Malloc error
+	!(op = vldop_init()) ? exit(-1) : 0;//Malloc error
 	if (type == 3) //Metka
 	{
-		while ((type = is_label(str)))
+		while ((t = is_label(str)))
 		{
-			if (!(tmp = parse_label(str, op, type)))
+			if (!(tmp = parse_label(str, op, t)))
 			{
 				ft_strdel(&str);
 				ft_read_until_ch(fd, '\n', &str);
