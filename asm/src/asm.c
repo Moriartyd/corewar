@@ -39,11 +39,15 @@ int main(int ac, char **av)
 	int		arg;
 
 	arg = ac > 2 ? ac - 1 : 1;
+//	printf("/Users/student/corewarte/ASMDEBGL/cmake-build-debug/ASMDEBGL");
 	if ((fd = open(av[arg], O_RDONLY)) <= 0)
 		exit(-1);//perror
+	printf("F=%d\n",fd);
 	hero = init_hero();
 	read_file(fd, &hero);
 	close(fd);
+	printf("READclose?\n");
+	translator(hero);
 	show_hero(hero);
 	del_hero(&hero);
 	return (0);

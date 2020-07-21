@@ -18,6 +18,7 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	int fd;
 	char *fname;
 	int retw;
+	char	*nul;
 
 	//mh[0] = COREWAR_EXEC_MAGIC
 	bc[0] = 0;//3;
@@ -39,7 +40,11 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	write(fd, bc + 136, 4);
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
-	write(1, 0, 4);
+	nul = 0;
+//	write(1, 0, 4);//bad
+//	write(1, nul, 4);//bad
+	char nuls[4] = {4};
+	write(1, nuls, 4);
 	printf("NUL\n");
 	printf("RETW=%d\n", retw);
 	return (fd);
@@ -106,7 +111,7 @@ int			translator(t_hero *hero)
 	int 			x;
 	t_op 			tmp;
 
-	print_byte_int(x);
+	//print_byte_int(x);
 	tmp = *hero->op;
 	detect_op(&tmp, fd, bc);
 	fd = write_filler(bc, hero);
