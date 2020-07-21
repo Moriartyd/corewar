@@ -31,7 +31,7 @@ void    show_hero(t_hero *hero)
 		op = op->next;
 	}
 }
-
+/*
 int main(int ac, char **av)
 {
 	t_hero	*hero;
@@ -51,4 +51,4 @@ int main(int ac, char **av)
 	show_hero(hero);
 	del_hero(&hero);
 	return (0);
-}
+}*/

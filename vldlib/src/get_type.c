@@ -26,21 +26,20 @@ static int	is_namecomm(char *str)
 	size_t	i;
 
 	i = 0;
-	printf("NCS=%s---CCS=%s-\n",NAME_CMD_STRING, COMMENT_CMD_STRING);
+	//printf("NCS=%s---CCS=%s-\n",NAME_CMD_STRING, COMMENT_CMD_STRING);
 	while (str[i] && (str[i] == NAME_CMD_STRING[i]
 					|| str[i] == COMMENT_CMD_STRING[i]))
 	{
-		printf("i=%d,---NAMECOMSTR[i]=%c////NCS[i]=%c///CCS[i]=%c\n",i, str[i], NAME_CMD_STRING[i], COMMENT_CMD_STRING[i]);
+		//printf("i=%d,---NAMECOMSTR[i]=%c////NCS[i]=%c///CCS[i]=%c\n",i, str[i], NAME_CMD_STRING[i], COMMENT_CMD_STRING[i]);
 		i++;
 	}
-	printf("i=%d // str-isnamecomm=%s\n",i, str);
+	//printf("i=%d // str-isnamecomm=%s\n",i, str);
 	if (i == ft_strlen(NAME_CMD_STRING))
 		return (0);
 	else if (i == ft_strlen(COMMENT_CMD_STRING))
 		return (1);
 	else
-	{	printf("LENSTRINGCOMNAME=i==%d CMDStr=%s lencmd=%d\n",i, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING));
-
+	{
 		return (-1);
 	}
 }
@@ -74,12 +73,12 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 	if (((type = is_namecomm(s)) != -1))
 		if (check_namecomm(&s, type, fd, hero) >= 0)
 			return (type);
-	printf("TYPE=%d\n",type);
+//	printf("TYPE=%d\n",type);
 	if ((type = is_labelinst(s)) > 0)
 	{
-		printf("INSTLABELtype=%d\n", type);
+//		printf("INSTLABELtype=%d\n", type);
 		return (parse_instruct(s, type, fd, hero));
 	}
-	printf("SECTYPEislabelTYPE=%d\n",type);
+//	printf("SECTYPEislabelTYPE=%d\n",type);
 	return (-1);
 }
