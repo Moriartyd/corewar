@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 17:20:52 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 15:00:31 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 17:14:56 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,5 @@ char				*ft_str_white_trim(const char *s);
 int					ft_countch(const char *str, int c);
 char				*ft_strnewncp(const char *str, size_t len);
 int					ft_strjoinchar(char **str, char c);
-
 
 #	endif

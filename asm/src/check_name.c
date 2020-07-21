@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:27:22 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:43:13 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	odnostrok(char *str, int len, int type)
 	return (type);
 }
 
-static int	mnogostrok(char **str, int fd, int type, int c)
+static void	mnogostrok(char **str, int fd, int c)
 {
 	char	*protail;
 	char	*tail;
@@ -74,16 +74,13 @@ static int	mnogostrok(char **str, int fd, int type, int c)
 		if ((e = ft_read_until_ch(fd, '"', &protail)) < 0)
 			exit(-1); //Ошибка В зависимости от того, что вернуло
 		ft_read_until_ch(fd, '\n', &tail);
-		if (!tail_check(tail))
-			quit(EN_TRASH, NULL, NULL);
-		if (!(tmp = ft_strjoin(*str, protail)))
-			quit(EN_MALLOC, NULL, NULL);
+		(!tail_check(tail)) ? quit(EN_TRASH, NULL, NULL) : 0;
+		(!(tmp = ft_strjoin(*str, protail))) ? quit(EN_MALLOC, NULL, NULL) : 0;
 	}
 	else
 	{
 		tail = tail_search(*str);
-		if (!tail_check(tail))
-			quit(EN_TRASH, NULL, NULL);
+		(!tail_check(tail)) ? quit(EN_TRASH, NULL, NULL) : 0;
 		tmp = ft_strchr(*str, '"');
 		if (!(protail = ft_strnewncp(tmp, tail - tmp)))
 			quit(EN_MALLOC, NULL, NULL);
@@ -92,17 +89,16 @@ static int	mnogostrok(char **str, int fd, int type, int c)
 	ft_strdel(str);
 	ft_strdel(&protail);
 	*str = tmp;
-	return (type);
 }
 
 int			check_namecomm(char **str, int type, int fd, t_hero **hero)
 {
 	size_t	len;
-	int	count;
+	int		count;
 
 	len = type ? ft_strlen(COMMENT_CMD_STRING) : ft_strlen(NAME_CMD_STRING);
-	if (ft_strlen((*str)) <= len ||
-				((*str)[len] != '\t' && (*str)[len] != ' ' && (*str)[len] != '"'))
+	if (ft_strlen((*str)) <= len || ((*str)[len] != '\t'
+								&& (*str)[len] != ' ' && (*str)[len] != '"'))
 		quit(EN_CHAMP, NULL, NULL);
 	while ((*str)[len] == '\t' || (*str)[len] == ' ')
 		len++;
@@ -111,7 +107,7 @@ int			check_namecomm(char **str, int type, int fd, t_hero **hero)
 		if ((count = ft_countch(&(*str)[len], '"')) == 2)
 			odnostrok(*str, len, type);
 		else
-			mnogostrok(str, fd, type, count);
+			mnogostrok(str, fd, count);
 		fill_hero(type, str, hero);
 		return (type);
 	}

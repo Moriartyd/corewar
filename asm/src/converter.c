@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 19:39:05 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:26:26 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:44:47 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void		convert_charargs(t_vldop *op, t_op *p)
 		p->args[1] = ft_strnewncp(op->arg2, ft_strlen(op->arg2));
 		if (!p->args[1])
 			quit(EN_MALLOC, NULL, NULL);
-
 	}
 	if (op->args[2])
 	{
@@ -66,15 +65,15 @@ int				convert_vldop_op(t_vldop *op, t_hero **hero, int type)
 	p = (*hero)->op;
 	while (p && p->next)
 		p = p->next;
-	if (op->labels[0] && !op->code)
-		quit(EN_INST, NULL, NULL);
+	(op->labels[0] && !op->code) ? quit(EN_INST, NULL, NULL) : 0;
 	check_args(op);
 	p->bytes = get_bytes(op);
 	p->code = op->code;
 	i = 0;
 	while (op->labels[i])
 	{
-		if (!(p->labels[i] = ft_strnewncp(op->labels[i], ft_strlen(op->labels[i]))))
+		if (!(p->labels[i] = ft_strnewncp(op->labels[i],\
+						ft_strlen(op->labels[i]))))
 			quit(EN_MALLOC, NULL, NULL);
 		i++;
 	}

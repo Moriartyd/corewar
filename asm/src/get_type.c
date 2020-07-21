@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 17:11:22 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,41 @@
 **		+ 4 - Инструкция
 */
 
-static int	is_namecomm(char *str)
+static int	is_name(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i] && (str[i] == NAME_CMD_STRING[i]
-					|| str[i] == COMMENT_CMD_STRING[i]))
+	while (i < ft_strlen(NAME_CMD_STRING) &&
+				str[i] && str[i] == NAME_CMD_STRING[i])
 		i++;
-	if (i == ft_strlen(NAME_CMD_STRING))
+	if (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '"'))
 		return (0);
-	else if (i == ft_strlen(COMMENT_CMD_STRING))
+	if (!str[i])
+		exit(-1); //нет имени
+	return (i == ft_strlen(NAME_CMD_STRING) ? 1 : 0);
+}
+
+static int	is_comment(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < ft_strlen(COMMENT_CMD_STRING) &&
+				str[i] && str[i] == COMMENT_CMD_STRING[i])
+		i++;
+	if (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '"'))
+		return (0);
+	if (!str[i])
+		exit(-1); //нет коммента
+	return (i == ft_strlen(COMMENT_CMD_STRING) ? 1 : 0);
+}
+
+static int	is_namecomm(char *str)
+{
+	if (is_name(str))
+		return (0);
+	else if (is_comment(str))
 		return (1);
 	else
 		return (-1);

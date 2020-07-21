@@ -6,23 +6,11 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:39:52 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-/*
-**	От начала файла до первой записи может быть сколько угодно пустых строчек
-**	Имя и комментарий чампиона могут меняться местами
-**	Файл может начаться с комментария к коду
-**	Между NAME_CMD и строкой может быть сколько угодно пробелов и только пробелов
-**	Между NAME_CMD и строкой может вообще ничего не быть
-**	Если строка началась с COMMENT_CHAR, то ее можно не проверять
-**	Строчек между командами/комментами/именем/итд может быть сколько угодно
-**	Строка может начинаться и оканчиваться whitespaces
-**	Метка состоит только из LABEL_CHARS
-*/
 
 /*
 **							Описание p[5]
@@ -33,7 +21,7 @@
 **		+ p[4] - инструкция
 */
 
-int		check_last_str(char *str)
+static int	check_last_str(char *str)
 {
 	int	i;
 
@@ -46,7 +34,19 @@ int		check_last_str(char *str)
 		return (0);
 }
 
-void	read_file(int fd, t_hero **hero)
+static void	check_errors(int *p, int bytes, char *str)
+{
+	if (bytes == -1 || bytes == -2)
+		exit(-1); //Ошибка при чтении до символа
+	if (bytes == -3 && !ft_strchr(str, '\n') && !check_last_str(str))
+		quit(EN_LASTSTR, NULL, NULL);
+	if (!p[0] || !p[1])
+		quit(EN_CHAMPMISS, NULL, NULL);
+	if (p[0] && p[1] && !p[3])
+		quit(EN_NOINST, NULL, NULL);
+}
+
+void		read_file(int fd, t_hero **hero)
 {
 	char	*str;
 	int		p[5];
@@ -54,7 +54,7 @@ void	read_file(int fd, t_hero **hero)
 	int		bytes;
 
 	ft_bzero(p, sizeof(int) * 5);
-	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)// || bytes == -3)
+	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)
 	{
 		if (!ft_strchr(str, '\n'))
 			quit(EN_LASTSTR, NULL, NULL);
@@ -69,10 +69,7 @@ void	read_file(int fd, t_hero **hero)
 		}
 		p[t] = 1;
 	}
-	if (bytes == -1 || bytes == -2)
-		exit(-1); //Ошибка при чтении до символа
-	if (bytes == -3 && !ft_strchr(str, '\n') && !check_last_str(str))
-		quit(EN_LASTSTR, NULL, NULL);
+	check_errors(p, bytes, str);
 	if (str)
 		ft_strdel(&str);
 	ft_strdel(&str);

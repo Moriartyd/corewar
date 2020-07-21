@@ -6,13 +6,13 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 21:39:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:08:59 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:48:40 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_hero	*init_hero()
+t_hero	*init_hero(void)
 {
 	t_hero	*hero;
 

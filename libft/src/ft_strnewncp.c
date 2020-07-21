@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:35:43 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 14:59:43 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 17:14:15 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strnewncp(const char *str, size_t len)
 {
-	size_t		i;
+	size_t	i;
 	char	*res;
 
 	i = 0;

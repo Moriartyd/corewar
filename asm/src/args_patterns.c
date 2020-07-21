@@ -6,11 +6,39 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:54:05 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 20:10:20 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:37:57 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static void	get_patterns5(int code, int args[3])
+{
+	if (code == OP_ADD)
+	{
+		args[0] = A1_ADD;
+		args[1] = A2_ADD;
+		args[2] = A3_ADD;
+	}
+	else if (code == OP_AFF)
+	{
+		args[0] = A1_AFF;
+		args[1] = A2_AFF;
+		args[2] = A3_AFF;
+	}
+	else if (code == OP_FORK)
+	{
+		args[0] = A1_FORK;
+		args[1] = A2_FORK;
+		args[2] = A3_FORK;
+	}
+	else if (code == OP_XOR)
+	{
+		args[0] = A1_XOR;
+		args[1] = A2_XOR;
+		args[2] = A3_XOR;
+	}
+}
 
 static void	get_patterns4(int code, int args[3])
 {
@@ -32,12 +60,8 @@ static void	get_patterns4(int code, int args[3])
 		args[1] = A2_LFORK;
 		args[2] = A3_LFORK;
 	}
-	else if (code == OP_AFF)
-	{
-		args[0] = A1_AFF;
-		args[1] = A2_AFF;
-		args[2] = A3_AFF;
-	}
+	else
+		get_patterns5(code, args);
 }
 
 static void	get_patterns3(int code, int args[3])
@@ -59,12 +83,6 @@ static void	get_patterns3(int code, int args[3])
 		args[0] = A1_STI;
 		args[1] = A2_STI;
 		args[2] = A3_STI;
-	}
-	else if (code == OP_FORK)
-	{
-		args[0] = A1_FORK;
-		args[1] = A2_FORK;
-		args[2] = A3_FORK;
 	}
 	else
 		get_patterns4(code, args);
@@ -90,17 +108,11 @@ static void	get_patterns2(int code, int args[3])
 		args[1] = A2_OR;
 		args[2] = A3_OR;
 	}
-	else if (code == OP_XOR)
-	{
-		args[0] = A1_XOR;
-		args[1] = A2_XOR;
-		args[2] = A3_XOR;
-	}
 	else
 		get_patterns3(code, args);
 }
 
-void	get_patterns(int code, int args[3])
+void		get_patterns(int code, int args[3])
 {
 	if (code == OP_LIVE)
 	{
@@ -119,12 +131,6 @@ void	get_patterns(int code, int args[3])
 		args[0] = A1_ST;
 		args[1] = A2_ST;
 		args[2] = A3_ST;
-	}
-	else if (code == OP_ADD)
-	{
-		args[0] = A1_ADD;
-		args[1] = A2_ADD;
-		args[2] = A3_ADD;
 	}
 	else
 		get_patterns2(code, args);

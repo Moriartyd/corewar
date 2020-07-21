@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 19:51:37 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:29:53 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:33:11 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ static int	check_ind(t_vldop *op, int i)
 
 	if (i == 0)
 		str = op->arg1;
-	else if (i == 1)
-		str = op->arg2;
 	else
-		str = op->arg3;
+		str = (i == 1) ? op->arg2 : op->arg3;
 	i = 0;
-	if (ft_countch(str, '-') > 1 ||
-			((str[0] == '-' || str[0] == '0') && str[1] && str[1] == LABEL_CHAR))
+	if (ft_countch(str, '-') > 1 || ((str[0] == '-' || str[0] == '0')
+				&& str[1] && str[1] == LABEL_CHAR))
 		quit(EN_IND, op, str);
 	if (str[i] == LABEL_CHAR)
 	{
@@ -61,12 +59,10 @@ static int	check_ind(t_vldop *op, int i)
 	}
 	else
 	{
-		if (str[i] == '-')
-			i++;
+		str[i] == '-' ? i++ : 0;
 		while (str[i])
 		{
-			if (str[i] < '0' || str[i] > '9')
-				quit(EN_IND, op, str);
+			(str[i] < '0' || str[i] > '9') ? quit(EN_IND, op, str) : 0;
 			i++;
 		}
 	}
@@ -85,7 +81,7 @@ static int	check_reg(t_vldop *op, int i)
 	else
 		str = op->arg3;
 	i = 1;
-	if (ft_strlen(str) > 2)
+	if (ft_strlen(str) > 3)
 		quit(EN_REG, op, str);
 	num = 0;
 	while (str[i])

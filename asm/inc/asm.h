@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:06:45 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:57:29 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #	define E_MORENAMES	"You wrote more than one champion's name or comment\n"
 #	define E_READ		"I can't read this file\n"
 #	define E_MALLOC		"Malloc can't work anymore, sorry ;(\n"
-#	define E_NAMECHARS	"You wrote too much symbols in champion's name or comment\n"
+#	define E_NAMECHARS	"Too much symbols in champion's name or comment\n"
 #	define E_CHAMP		"You made a mistake in chamion's name or comment\n"
 #	define E_CHAMPMISS	"You didn't write champion's name or comment\n"
 #	define E_INST		"You forgot to write an instruction after the label\n"
@@ -40,6 +40,7 @@
 #	define E_ARGS2		"I can't read some of the arguments of instruction ["
 #	define E_ARGS3		"Some arguments are misplaced in instruction ["
 #	define E_ARGS4		"You lost some arguments in instruction ["
+#	define E_NOINST		"No instructions in file\n"
 
 #	define EN_DIR		1
 #	define EN_IND		2
@@ -58,6 +59,7 @@
 #	define EN_ARGS2		15
 #	define EN_ARGS3		16
 #	define EN_ARGS4		17
+#	define EN_NOINST	18
 
 /*
 **	ASM
@@ -177,20 +179,20 @@ typedef struct	s_op
 	struct s_op	*next;
 }				t_op;
 
-typedef struct  s_hero
+typedef struct	s_hero
 {
-	char        *name;
-	char        *comment;
+	char		*name;
+	char		*comment;
 	t_op		*op;
-}               t_hero;
+}				t_hero;
 
 /*
-**	* ft_read_until_ch	-	читает файл посимвольно до символа c, 
+**	* ft_read_until_ch	-	читает файл посимвольно до символа c,
 **							возвращает количество прочитанного.
 **	* get_type			-	определяет тип считанной строки
 **							(сам модет читать строки)
 **	* need_char			-	проверка на DIRECT_CHAR, пробел, таб, минус
-							возвращает 0, если другой символ
+**							возвращает 0, если другой символ
 */
 
 int				ft_read_until_ch(int fd, int c, char **str);
@@ -214,7 +216,6 @@ int				get_dirsize(int code);
 int				get_argt(int code);
 int				check_args(t_vldop *op);
 int				convert_vldop_op(t_vldop *op, t_hero **hero, int type);
-
 
 /*
 **	letter_check.c

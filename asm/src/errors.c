@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:09:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 21:21:10 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:45:52 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	write_inst2(int c)
 		write(STDERR_FILENO, "lfork", 5);
 	else if (c == OP_AFF)
 		write(STDERR_FILENO, "aff", 3);
+	else if (c == OP_FORK)
+		write(STDERR_FILENO, "fork", 4);
 }
 
 static void	write_inst(int c)
@@ -48,8 +50,6 @@ static void	write_inst(int c)
 		write(STDERR_FILENO, "ldi", 3);
 	else if (c == OP_STI)
 		write(STDERR_FILENO, "sti", 3);
-	else if (c == OP_FORK)
-		write(STDERR_FILENO, "fork", 4);
 	else
 		write_inst2(c);
 }
@@ -77,13 +77,13 @@ static void	exit_with_op(int e, t_vldop *op, char *str)
 			write(STDERR_FILENO, E_ARGS3, ft_strlen(E_ARGS3));
 		if (e == EN_ARGS4)
 			write(STDERR_FILENO, E_ARGS4, ft_strlen(E_ARGS4));
-			write_inst(op->code);
-			write(STDERR_FILENO, "]\n", 2);
+		write_inst(op->code);
+		write(STDERR_FILENO, "]\n", 2);
 	}
 	exit(0);
 }
 
-void	quit(int e, t_vldop *op, char *arg)
+void		quit(int e, t_vldop *op, char *arg)
 {
 	if (op)
 		exit_with_op(e, op, arg);
@@ -107,5 +107,7 @@ void	quit(int e, t_vldop *op, char *arg)
 		write(STDERR_FILENO, E_INST, ft_strlen(E_INST));
 	else if (e == EN_LABEL)
 		write(STDERR_FILENO, E_LABEL, ft_strlen(E_LABEL));
+	else if (e == EN_NOINST)
+		write(STDERR_FILENO, E_NOINST, ft_strlen(E_NOINST));
 	exit(0);
 }

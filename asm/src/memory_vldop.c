@@ -6,13 +6,13 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 20:22:41 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 20:10:20 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:49:19 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_vldop *vldop_init(void)
+t_vldop	*vldop_init(void)
 {
 	t_vldop	*op;
 	int		i;
@@ -27,7 +27,7 @@ t_vldop *vldop_init(void)
 	op->arg1 = NULL;
 	op->arg2 = NULL;
 	op->arg3 = NULL;
-	return(op);
+	return (op);
 }
 
 void	vldop_del(t_vldop **op)

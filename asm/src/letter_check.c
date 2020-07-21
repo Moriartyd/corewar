@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 23:01:56 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 20:10:20 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:48:15 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			s_check(char *str)
 		if (str[1] == 'u' && str[2] == 'b')
 			return (OP_SUB);
 	}
-		return (-1);
+	return (-1);
 }
 
 int			fxoz_check(char *str)
@@ -68,15 +68,15 @@ int			a_check(char *str)
 	if (str[i] == 'd' &&
 		(str[i + 1] && str[i + 1] == 'd') &&
 			(str[i + 2] && need_char(str[i + 2])))
-				return (OP_ADD);
+		return (OP_ADD);
 	else if (str[i] == 'f' &&
 		(str[i + 1] && str[i + 1] == 'f') &&
 			(str[i + 2] && need_char(str[i + 2])))
-				return (OP_AFF);
+		return (OP_AFF);
 	else if (str[i] == 'n' &&
 		(str[i + 1] && str[i + 1] == 'd') &&
 			(str[i + 2] && need_char(str[i + 2])))
-				return (OP_AND);
+		return (OP_AND);
 	else
 		return (-1);
 }
@@ -84,9 +84,9 @@ int			a_check(char *str)
 static int	l_check_norm(char *str, int i)
 {
 	if (i == 4 && !ft_strncmp(str, STR_LIVE, 4))
-			return (OP_LIVE);
+		return (OP_LIVE);
 	if (i == 5 && !ft_strncmp(str, STR_LFORK, 5))
-			return (OP_LFORK);
+		return (OP_LFORK);
 	return (-1);
 }
 
