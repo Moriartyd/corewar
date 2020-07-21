@@ -154,6 +154,8 @@
 #	define STR_FORK		"fork"
 #	define STR_ZJMP		"zjmp"
 
+# define BCSZ 10000
+
 /*
 **	Bytes - сколько байт занимает данная операция
 */
@@ -184,19 +186,19 @@ typedef struct	s_op
 
 typedef struct  s_hero
 {
-	char        *name;
-	char        *comment;
-	t_op		*op;
-	char		excode[CHAMP_MAX_SIZE + 1];//682 + 1
+	char        	*name;
+	char        	*comment;
+	t_op			*op;
+	unsigned char	excode[BCSZ];//[CHAMP_MAX_SIZE + 1];//682 + 1
+	int 			p;
 }               t_hero;
-
 
 void		ft_print_bits(unsigned char octet);
 int 		print_byte_int(int x);
 void		init_op_add(t_op *op);//for every op;
-int			detect_op(t_op *op, int fd, unsigned char bc[2192]);
-int			op_live(t_op *op, int fd, unsigned char bc[2192]);
-int			get_types(t_op *op);
+int			detect_op(t_op *op, int fd, t_hero *hero, t_op *sec);
+int			op_live(t_op *op, int fd, t_hero *h);
+int			get_types(t_op *op, int i , t_hero *h);
 int			get_args(t_op *op);
 
 int			translator(t_hero *hero);

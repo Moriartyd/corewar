@@ -13,25 +13,26 @@
 //#include "./vldlib/inc/vldlib.h"
 #include "asm.h"
 
-int			op_live(t_op *op, int fd, unsigned char bc[2192])
+int			op_live(t_op *op, int i, t_hero *hero)
 {
 	//unsigned char bc[1];
 	char live;
 
 	live = 01;
-	write(fd, &live, 1);
+	write(1, &live, 1);//fd
+	hero->excode[hero->p++] = live;
 	if (op->code != 9 && op->code != 12 && op->code != 15)
-		get_types(op);
+		get_types(op, i, hero);
 	get_args(op);
 	return (0);
 }
 
-int			detect_op(t_op *op, int fd, unsigned char bc[2192])
+int			detect_op(t_op *op, int i, t_hero *hero, t_op *sec)
 {
-	if (op->code == 1)
-	{
-		op_live(op, fd, bc);
-	}
+//	if (op->code == 1)
+//	{
+		op_live(op, i, hero);
+//	}
 	if (op->code == 2)
 	{
 		//op_ld();

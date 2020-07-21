@@ -28,6 +28,7 @@ t_op	*new_op(void)
 		res->args[i] = 0;
 		i++;
 	}
+	init_op_add(res);
 	i = -1;
 	while (++i < LABELS)
 		res->labels[i] = NULL;

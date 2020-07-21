@@ -21,10 +21,10 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	char	*nul;
 
 	//mh[0] = COREWAR_EXEC_MAGIC
-	bc[0] = 0;//3;
-	bc[1] = 234;//15;
-	bc[2] = 131;//3;
-	bc[3] = 243;//8;
+	bc[0] = 0;
+	bc[1] = 234;
+	bc[2] = 131;
+	bc[3] = 243;
 	ft_memcpy(bc + 4, hero->name, PROG_NAME_LENGTH);
 	ft_memcpy(bc + 140, hero->comment, COMMENT_LENGTH);
 	fname = "x.cor";
@@ -40,13 +40,9 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	write(fd, bc + 136, 4);
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
-	nul = 0;
-//	write(1, 0, 4);//bad
-//	write(1, nul, 4);//bad
-	char nuls[4] = {4};
-	write(1, nuls, 4);
-	printf("NUL\n");
-	printf("RETW=%d\n", retw);
+	char nuls[4] = {0};
+	write(1, nuls, 4);//is same "0" , 1 ?; "0000", 4?
+	printf("NUL RETW=%d\n", retw);
 	return (fd);
 }
 
@@ -57,10 +53,10 @@ int			get_args(t_op *op)
 
 	i = 0;
 	printf("%s\n", op->args[i]);
-	while (	printf("%p\n", op->args[i]) && op->args[i])
+	while (op->args[i])
 	{
 		j = 0;
-		printf("%s\n", op->args[i]);
+		printf("OPARGi=%s\n", op->args[i]);
 		if (op->args[i][j] == 'r')
 		{
 			op->nargs[i] = ft_atoi(op->args[i] + j + 1);
@@ -78,11 +74,11 @@ int			get_args(t_op *op)
 	return (0);
 }
 
-int			get_types(t_op *op)
+int			get_types(t_op *op, int ip, t_hero *hero)
 {
 	int 			i;
 	unsigned char	type;
-	unsigned int				offset;
+	unsigned int	offset;
 
 	i = -1;
 	type = 0;
@@ -101,6 +97,7 @@ int			get_types(t_op *op)
 		offset /= 2 * 2;
 		ft_print_bits(type);
 	}
+	hero->excode[hero->p++] = type;
 	return (1);
 }
 
@@ -108,12 +105,24 @@ int			translator(t_hero *hero)
 {
 	unsigned char 	bc[2192] = {0};
 	int 			fd;
-	int 			x;
-	t_op 			tmp;
+	int 			i;
+	t_op 			*tmp;
+	t_op			**head;
+	t_op			*beg;
+	t_op			*sec;
 
 	//print_byte_int(x);
-	tmp = *hero->op;
-	detect_op(&tmp, fd, bc);
+	//tmp = *hero->op;
+	head = &hero->op;
+	beg = hero->op;
+	sec = hero->op;
+	i = 0;
+	while (beg)
+	{
+		detect_op(beg, i, hero, sec);
+		beg = beg->next;
+		++i;
+	}
 	fd = write_filler(bc, hero);
 	return (0);
 }

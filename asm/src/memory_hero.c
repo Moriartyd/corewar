@@ -15,6 +15,7 @@
 t_hero	*init_hero(void)
 {
 	t_hero	*hero;
+	int		i;
 
 	hero = (t_hero *)malloc(sizeof(t_hero));
 	if (!hero)
@@ -22,6 +23,13 @@ t_hero	*init_hero(void)
 	hero->name = NULL;
 	hero->comment = NULL;
 	hero->op = NULL;
+//	hero->excode[683] = {0};//
+	i = -1;
+	while (++i < BCSZ)
+	{
+		hero->excode[i] = 0;
+	}
+	hero->p = 0;
 	return (hero);
 }
 
