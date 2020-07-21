@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 23:17:12 by student          ###   ########.fr       */
+/*   Updated: 2020/07/21 15:29:23 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int main(int ac, char **av)
 	int		arg;
 
 	arg = ac > 2 ? ac - 1 : 1;
+	//av[arg] = "/Users/student/corewarte/parserasm/vm_champs/champs/examples/zork.s";//
+	//av[arg] = "/Users/student/corewarte/parserasm/vldlib//Batman.s";
 	if ((fd = open(av[arg], O_RDONLY)) <= 0)
 		exit(-1);//perror
-	hero = init_hero(); printf("qweqwewqweqweqwq\n");
-	read_file(fd, &hero);printf("QW\n");
+	hero = init_hero(); printf("NOW READFILEEEEEEEEEE\n");
+	read_file(fd, &hero);printf("Close fd QW\n");
 	close(fd);
-	printf("SDASDAD\n");
 	translator(hero);//!
 	printf("ASMED\n");
 	show_hero(hero);

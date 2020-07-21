@@ -24,7 +24,6 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	bc[1] = 234;//15;
 	bc[2] = 131;//3;
 	bc[3] = 243;//8;
-	printf("MYSEGA\n");
 	ft_memcpy(bc + 4, hero->name, PROG_NAME_LENGTH);
 	ft_memcpy(bc + 140, hero->comment, COMMENT_LENGTH);
 	fname = "x.cor";

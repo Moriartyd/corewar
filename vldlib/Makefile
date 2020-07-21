@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/08 16:28:00 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/20 17:06:19 by student          ###   ########.fr        #
+#    Updated: 2020/07/20 23:30:01 by student          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS			=	$(addprefix $(SRC_DIR)/,$(SRC))
 LIBFT			=	$(LIBFT_DIR)/libft.a
 
 test: $(SRCS)
-	gcc -g $(SRCS) -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(OP_INC_DIR) $(LIBFT) -o test
+	@gcc -g $(SRCS) -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(OP_INC_DIR) $(LIBFT) -o test
 
 fclean:
 	rm -Rf test*
