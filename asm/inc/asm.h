@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:57:29 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/21 17:35:10 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "libft.h"
 #include "op.h"
+#include <stdio.h>
 
 #	define USAGE_VM_M "usage:"
 #	define USAGE_VM_L 6
@@ -31,7 +32,7 @@
 #	define E_MORENAMES	"You wrote more than one champion's name or comment\n"
 #	define E_READ		"I can't read this file\n"
 #	define E_MALLOC		"Malloc can't work anymore, sorry ;(\n"
-#	define E_NAMECHARS	"Too much symbols in champion's name or comment\n"
+#	define E_NAMECHARS	"You wrote too much symbols in champion's name or comment\n"
 #	define E_CHAMP		"You made a mistake in chamion's name or comment\n"
 #	define E_CHAMPMISS	"You didn't write champion's name or comment\n"
 #	define E_INST		"You forgot to write an instruction after the label\n"
@@ -59,7 +60,7 @@
 #	define EN_ARGS2		15
 #	define EN_ARGS3		16
 #	define EN_ARGS4		17
-#	define EN_NOINST	18
+#	define EN_NOINST		18
 
 /*
 **	ASM
@@ -170,29 +171,42 @@ typedef struct	s_vldop
 
 typedef struct	s_op
 {
-	int			code;
+	int			code;//char
 	int			types[3];
-	char		*args[3];
+	int			nargs[3];//
+	char		*args[3];//
 	int			bytes;
 	char		*labels[LABELS];
+	char 		*curlabels[3];//
 	struct s_op	*prev;
 	struct s_op	*next;
 }				t_op;
 
-typedef struct	s_hero
+typedef struct  s_hero
 {
-	char		*name;
-	char		*comment;
+	char        *name;
+	char        *comment;
 	t_op		*op;
-}				t_hero;
+	char		excode[CHAMP_MAX_SIZE + 1];//682 + 1
+}               t_hero;
 
+
+void		ft_print_bits(unsigned char octet);
+int 		print_byte_int(int x);
+void		init_op_add(t_op *op);//for every op;
+int			detect_op(t_op *op, int fd, unsigned char bc[2192]);
+int			op_live(t_op *op, int fd, unsigned char bc[2192]);
+int			get_types(t_op *op);
+int			get_args(t_op *op);
+
+int			translator(t_hero *hero);
 /*
-**	* ft_read_until_ch	-	читает файл посимвольно до символа c,
+**	* ft_read_until_ch	-	читает файл посимвольно до символа c, 
 **							возвращает количество прочитанного.
 **	* get_type			-	определяет тип считанной строки
 **							(сам модет читать строки)
 **	* need_char			-	проверка на DIRECT_CHAR, пробел, таб, минус
-**							возвращает 0, если другой символ
+							возвращает 0, если другой символ
 */
 
 int				ft_read_until_ch(int fd, int c, char **str);
@@ -216,6 +230,7 @@ int				get_dirsize(int code);
 int				get_argt(int code);
 int				check_args(t_vldop *op);
 int				convert_vldop_op(t_vldop *op, t_hero **hero, int type);
+
 
 /*
 **	letter_check.c
