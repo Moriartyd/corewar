@@ -56,6 +56,8 @@ void	read_file(int fd, t_hero **hero)
 	ft_bzero(p, sizeof(int) * 5);
 	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)// || bytes == -3)
 	{
+		printf("/Users/student/corewarte/parserasm/vldlib \n");
+		printf("str=%s\\\\\\|", str);
 		if (!ft_strchr(str, '\n'))
 			quit(EN_LASTSTR, NULL, NULL);
 		if ((t = get_type(&str, bytes, fd, hero)) == -1)
@@ -69,6 +71,7 @@ void	read_file(int fd, t_hero **hero)
 		}
 		p[t] = 1;
 	}
+	printf("almost end of reading cycle end\n");
 	if (bytes == -1 || bytes == -2)
 		exit(-1); //Ошибка при чтении до символа
 	if (bytes == -3 && !ft_strchr(str, '\n') && !check_last_str(str))
