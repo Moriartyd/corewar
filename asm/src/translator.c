@@ -42,6 +42,7 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	write(fd, bc + 2188, 4);
 	char nuls[4] = {0};
 	write(1, nuls, 4);//is same "0" , 1 ?; "0000", 4?
+	write(fd, hero->excode, 2);
 	printf("NUL RETW=%d\n", retw);
 	return (fd);
 }
@@ -53,10 +54,10 @@ int			get_args(t_op *op)
 
 	i = 0;
 	printf("%s\n", op->args[i]);
-	while (op->args[i])
+	while (i < 3 && op->args[i])
 	{
 		j = 0;
-		printf("OPARGi=%s\n", op->args[i]);
+		printf("OPARGi=%s ", op->args[i]);
 		if (op->args[i][j] == 'r')
 		{
 			op->nargs[i] = ft_atoi(op->args[i] + j + 1);
@@ -119,8 +120,17 @@ int			translator(t_hero *hero)
 	i = 0;
 	while (beg)
 	{
+		i = -1; printf("Oplabels:=%d bytesop=%d\n",beg->code, beg->bytes);
+		while (beg->labels[++i])
+			printf("beg->labels=%s\n", beg->labels[i]);
+		beg = beg->next;
+	}
+	beg = hero->op;
+	while (beg)
+	{
 		detect_op(beg, i, hero, sec);
 		beg = beg->next;
+		printf("ITER=%d ",i);
 		++i;
 	}
 	fd = write_filler(bc, hero);
