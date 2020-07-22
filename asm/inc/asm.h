@@ -180,6 +180,7 @@ typedef struct	s_op
 	int			bytes;
 	char		*labels[LABELS];
 	char 		*curlabels[3];//
+	int			idop;
 	struct s_op	*prev;
 	struct s_op	*next;
 }				t_op;

@@ -96,9 +96,10 @@ int			get_types(t_op *op, int ip, t_hero *hero)
 			type |= offset * 2;
 		}
 		offset /= 2 * 2;
-		ft_print_bits(type);
+		//ft_print_bits(type);
 	}
 	hero->excode[hero->p++] = type;
+	ft_print_bits(type);
 	return (1);
 }
 
@@ -107,25 +108,30 @@ int			translator(t_hero *hero)
 	unsigned char 	bc[2192] = {0};
 	int 			fd;
 	int 			i;
-	t_op 			*tmp;
-	t_op			**head;
 	t_op			*beg;
 	t_op			*sec;
+	int				bcsz;
+	int				id;
 
 	//print_byte_int(x);
 	//tmp = *hero->op;
-	head = &hero->op;
 	beg = hero->op;
 	sec = hero->op;
 	i = 0;
+	bcsz = 0;
+	id = 0;
 	while (beg)
 	{
-		i = -1; printf("Oplabels:=%d bytesop=%d\n",beg->code, beg->bytes);
+		i = -1;
+		bcsz += beg->bytes;
+		beg->idop = ++id;
+		printf("Oplabels:=%d bytesop=%d idop=%d\n",beg->code, beg->bytes, beg->idop);
 		while (beg->labels[++i])
 			printf("beg->labels=%s\n", beg->labels[i]);
 		beg = beg->next;
 	}
 	beg = hero->op;
+	printf("NARG=%d begbytessize=%d\n", INT32_MAX, bcsz);
 	while (beg)
 	{
 		detect_op(beg, i, hero, sec);
