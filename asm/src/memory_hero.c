@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 21:39:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:48:40 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 18:11:39 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,26 @@ void	del_hero(t_hero **hero)
 		ft_strdel(&((*hero)->name));
 		ft_strdel(&((*hero)->comment));
 		del_ops((*hero)->op);
+	}
+}
+
+void	fill_hero(int type, char **str, t_hero **hero)
+{
+	char	*s;
+
+	s = ft_strchr(*str, '"');
+	if (!type)
+	{
+		(*hero)->name = ft_strnewncp(s + 1, ft_strrchr(*str, '"') - s - 1);
+		if (!(*hero)->name)
+			quit(EN_MALLOC, NULL, NULL);
+		ft_strdel(str);
+	}
+	else
+	{
+		(*hero)->comment = ft_strnewncp(s + 1, ft_strrchr(*str, '"') - s - 1);
+		if (!(*hero)->comment)
+			quit(EN_MALLOC, NULL, NULL);
+		ft_strdel(str);
 	}
 }

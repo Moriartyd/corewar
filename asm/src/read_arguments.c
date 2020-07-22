@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:48:08 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:54:44 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:47:58 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ static char	*third_arg(char *str, int args[3], t_vldop *op)
 		quit(EN_ARGS3, op, NULL);
 	args[2] = t;
 	i = 0;
-	while (str[i] && str[i] != '\t' && str[i] != ' ' && str[i] != '-'
-		&& str[i] != SEPARATOR_CHAR && str[i] != '\n' && str[i] != COMMENT_CHAR)
+	while (str[i] && !sep_char(str[i]))
 		i++;
 	if (!(op->arg3 = ft_strnewncp(str, i)))
 		quit(EN_MALLOC, NULL, NULL);

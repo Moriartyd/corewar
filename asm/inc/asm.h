@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:57:29 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 18:18:17 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "libft.h"
 #include "op.h"
+#include <stdio.h>
 
 #	define USAGE_VM_M "usage:"
 #	define USAGE_VM_L 6
@@ -41,6 +42,8 @@
 #	define E_ARGS3		"Some arguments are misplaced in instruction ["
 #	define E_ARGS4		"You lost some arguments in instruction ["
 #	define E_NOINST		"No instructions in file\n"
+#	define E_FILE		"Can't read or open file"
+#	define E_SYMBOL		"The file ended before I found a symbol ["
 
 #	define EN_DIR		1
 #	define EN_IND		2
@@ -208,6 +211,7 @@ int				need_char(char c);
 int				is_correct_label(char *str);
 int				is_inst(char *str);
 int				is_label(char *str);
+int				is_blank(char *str);
 int				sep_char(char c);
 void			get_patterns(int code, int args[3]);
 void			read_arguments(char *str, t_vldop *op);
@@ -245,5 +249,6 @@ t_vldop			*vldop_init(void);
 void			vldop_del(t_vldop **op);
 
 void			quit(int e, t_vldop *op, char *arg);
+void			ft_quit(int e, char c);
 
 #	endif

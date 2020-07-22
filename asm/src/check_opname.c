@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 19:48:26 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:43:32 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 18:19:36 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,19 @@
 **	если первый аргумен - T_REG
 */
 
-int			sep_char(char c)
+int	is_blank(char *str)
+{
+	char	*s;
+
+	if (!(s = ft_str_white_trim(str)))
+		return (1);
+	if (ft_strlen(s) == 1 && *s == '\n')
+		return (1);
+	ft_strdel(&s);
+	return (0);
+}
+
+int	sep_char(char c)
 {
 	if (c == '\t' || c == ' '
 		|| c == SEPARATOR_CHAR || c == '\n' || c == COMMENT_CHAR)
@@ -25,14 +37,14 @@ int			sep_char(char c)
 	return (0);
 }
 
-int			need_char(char c)
+int	need_char(char c)
 {
 	if (c == DIRECT_CHAR || c == '\t' || c == ' ' || c == '-')
 		return (1);
 	return (0);
 }
 
-int			check_opname(char *str)
+int	check_opname(char *str)
 {
 	if (*str == 'a')
 		return (a_check(str));

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 19:51:37 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:33:11 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:39:43 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	check_dir(t_vldop *op, int i)
 	i = 1;
 	if (ft_strlen(str) == 1)
 		quit(EN_DIR, op, str);
+	str[i] == '-' ? i++ : 0;
 	if (str[i] == LABEL_CHAR)
 	{
 		if (!(is_correct_label(&str[i])))

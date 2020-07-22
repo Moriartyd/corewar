@@ -3,7 +3,8 @@
 	and%:live, r1, r3
 live:
 live:
-	live %1               # <-- На эту операцию указывает метка live
+
+	live %1               #<-- На эту операцию указывает метка live
 	zjmp %1
 			live:	#ds a
 	pop:

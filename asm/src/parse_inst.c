@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:52:07 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 18:26:17 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static char	*parse_label(char *str, t_vldop *op, int i)
 	int	k;
 
 	k = 0;
+	if (is_blank(str))
+		return (NULL);
 	while (str[k] && (str[k] == ' ' || str[k] == '\t'))
 		k++;
 	if (!is_correct_label(&str[k]))
@@ -72,6 +74,8 @@ static void	read_inst(char *str, t_vldop *op)
 	if (!str[i] || str[i] == '\n')
 		quit(EN_ARGS1, op, NULL);
 	read_arguments(&str[i], op);
+	if (str[ft_strlen(str) - 1] != '\n')
+		quit(EN_LASTSTR, NULL, NULL);
 	ft_strdel(&str);
 }
 
@@ -84,7 +88,7 @@ int			parse_instruct(char *str, int type, int fd, t_hero **hero)
 	!(op = vldop_init()) ? quit(EN_MALLOC, NULL, NULL) : 0;
 	if (type == 3)
 	{
-		while ((t = is_label(str)))
+		while ((t = is_label(str)) || is_blank(str))
 			if (!(tmp = parse_label(str, op, t)))
 			{
 				ft_strdel(&str);
