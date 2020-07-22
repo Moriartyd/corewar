@@ -197,9 +197,9 @@ typedef struct  s_hero
 void		ft_print_bits(unsigned char octet);
 int 		print_byte_int(int x);
 void		init_op_add(t_op *op);//for every op;
-int			detect_op(t_op *op, int fd, t_hero *hero, t_op *sec);
-int			op_live(t_op *op, int fd, t_hero *h);
-int			get_types(t_op *op, int i , t_hero *h);
+int			code_op(t_op *op, int fd, t_hero *hero, t_op *sec);
+int			op_code(t_op *op, t_hero *h);
+int			get_types(t_op *op, t_hero *h);
 int			get_args(t_op *op);
 
 int			translator(t_hero *hero);

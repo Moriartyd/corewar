@@ -75,7 +75,7 @@ int			get_args(t_op *op)
 	return (0);
 }
 
-int			get_types(t_op *op, int ip, t_hero *hero)
+int			get_types(t_op *op, t_hero *hero)
 {
 	int 			i;
 	unsigned char	type;
@@ -125,16 +125,17 @@ int			translator(t_hero *hero)
 		i = -1;
 		bcsz += beg->bytes;
 		beg->idop = ++id;
-		printf("Oplabels:=%d bytesop=%d idop=%d\n",beg->code, beg->bytes, beg->idop);
-		while (beg->labels[++i])
-			printf("beg->labels=%s\n", beg->labels[i]);
+	//	printf("Oplabels:=%d bytesop=%d idop=%d\n",beg->code, beg->bytes, beg->idop);
+	//	while (beg->labels[++i])
+	//		printf("beg->labels=%s\n", beg->labels[i]);
 		beg = beg->next;
 	}
 	beg = hero->op;
 	printf("NARG=%d begbytessize=%d\n", INT32_MAX, bcsz);
+	i = 1;
 	while (beg)
 	{
-		detect_op(beg, i, hero, sec);
+		code_op(beg, i, hero, sec);
 		beg = beg->next;
 		printf("ITER=%d ",i);
 		++i;

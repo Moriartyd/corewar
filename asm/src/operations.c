@@ -107,15 +107,41 @@ int			is_arg_labels(t_op *la, t_hero *hero)
 int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 {
 	int i;
+	int	d;
 
 	i = -1;
-	while (++i < 3)
+	d = op->code;
+	while (++i < 3 && op->types[i])//there could be less args
 	{
+		printf("Type=%d opnarg=%d\n", op->types[i], op->nargs[i]);
 		if (op->types[i] == 1)
-			hero->excode[hero->p];
+			hero->excode[hero->p++] = (char) op->nargs[i];
+		if (op->types[i] == 3 || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
+		{
+		//	ft_print_bits(op->nargs[i] >> 31);
+			ft_print_bits(op->nargs[i] >> 24);
+			ft_print_bits(op->nargs[i] >> 16);
+			ft_print_bits(op->nargs[i] >> 8);
+			ft_print_bits(op->nargs[i]);
+		//	printf("opnarg[i]>>8=%c\n", op->nargs[i] >> 8);
+		//	printf("opnarg[i]=%c\n", op->nargs[i]);
+			hero->excode[hero->p++] = op->nargs[i] >> 8;
+			hero->excode[hero->p++] = op->nargs[i];
+			//if (op->nargs[i] < 0)
+			//	hero->excode[hero->p] = ;
+		}
+		else if (op->types[i] == 2)
+		{
+			hero->excode[hero->p++] = op->nargs[i] >> 24;
+			hero->excode[hero->p++] = op->nargs[i] >> 16;
+			hero->excode[hero->p++] = op->nargs[i] >> 8;
+			hero->excode[hero->p++] = op->nargs[i];
+		}
+	}
+	return (1);
 }
 
-int			op_live(t_op *op, int i, t_hero *hero)
+int			op_code(t_op *op, t_hero *hero)
 {
 	char live;
 
@@ -124,15 +150,20 @@ int			op_live(t_op *op, int i, t_hero *hero)
 	hero->excode[hero->p++] = live;
 	printf("OPCODE=%d ", live);
 	if (op->code != 1 && op->code != 9 && op->code != 12 && op->code != 15)
-		get_types(op, i, hero);
+		get_types(op, hero);
 	get_args(op);
 	if (!(is_arg_labels(op, hero)))
 		return (0);
+	int i = 0;
+//	while (i < 3 && op->types[i])
+//	{
+//		printf("opcode=%d After:NArgs=%d\n", op->code, op->nargs[i++]);
+//	}
 	write_labels(hero, op);
 	return (1);
 }
 
-int			detect_op(t_op *op, int ip, t_hero *hero, t_op *sec)
+int			code_op(t_op *op, int ip, t_hero *hero, t_op *sec)
 {
 	t_op *tmp;
 	int	i;
@@ -145,7 +176,7 @@ int			detect_op(t_op *op, int ip, t_hero *hero, t_op *sec)
 			printf("op->labels=%s\n", tmp->labels[i]);
 		tmp = tmp->next;
 	}*/
-	op_live(op, i, hero);
+	op_code(op, hero);
 	return (0);
 }
 
