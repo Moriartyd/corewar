@@ -112,15 +112,15 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 	i = -1;
 	d = op->code;
 ///	if (op->code == 1)
-	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
-				op->nargs[0], op->nargs[1], op->nargs[2]);
+//	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
+//				op->nargs[0], op->nargs[1], op->nargs[2]);
 	while (++i < 3 && op->types[i])//there could be less args
 	{
 		if (op->types[i] == T_REG)
 			hero->excode[hero->p++] = (char) op->nargs[i];
-	/*	else */if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
+		else if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
 		{
-			printf("NARGi2bytes(ind/9-12,14-15)=%d\n", op->nargs[i]);
+//			printf("NARGi2bytes(ind/9-12,14-15)=%d\n", op->nargs[i]);
 		//	ft_print_bits(op->nargs[i] >> 31);
 			ft_print_bits(op->nargs[i] >> 24);
 			ft_print_bits(op->nargs[i] >> 16);
@@ -135,19 +135,19 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 		}
 		else if (op->types[i] == T_DIR)
 		{
-			printf("DIRSZIE4----Narg[i]=%d\n", op->nargs[i]);
-			ft_print_bits(op->nargs[i] >> 24);
-			ft_print_bits(op->nargs[i] >> 16);
-			ft_print_bits(op->nargs[i] >> 8);
-			ft_print_bits(op->nargs[i]);
+//			printf("DIRSZIE4----Narg[i]=%d\n", op->nargs[i]);
+//			ft_print_bits(op->nargs[i] >> 24);
+//			ft_print_bits(op->nargs[i] >> 16);
+//			ft_print_bits(op->nargs[i] >> 8);
+//			ft_print_bits(op->nargs[i]);
 			hero->excode[hero->p++] = (unsigned)op->nargs[i] >> 24;
 			hero->excode[hero->p++] = (unsigned)op->nargs[i] >> 16;
 			hero->excode[hero->p++] = (unsigned)op->nargs[i] >> 8;
 			hero->excode[hero->p++] = (unsigned)op->nargs[i];
 		}
 	}
-	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
-		   op->nargs[0], op->nargs[1], op->nargs[2]);
+//	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
+//		   op->nargs[0], op->nargs[1], op->nargs[2]);
 	return (1);
 }
 

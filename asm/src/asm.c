@@ -46,7 +46,7 @@ int		main(int ac, char **av)
 	read_file(fd, &hero);
 	close(fd);
 	translator(hero);
-	show_hero(hero);
+//	show_hero(hero);
 	del_hero(&hero);
 	return (0);
 }
