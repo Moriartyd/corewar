@@ -113,7 +113,6 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 	d = op->code;
 	while (++i < 3 && op->types[i])//there could be less args
 	{
-		printf("Type=%d opnarg=%d\n", op->types[i], op->nargs[i]);
 		if (op->types[i] == T_REG)
 			hero->excode[hero->p++] = (char) op->nargs[i];
 		if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
@@ -143,40 +142,12 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 
 int			op_code(t_op *op, t_hero *hero)
 {
-	char live;
-
-	live = (char)op->code;
-	write(1, &live, 1);//fd
-	hero->excode[hero->p++] = live;
-	printf("OPCODE=%d ", live);
+	hero->excode[hero->p++] = (char)op->code;
 	if (op->code != 1 && op->code != 9 && op->code != 12 && op->code != 15)
 		get_types(op, hero);
 	get_args(op);
 	if (!(is_arg_labels(op, hero)))
 		return (0);
-	int i = 0;
-//	while (i < 3 && op->types[i])
-//	{
-//		printf("opcode=%d After:NArgs=%d\n", op->code, op->nargs[i++]);
-//	}
 	write_labels(hero, op);
 	return (1);
 }
-
-int			code_op(t_op *op, int ip, t_hero *hero, t_op *sec)
-{
-	t_op *tmp;
-	int	i;
-
-	tmp = op;
-	/*while (tmp)
-	{
-		i = -1;
-		while (tmp->labels[++i])
-			printf("op->labels=%s\n", tmp->labels[i]);
-		tmp = tmp->next;
-	}*/
-	op_code(op, hero);
-	return (0);
-}
-

@@ -59,11 +59,9 @@ int			get_args(t_op *op)
 	int j;
 
 	i = 0;
-	printf("%s\n", op->args[i]);
 	while (i < 3 && op->args[i])
 	{
 		j = 0;
-		printf("OPARGi=%s ", op->args[i]);
 		if (op->args[i][j] == 'r')
 		{
 			op->nargs[i] = ft_atoi(op->args[i] + j + 1);
@@ -102,8 +100,6 @@ int			get_types(t_op *op, t_hero *hero)
 			type |= offset * 2;
 		}
 		offset /= 2 * 2;
-		printf("OPTYPe[i]=%d\n" , op->types[i]);
-		//ft_print_bits(type);`
 	}
 	hero->excode[hero->p++] = type;
 	ft_print_bits(type);
@@ -115,35 +111,30 @@ int			translator(t_hero *hero)
 	unsigned char 	bc[2192] = {0};
 	int 			i;
 	t_op			*beg;
-	t_op			*sec;
 	int				bcsz;
 	int				id;
 
 	//print_byte_int(x);
-	//tmp = *hero->op;
 	beg = hero->op;
-	sec = hero->op;
-	i = 0;
 	bcsz = 0;
 	id = 0;
 	while (beg)
 	{
-		i = -1;
 		bcsz += beg->bytes;
 		beg->idop = ++id;
-	//	printf("Oplabels:=%d bytesop=%d idop=%d\n",beg->code, beg->bytes, beg->idop);
-	//	while (beg->labels[++i])
-	//		printf("beg->labels=%s\n", beg->labels[i]);
 		beg = beg->next;
 	}
 	beg = hero->op;
-	printf("NARG=%d begbytessize=%d\n", INT32_MAX, bcsz);
+	//printf("NARG=%d begbytessize=%d\n", INT32_MAX, bcsz);
 	i = 1;
 	while (beg)
 	{
-		code_op(beg, i, hero, sec);
+		if (!(op_code(beg, hero)))
+		{
+			printf("LABEL_ERROR_DOUBLE\n");
+			return (12);
+		}
 		beg = beg->next;
-		printf("ITER=%d ",i);
 		++i;
 	}
 	write_filler(bc, hero, bcsz);
