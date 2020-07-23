@@ -10,17 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "vldlib/inc/vldlib.h"
 #include "asm.h"
 
 int		write_filler(unsigned char *bc, t_hero *hero, int sz)
 {
-	int fd;
-	char *fname;
-	int retw;
-	char	*nul;
+	int		fd;
+	char	*fname;
 
-	//mh[0] = COREWAR_EXEC_MAGIC
 	bc[0] = 0;
 	bc[1] = 234;
 	bc[2] = 131;
@@ -33,12 +29,9 @@ int		write_filler(unsigned char *bc, t_hero *hero, int sz)
 ////	printf("FDopened some file CREAT=%d\n",fd);
 //	fd = open("name1.cor", O_RDWR);
 	/////printf("FDopened some file RDWR=%d\n",fd);
-	//retw = write(fd, "0xea83f3", 4 * 2);
-	retw = write(fd, bc, 4);
-	retw = write(fd, bc + 4, 128);
+	write(fd, bc, 4);
+	write(fd, bc + 4, 128);
 	write(fd, bc + 132, 4);
-//	write(fd, bc + 136, 4);//excodesize
-//	write(fd, sz, 4);//excodesize//didnt write int
 	bc[136] = sz << 24;
 	bc[137] = sz << 16;
 	bc[138] = sz << 8;
@@ -46,10 +39,7 @@ int		write_filler(unsigned char *bc, t_hero *hero, int sz)
 	write(fd, bc + 136, 4);//excodesize
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
-	char nuls[4] = {0};
-	write(1, nuls, 4);//is same "0" , 1 ?; "0000", 4?
 	write(fd, hero->excode, sz);
-	printf("NUL RETW=%d\n", retw);
 	return (fd);
 }
 
