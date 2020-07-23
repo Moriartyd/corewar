@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:43:13 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:36:10 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	mnogostrok(char **str, int fd, int c)
 	if (c == 1)
 	{
 		if ((e = ft_read_until_ch(fd, '"', &protail)) < 0)
-			exit(-1); //Ошибка В зависимости от того, что вернуло
+			ft_quit(e, '"');
 		ft_read_until_ch(fd, '\n', &tail);
 		(!tail_check(tail)) ? quit(EN_TRASH, NULL, NULL) : 0;
 		(!(tmp = ft_strjoin(*str, protail))) ? quit(EN_MALLOC, NULL, NULL) : 0;

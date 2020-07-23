@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:39:52 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:16:02 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_last_str(char *str)
 static void	check_errors(int *p, int bytes, char *str)
 {
 	if (bytes == -1 || bytes == -2)
-		exit(-1); //Ошибка при чтении до символа
+		ft_quit(bytes, 0);
 	if (bytes == -3 && !ft_strchr(str, '\n') && !check_last_str(str))
 		quit(EN_LASTSTR, NULL, NULL);
 	if (!p[0] || !p[1])

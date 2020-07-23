@@ -6,22 +6,23 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/20 20:11:52 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:36:53 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include <stdio.h>
 
-void    show_hero(t_hero *hero)
+void	show_hero(t_hero *hero)
 {
 	t_op	*op;
+	int		i;
 
 	op = hero->op;
 	printf("name:\t\t'%s'\ncomment:\t'%s'\n", hero->name, hero->comment);
 	while (op)
 	{
-		int i = 0;
+		i = 0;
 		while (op->labels[i])
 		{
 			printf("%s:\n", op->labels[i]);
@@ -32,7 +33,7 @@ void    show_hero(t_hero *hero)
 	}
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_hero	*hero;
 	int		fd;
@@ -40,7 +41,7 @@ int main(int ac, char **av)
 
 	arg = ac > 2 ? ac - 1 : 1;
 	if ((fd = open(av[arg], O_RDONLY)) <= 0)
-		exit(-1);//perror
+		ft_quit(-1, 0);
 	hero = init_hero();
 	read_file(fd, &hero);
 	close(fd);

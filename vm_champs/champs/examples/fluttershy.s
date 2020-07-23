@@ -144,4 +144,3 @@ torploop:
 	ld		%0, r15
 	zjmp	%:torpwrite
 
-avdeftgt:

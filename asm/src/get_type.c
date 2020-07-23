@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 17:11:22 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:55:07 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static int	is_name(char *str)
 		i++;
 	if (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '"'))
 		return (0);
-	if (!str[i])
-		exit(-1); //нет имени
 	return (i == ft_strlen(NAME_CMD_STRING) ? 1 : 0);
 }
 
@@ -46,8 +44,6 @@ static int	is_comment(char *str)
 		i++;
 	if (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '"'))
 		return (0);
-	if (!str[i])
-		exit(-1); //нет коммента
 	return (i == ft_strlen(COMMENT_CMD_STRING) ? 1 : 0);
 }
 
@@ -78,8 +74,9 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 
 	if (!*str && bytes == -2)
 		quit(EN_MALLOC, NULL, NULL);
-	if (!(s = ft_str_white_trim(*str)) ||
-			(ft_strlen(*str) == 1 && **str == '\n'))
+	if (!(s = ft_str_white_trim(*str)))
+		return (2);
+	if (ft_strlen(s) == 1 && *s == '\n')
 		return (2);
 	ft_strdel(str);
 	if (s[0] == COMMENT_CHAR || s[0] == ALT_COMMENT_CHAR)

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:09:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:45:52 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/22 17:23:03 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,20 @@ void		quit(int e, t_vldop *op, char *arg)
 		write(STDERR_FILENO, E_LABEL, ft_strlen(E_LABEL));
 	else if (e == EN_NOINST)
 		write(STDERR_FILENO, E_NOINST, ft_strlen(E_NOINST));
+	exit(0);
+}
+
+void		ft_quit(int e, char c)
+{
+	if (e == -2)
+		quit(EN_MALLOC, NULL, NULL);
+	else if (e == -1)
+		perror(E_FILE);
+	else if (e == -3)
+	{
+		write(STDERR_FILENO, E_SYMBOL, ft_strlen(E_SYMBOL));
+		write(STDERR_FILENO, &c, 1);
+		write(STDERR_FILENO, "]\n", 2);
+	}
 	exit(0);
 }
