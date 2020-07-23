@@ -13,7 +13,7 @@
 //#include "vldlib/inc/vldlib.h"
 #include "asm.h"
 
-int		write_filler(unsigned char *bc, t_hero *hero)
+int		write_filler(unsigned char *bc, t_hero *hero, int sz)
 {
 	int fd;
 	char *fname;
@@ -37,12 +37,18 @@ int		write_filler(unsigned char *bc, t_hero *hero)
 	retw = write(fd, bc, 4);
 	retw = write(fd, bc + 4, 128);
 	write(fd, bc + 132, 4);
-	write(fd, bc + 136, 4);
+//	write(fd, bc + 136, 4);//excodesize
+//	write(fd, sz, 4);//excodesize//didnt write int
+	bc[136] = sz << 24;
+	bc[137] = sz << 16;
+	bc[138] = sz << 8;
+	bc[139] = sz;
+	write(fd, bc + 136, 4);//excodesize
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
 	char nuls[4] = {0};
 	write(1, nuls, 4);//is same "0" , 1 ?; "0000", 4?
-	write(fd, hero->excode, 2);
+	write(fd, hero->excode, sz);
 	printf("NUL RETW=%d\n", retw);
 	return (fd);
 }
@@ -86,16 +92,17 @@ int			get_types(t_op *op, t_hero *hero)
 	offset = 64;
 	while (++i < 3)
 	{
-		if (op->types[i] == 1)
+		if (op->types[i] == T_REG)
 			type |= offset;
-		else if (op->types[i] == 2)
+		else if (op->types[i] == T_DIR)
 			type |= offset * 2;
-		else if (op->types[i] == 3)
+		else if (op->types[i] == T_IND)
 		{
 			type |= offset;
 			type |= offset * 2;
 		}
 		offset /= 2 * 2;
+		printf("OPTYPe[i]=%d\n" , op->types[i]);
 		//ft_print_bits(type);`
 	}
 	hero->excode[hero->p++] = type;
@@ -106,7 +113,6 @@ int			get_types(t_op *op, t_hero *hero)
 int			translator(t_hero *hero)
 {
 	unsigned char 	bc[2192] = {0};
-	int 			fd;
 	int 			i;
 	t_op			*beg;
 	t_op			*sec;
@@ -140,7 +146,7 @@ int			translator(t_hero *hero)
 		printf("ITER=%d ",i);
 		++i;
 	}
-	fd = write_filler(bc, hero);
+	write_filler(bc, hero, bcsz);
 	return (0);
 }
 

@@ -114,9 +114,9 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 	while (++i < 3 && op->types[i])//there could be less args
 	{
 		printf("Type=%d opnarg=%d\n", op->types[i], op->nargs[i]);
-		if (op->types[i] == 1)
+		if (op->types[i] == T_REG)
 			hero->excode[hero->p++] = (char) op->nargs[i];
-		if (op->types[i] == 3 || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
+		if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
 		{
 		//	ft_print_bits(op->nargs[i] >> 31);
 			ft_print_bits(op->nargs[i] >> 24);
@@ -130,7 +130,7 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 			//if (op->nargs[i] < 0)
 			//	hero->excode[hero->p] = ;
 		}
-		else if (op->types[i] == 2)
+		else if (op->types[i] == T_DIR)
 		{
 			hero->excode[hero->p++] = op->nargs[i] >> 24;
 			hero->excode[hero->p++] = op->nargs[i] >> 16;
