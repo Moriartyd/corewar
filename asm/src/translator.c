@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int		write_filler(unsigned char *bc, t_hero *hero, int sz)
+int		write_filler(unsigned char *bc, t_hero *hero, unsigned int sz)
 {
 	int		fd;
 	char	*fname;
@@ -21,8 +21,8 @@ int		write_filler(unsigned char *bc, t_hero *hero, int sz)
 	bc[1] = 234;
 	bc[2] = 131;
 	bc[3] = 243;
-	ft_memcpy(bc + 4, hero->name, PROG_NAME_LENGTH);
-	ft_memcpy(bc + 140, hero->comment, COMMENT_LENGTH);
+	ft_memccpy(bc + 4, hero->name, 0, PROG_NAME_LENGTH);
+	ft_memccpy(bc + 140, hero->comment, 0, COMMENT_LENGTH);
 	fname = "x.cor";
 //	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
 	fd = open("name2.cor", O_CREAT| O_TRUNC | O_RDWR , 0666);////O_RDWR);
@@ -40,6 +40,15 @@ int		write_filler(unsigned char *bc, t_hero *hero, int sz)
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
 	write(fd, hero->excode, sz);
+	printf("SZEXC=%d\n",sz);
+	int nsz = sz - 4;
+	int i = 0;
+	while (nsz < sz)
+	{
+		printf("excode[%d]=%d\n", nsz, hero->excode[nsz]);
+		ft_print_bits(hero->excode[nsz]);
+		++nsz;
+	}
 	return (fd);
 }
 
@@ -96,27 +105,34 @@ int			get_types(t_op *op, t_hero *hero)
 	return (1);
 }
 
-int			translator(t_hero *hero)
+unsigned int	index_count(t_hero *hero)
 {
-	unsigned char 	bc[2192] = {0};
-	int 			i;
-	t_op			*beg;
-	int				bcsz;
-	int				id;
+	unsigned int bcsz;
+	int i;
+	t_op	*beg;
 
-	//print_byte_int(x);
 	beg = hero->op;
+	i = 0;
 	bcsz = 0;
-	id = 0;
 	while (beg)
 	{
 		bcsz += beg->bytes;
-		beg->idop = ++id;
+		beg->idop = ++i;
 		beg = beg->next;
 	}
+	return (bcsz);
+}
+
+int				translator(t_hero *hero)
+{
+	unsigned char 	bc[2192] = {0};
+	t_op			*beg;
+	unsigned int	bcsz;
+
+	//print_byte_int(x);
+	bcsz = index_count(hero);
 	beg = hero->op;
 	//printf("NARG=%d begbytessize=%d\n", INT32_MAX, bcsz);
-	i = 1;
 	while (beg)
 	{
 		if (!(op_code(beg, hero)))
@@ -125,7 +141,6 @@ int			translator(t_hero *hero)
 			return (12);
 		}
 		beg = beg->next;
-		++i;
 	}
 	write_filler(bc, hero, bcsz);
 	return (0);
