@@ -111,13 +111,19 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 
 	i = -1;
 	d = op->code;
-///	if (op->code == 1)
-//	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
-//				op->nargs[0], op->nargs[1], op->nargs[2]);
+	if (op->idop > 177 && op->idop < 180)
+	{
+	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
+				op->nargs[0], op->nargs[1], op->nargs[2]);
+	printf("I=%d BYTESZ=%d ", op->idop, op->bytes);
+	}
 	while (++i < 3 && op->types[i])//there could be less args
 	{
 		if (op->types[i] == T_REG)
+		{
 			hero->excode[hero->p++] = (char) op->nargs[i];
+			printf("REGGGG=%d i=%d////----------\n", op->nargs[i], i);
+		}
 		else if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
 		{
 //			printf("NARGi2bytes(ind/9-12,14-15)=%d\n", op->nargs[i]);

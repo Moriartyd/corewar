@@ -32,12 +32,7 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int sz)
 	write(fd, bc, 4);
 	write(fd, bc + 4, 128);
 	write(fd, bc + 132, 4);
-	int i  = 136;
-	while (i != 140)
-	{
-		printf("EXCSZ[%d]=%d\n", i, bc[i]);
-		ft_print_bits(bc[i++]);
-	}
+	int i;
 	printf("BYTES");
 	ft_print_bits(sz >> 24);
 	ft_print_bits(sz >> 16);
@@ -50,8 +45,9 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int sz)
 	i = 136;
 	while (i != 140)
 	{
-		printf("EXCSZ[%d]=%d\n", i, bc[i]);
-		ft_print_bits(bc[i++]);
+	//	printf("EXCSZ[%d]=%d\n", i, bc[i]);
+	//	ft_print_bits(bc[i++]);
+		++i;
 	}	write(fd, bc + 136, 4);//excodesize
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
@@ -61,8 +57,8 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int sz)
 	 i = 0;
 	while (nsz < sz)
 	{
-		printf("excode[%d]=%d\n", nsz, hero->excode[nsz]);
-		ft_print_bits(hero->excode[nsz]);
+	//	printf("excode[%d]=%d\n", nsz, hero->excode[nsz]);
+	//	ft_print_bits(hero->excode[nsz]);
 		++nsz;
 	}
 	return (fd);
@@ -132,9 +128,12 @@ unsigned int	index_count(t_hero *hero)
 	bcsz = 0;
 	while (beg)
 	{
-	//	printf("bcsz=%d bytes=%d\n", bcsz, beg->bytes);
+		if (bcsz > 840 && bcsz < 856)
+			printf("bcsz=%d bytes=%d\n", bcsz, beg->bytes);
 		bcsz += beg->bytes;
 		beg->idop = ++i;
+		if (bcsz > 840 && bcsz < 856)
+			printf(">>>850=%d------id=%d=\n", bcsz, beg->idop);
 		beg = beg->next;
 	}
 	return (bcsz);
