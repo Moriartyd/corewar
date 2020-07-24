@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 21:39:16 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 18:11:39 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/24 21:08:28 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	del_hero(t_hero **hero)
 		ft_strdel(&((*hero)->name));
 		ft_strdel(&((*hero)->comment));
 		del_ops((*hero)->op);
+		free(*hero);
+		*hero = NULL;
 	}
 }
 

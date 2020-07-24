@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/21 16:48:54 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/24 21:01:56 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void	del_ops(t_op *op)
 				ft_strdel(&(op->labels[i]));
 				i++;
 			}
+			i = -1;
+			while (++i < 3)
+				if (op->args[i])
+					ft_strdel(&(op->args[i]));
 			tmp = op->next;
 			free(op);
 			op = tmp;

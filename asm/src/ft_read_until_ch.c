@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:28:07 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:06:20 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/24 21:21:00 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			ft_read_until_ch(int fd, int c, char **str)
 		return (-1);
 	*str = ft_strnew(1);
 	i = 0;
+	buff[0] = 0;
 	while ((r = read(fd, buff, 1)) && buff[0] != c)
 	{
 		buff[1] = 0;

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:55:07 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/24 21:12:34 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,12 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 	if (!*str && bytes == -2)
 		quit(EN_MALLOC, NULL, NULL);
 	if (!(s = ft_str_white_trim(*str)))
-		return (2);
+		return (ft_strdel(&s) ? 2 : 2);
 	if (ft_strlen(s) == 1 && *s == '\n')
-		return (2);
+		return (ft_strdel(&s) && ft_strdel(str) ? 2 : 2);
 	ft_strdel(str);
 	if (s[0] == COMMENT_CHAR || s[0] == ALT_COMMENT_CHAR)
-	{
-		ft_strdel(&s);
-		return (2);
-	}
+		return (ft_strdel(&s) && ft_strdel(str) ? 2 : 2);
 	if (((type = is_namecomm(s)) != -1))
 		if (check_namecomm(&s, type, fd, hero) >= 0)
 			return (type);

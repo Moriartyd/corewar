@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:50 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:16:02 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/24 21:31:05 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		read_file(int fd, t_hero **hero)
 	int		bytes;
 
 	ft_bzero(p, sizeof(int) * 5);
-	while ((bytes = ft_read_until_ch(fd, '\n', &str)) >= 0)
+	while ((bytes = ft_read_until_ch(fd, '\n', &str)) > 0)
 	{
 		if (!ft_strchr(str, '\n'))
 			quit(EN_LASTSTR, NULL, NULL);
@@ -72,5 +72,4 @@ void		read_file(int fd, t_hero **hero)
 	check_errors(p, bytes, str);
 	if (str)
 		ft_strdel(&str);
-	ft_strdel(&str);
 }
