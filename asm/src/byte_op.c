@@ -6,13 +6,13 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/24 21:49:29 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 02:00:30 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		ft_print_bits(unsigned char octet)
+void	ft_print_bits(unsigned char octet)
 {
 	int i;
 	int buf;
@@ -24,29 +24,29 @@ void		ft_print_bits(unsigned char octet)
 		i /= 2;
 		if (buf > 0)
 		{
-			printf("1");
+			ft_printf("1");
 		}
 		else if (buf == 0)
 		{
-			printf("0");
+			ft_printf("0");
 		}
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
-int			print_byte_int(int x)
+int		print_byte_int(int x)
 {
-	printf("MH=%d\n", x);
+	ft_printf("MH=%d\n", x);
 	ft_print_bits(x);
-	ft_print_bits(x >> 8);//left byte 0;
+	ft_print_bits(x >> 8);
 	ft_print_bits(x >> 16);
 	ft_print_bits(x >> 24);
 	ft_print_bits(x >> 31);
-	printf("\n");
+	ft_printf("\n");
 	return (0);
 }
 
-long		atoli(char *str)
+long	atoli(char *str)
 {
 	int		i;
 	long	res;
@@ -78,7 +78,8 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
 	bc[3] = 243;
 	ft_memccpy(bc + 4, hero->name, 0, PROG_NAME_LENGTH);
 	ft_memccpy(bc + 140, hero->comment, 0, COMMENT_LENGTH);
-	fname = "x.cor";fn+=0;
+	fname = "x.cor";
+	fn += 0;
 //	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
 	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR, 0666);////O_RDWR);
 ////	printf("FDopened some file CREAT=%d\n",fd);
@@ -91,7 +92,7 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
 	bc[137] = (unsigned int)s >> 16;
 	bc[138] = (unsigned int)s >> 8;
 	bc[139] = s;
-	write(fd, bc + 136, 4);//excodesize
+	write(fd, bc + 136, 4);
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
 	write(fd, hero->excode, s);

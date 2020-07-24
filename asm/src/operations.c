@@ -6,7 +6,7 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 20:32:29 by student           #+#    #+#             */
-/*   Updated: 2020/07/25 01:46:28 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 01:57:29 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** if label pts to next op - count prevsize,
 ** if label points to prev - count cur + next sz;
- * beg - compared op, la - op with labeled arg
+** beg - compared op, la - op with labeled arg
 */
 
 int			count_label(t_op *op, int i, t_op *la, int sign)
@@ -49,7 +49,6 @@ int			count_label(t_op *op, int i, t_op *la, int sign)
 int			search_label(t_op *op, int ip, char *label, t_op *la)
 {
 	int		i;
-	int		sign;
 
 	i = -1;
 	while (op->labels[++i])
@@ -59,13 +58,11 @@ int			search_label(t_op *op, int ip, char *label, t_op *la)
 			la->nargs[ip] = 0;
 			if (op->idop > la->idop)
 			{
-				sign = 1;
-				return (count_label(op, ip, la, sign));
+				return (count_label(op, ip, la, 1));
 			}
 			else if (la->idop > op->idop)
 			{
-				sign = -1;
-				return (count_label(op, ip, la, sign));
+				return (count_label(op, ip, la, -1));
 			}
 			else if (la->idop == op->idop)
 			{
@@ -90,12 +87,10 @@ int			is_arg_labels(t_op *la, t_hero *hero)
 			while (beg)
 			{
 				if (search_label(beg, i, la->curlabels[i], la))
-						return (1);
-				if (!beg->next){
+					return (1);
+				if (!beg->next)
 					ft_printf("No such label %s\n", la->curlabels[i]);
-					printf("BEGii=%d LAI=%d cop=%d llab=%s i=%d curi=%s\n", 
-							beg->idop, la->idop,la->code,la->labels[i],i, la->curlabels[i]);
-				}beg = beg->next;
+				beg = beg->next;
 			}
 			return (NO_LABEL_PNT);
 		}
@@ -113,10 +108,9 @@ int			write_labels(t_hero *hero, t_op *op)
 	while (++i < 3 && op->types[i])
 	{
 		if (op->types[i] == T_REG)
-		{
 			hero->excode[hero->p++] = (char)op->nargs[i];
-		}
-		else if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)
+		else if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11
+				|| d == 12 || d == 14 || d == 15)
 		{
 			hero->excode[hero->p++] = (unsigned)op->nargs[i] >> 8;
 			hero->excode[hero->p++] = op->nargs[i];
