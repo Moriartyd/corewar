@@ -177,7 +177,7 @@ typedef struct	s_op
 {
 	int			code;//char
 	int			types[3];
-	int			nargs[3];//
+	long			nargs[3];//
 	char		*args[3];//
 	int			bytes;
 	char		*labels[LABELS];
@@ -205,6 +205,9 @@ int			get_types(t_op *op, t_hero *h);
 int			get_args(t_op *op);
 
 int			translator(t_hero *hero);
+long		atoli(char *str);
+
+
 /*
 **	* ft_read_until_ch	-	читает файл посимвольно до символа c, 
 **							возвращает количество прочитанного.

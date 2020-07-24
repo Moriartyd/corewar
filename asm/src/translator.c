@@ -70,12 +70,17 @@ int			get_args(t_op *op)
 	int j;
 
 	i = 0;
+	if (op->idop == 179)
+	{
+		while (i < 3)
+			printf("179ADDARGUMETS=%s|||||||||||||||||||||||\n",op->args[i++]);
+	} i =0;
 	while (i < 3 && op->args[i])
 	{
 		j = 0;
 		if (op->args[i][j] == 'r')
 		{
-			op->nargs[i] = ft_atoi(op->args[i] + j + 1);
+			op->nargs[i] = atoli(op->args[i] + j + 1);
 			++i;
 			continue ;//return (0);
 		}
@@ -84,7 +89,7 @@ int			get_args(t_op *op)
 		if (op->args[i] && op->args[i][j] == ':')//congrats you have a str!
 			op->curlabels[i] = op->args[i] + j + 1;
 		else
-			op->nargs[i] = ft_atoi(op->args[i] + j);
+			op->nargs[i] = atoli(op->args[i] + j);
 		++i;
 	}
 	return (0);

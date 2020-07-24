@@ -49,7 +49,6 @@ int			search_label(t_op *op, int ip, char *label, t_op *la)
 {
 	int		i;
 	t_op	*beg;
-	int		sz;
 	t_op	*stop;
 
 	i = -1;
@@ -113,7 +112,7 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 	d = op->code;
 	if (op->idop > 177 && op->idop < 180)
 	{
-	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%d][%d][%d]\n", op->code, op->types[0],op->types[1],op->types[2],
+	printf("OPC=%d TYPES[%d][%d][%d] NARGS[%ld][%ld][%ld]\n", op->code, op->types[0],op->types[1],op->types[2],
 				op->nargs[0], op->nargs[1], op->nargs[2]);
 	printf("I=%d BYTESZ=%d ", op->idop, op->bytes);
 	}
@@ -122,7 +121,7 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 		if (op->types[i] == T_REG)
 		{
 			hero->excode[hero->p++] = (char) op->nargs[i];
-			printf("REGGGG=%d i=%d////----------\n", op->nargs[i], i);
+			printf("REGGGG=%ld i=%d////----------\n", op->nargs[i], i);
 		}
 		else if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)//2bytes
 		{
