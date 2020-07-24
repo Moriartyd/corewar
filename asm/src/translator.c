@@ -128,11 +128,11 @@ unsigned int	index_count(t_hero *hero)
 	bcsz = 0;
 	while (beg)
 	{
-		if (bcsz > 840 && bcsz < 856)
+		if ((bcsz > 840 && bcsz < 856) || (bcsz < 13))
 			printf("bcsz=%d bytes=%d\n", bcsz, beg->bytes);
 		bcsz += beg->bytes;
 		beg->idop = ++i;
-		if (bcsz > 840 && bcsz < 856)
+		if ((bcsz > 840 && bcsz < 856) || (bcsz < 13))
 			printf(">>>850=%d------id=%d=\n", bcsz, beg->idop);
 		beg = beg->next;
 	}
