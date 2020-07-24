@@ -156,6 +156,10 @@
 #	define STR_FORK		"fork"
 #	define STR_ZJMP		"zjmp"
 
+# define BCSZ 10000
+#	define NO_LABEL_PNT 0
+#	define NO_LABEL_ARG 2
+
 /*
 **	Bytes - сколько байт занимает данная операция
 */
@@ -173,21 +177,38 @@ typedef struct	s_vldop
 
 typedef struct	s_op
 {
-	int			code;
+	int			code;//char
 	int			types[3];
+	long		nargs[3];
 	char		*args[3];
 	int			bytes;
 	char		*labels[LABELS];
+	char 		*curlabels[3];
+	int			idop;
 	struct s_op	*prev;
 	struct s_op	*next;
 }				t_op;
 
-typedef struct	s_hero
+typedef struct  s_hero
 {
-	char		*name;
-	char		*comment;
-	t_op		*op;
-}				t_hero;
+	char        	*name;
+	char        	*comment;
+	t_op			*op;
+	unsigned char	excode[BCSZ];//[CHAMP_MAX_SIZE + 1]
+	int 			p;
+}               t_hero;
+
+void		ft_print_bits(unsigned char octet);
+int 		print_byte_int(int x);
+void		init_op_add(t_op *op);
+int			op_code(t_op *op, t_hero *h);
+int			get_types(t_op *op, t_hero *h);
+int			get_args(t_op *op);
+
+int			translator(t_hero *hero, char **av);
+long		atoli(char *str);
+int			write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn);
+
 
 /*
 **	* ft_read_until_ch	-	читает файл посимвольно до символа c,
