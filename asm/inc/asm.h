@@ -177,11 +177,11 @@ typedef struct	s_op
 {
 	int			code;//char
 	int			types[3];
-	long			nargs[3];//
-	char		*args[3];//
+	long		nargs[3];
+	char		*args[3];
 	int			bytes;
 	char		*labels[LABELS];
-	char 		*curlabels[3];//
+	char 		*curlabels[3];
 	int			idop;
 	struct s_op	*prev;
 	struct s_op	*next;
@@ -192,20 +192,21 @@ typedef struct  s_hero
 	char        	*name;
 	char        	*comment;
 	t_op			*op;
-	unsigned char	excode[BCSZ];//[CHAMP_MAX_SIZE + 1];//682 + 1
+	unsigned char	excode[BCSZ];//[CHAMP_MAX_SIZE + 1]
 	int 			p;
 }               t_hero;
 
 void		ft_print_bits(unsigned char octet);
 int 		print_byte_int(int x);
-void		init_op_add(t_op *op);//for every op;
-int			code_op(t_op *op, int fd, t_hero *hero, t_op *sec);
+void		init_op_add(t_op *op);
 int			op_code(t_op *op, t_hero *h);
 int			get_types(t_op *op, t_hero *h);
 int			get_args(t_op *op);
 
-int			translator(t_hero *hero);
+int			translator(t_hero *hero, char **av);
 long		atoli(char *str);
+int			write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn);
+
 
 
 /*

@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "op.h"
-//#include "vldlib/inc/vldlib.h"
 #include "asm.h"
 
-void		ft_print_bits(unsigned char octet)//
+void		ft_print_bits(unsigned char octet)
 {
 	int i;
 	int buf;
@@ -27,12 +25,10 @@ void		ft_print_bits(unsigned char octet)//
 		if (buf > 0)
 		{
 			printf("1");
-		//	write(1, "1", 1);
 		}
 		else if (buf == 0)
 		{
 			printf("0");
-		//	write(1, "0", 1);
 		}
 	}
 	printf("\n");
@@ -69,4 +65,35 @@ long		atoli(char *str)
 		++i;
 	}
 	return (res * sign);
+}
+
+int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
+{
+	int		fd;
+	char	*fname;
+
+	bc[0] = 0;
+	bc[1] = 234;
+	bc[2] = 131;
+	bc[3] = 243;
+	ft_memccpy(bc + 4, hero->name, 0, PROG_NAME_LENGTH);
+	ft_memccpy(bc + 140, hero->comment, 0, COMMENT_LENGTH);
+	fname = "x.cor";
+//	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
+	fd = open(fname, O_CREAT| O_TRUNC | O_RDWR , 0666);////O_RDWR);
+////	printf("FDopened some file CREAT=%d\n",fd);
+//	fd = open("name1.cor", O_RDWR);
+	/////printf("FDopened some file RDWR=%d\n",fd);
+	write(fd, bc, 4);
+	write(fd, bc + 4, 128);
+	write(fd, bc + 132, 4);
+	bc[136] = (unsigned int)s >> 24;
+	bc[137] = (unsigned int)s >> 16;
+	bc[138] = (unsigned int)s >> 8;
+	bc[139] = s;
+	write(fd, bc + 136, 4);//excodesize
+	write(fd, bc + 140, 2048);
+	write(fd, bc + 2188, 4);
+	write(fd, hero->excode, s);
+	return (fd);
 }

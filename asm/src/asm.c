@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:36:53 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/24 15:13:17 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int		main(int ac, char **av)
 	int		arg;
 
 	arg = ac > 2 ? ac - 1 : 1;
-	if ((fd = open(av[arg], O_RDONLY)) <= 0)
+	if (ac < 2 || (fd = open(av[1], O_RDONLY)) <= 0)
 		ft_quit(-1, 0);
 	hero = init_hero();
 	read_file(fd, &hero);
 	close(fd);
-	translator(hero);
+	translator(hero, av + 1);
 //	show_hero(hero);
 	del_hero(&hero);
 	return (0);
