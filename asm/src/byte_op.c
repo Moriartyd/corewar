@@ -6,7 +6,7 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/17 16:11:56 by student          ###   ########.fr       */
+/*   Updated: 2020/07/24 17:05:03 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		ft_print_bits(unsigned char octet)
 	printf("\n");
 }
 
-int 		print_byte_int(int x)
+int			print_byte_int(int x)
 {
 	printf("MH=%d\n", x);
 	ft_print_bits(x);
@@ -80,7 +80,7 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
 	ft_memccpy(bc + 140, hero->comment, 0, COMMENT_LENGTH);
 	fname = "x.cor";
 //	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
-	fd = open(fname, O_CREAT| O_TRUNC | O_RDWR , 0666);////O_RDWR);
+	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR, 0666);////O_RDWR);
 ////	printf("FDopened some file CREAT=%d\n",fd);
 //	fd = open("name1.cor", O_RDWR);
 	/////printf("FDopened some file RDWR=%d\n",fd);

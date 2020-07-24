@@ -6,7 +6,7 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 20:32:29 by student           #+#    #+#             */
-/*   Updated: 2020/07/20 17:00:04 by student          ###   ########.fr       */
+/*   Updated: 2020/07/24 17:04:27 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,39 @@
  * beg - compared op, la - op with labeled arg
 */
 
-int			count_label(t_op *op, int i, t_op *la)
+int			count_label(t_op *op, int i, t_op *la, int sign)
 {
-	int sz;
-	t_op *beg;
-	t_op *stop;
+	int		sz;
+	t_op	*beg;
+	t_op	*stop;
 
 	if (la->idop > op->idop)
 	{
 		beg = op;
 		stop = la;
-		sz = -1;
+	}
+	else if (op->idop > la->idop)
+	{
+		beg = la;
+		stop = op;
 	}
 	else
-		return (0);
-	sz = 0;
+		beg = 0;
 	while (beg)
 	{
 		if (beg->idop == stop->idop)
 			break ;
-		sz -= beg->bytes;
+		la->nargs[i] += beg->bytes;
 		beg = beg->next;
 	}
-	la->nargs[i] = sz;//op->code;//count size of op and location
+	la->nargs[i] *= sign;
 	return (1);
 }
 
 int			search_label(t_op *op, int ip, char *label, t_op *la)
 {
 	int		i;
-	t_op	*beg;
-	t_op	*stop;
+	int		sign;
 
 	i = -1;
 	while (op->labels[++i])
@@ -56,21 +58,20 @@ int			search_label(t_op *op, int ip, char *label, t_op *la)
 		if (!ft_strcmp(op->labels[i], label))
 		{
 			la->nargs[ip] = 0;
-			if (op->idop > la->idop)///+
+			if (op->idop > la->idop)
 			{
-				beg = la;
-				stop = op;
-				while (beg)
-				{
-					if (beg->idop == stop->idop)
-						break;
-					la->nargs[ip] += beg->bytes;
-					beg = beg->next;
-				}
-				return (1);
+				sign = 1;
+				return (count_label(op, ip, la, sign));
 			}
 			else if (la->idop > op->idop)
-				return (count_label(op, ip, la));
+			{
+				sign = -1;
+				return (count_label(op, ip, la, sign));
+			}
+			else if (la->idop == op->idop)
+			{
+				return (count_label(op, ip, la, 1));
+			}
 		}
 	}
 	return (0);
@@ -78,7 +79,7 @@ int			search_label(t_op *op, int ip, char *label, t_op *la)
 
 int			is_arg_labels(t_op *la, t_hero *hero)
 {
-	int i;
+	int		i;
 	t_op	*beg;
 
 	i = -1;
@@ -89,20 +90,22 @@ int			is_arg_labels(t_op *la, t_hero *hero)
 			beg = hero->op;
 			while (beg)
 			{
-				if (beg->idop != la->idop)
-				{
+			//	if (beg->idop != la->idop)
+			//	{
 					if (search_label(beg, i, la->curlabels[i], la))
-						return (1);//success
-				}
+						return (1);
+			//	}
+				if (!beg->next)
+					printf("BEGi=%d LAI=%d\n", beg->idop, la->idop);
 				beg = beg->next;
 			}
-			return (0);//label does not exist
+			return (NO_LABEL_PNT);
 		}
 	}
-	return (2);//nolabels
+	return (NO_LABEL_ARG);
 }
 
-int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
+int			write_labels(t_hero *hero, t_op *op)
 {
 	int i;
 	int	d;
@@ -113,7 +116,7 @@ int			write_labels(t_hero *hero, t_op *op)//nm args in byte code
 	{
 		if (op->types[i] == T_REG)
 		{
-			hero->excode[hero->p++] = (char) op->nargs[i];
+			hero->excode[hero->p++] = (char)op->nargs[i];
 		}
 		else if (op->types[i] == T_IND || d == 9 || d == 10 || d == 11 || d == 12 || d == 14 || d == 15)
 		{

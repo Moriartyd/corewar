@@ -6,13 +6,13 @@
 /*   By: ddratini <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/24 15:06:52 by student          ###   ########.fr       */
+/*   Updated: 2020/07/24 17:02:24 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int			get_args(t_op *op)
+int				get_args(t_op *op)
 {
 	int i;
 	int j;
@@ -25,11 +25,11 @@ int			get_args(t_op *op)
 		{
 			op->nargs[i] = atoli(op->args[i] + j + 1);
 			++i;
-			continue ;//return (0);
+			continue ;
 		}
 		if (op->args[i] && op->args[i][j] == '%')
 			++j;
-		if (op->args[i] && op->args[i][j] == ':')//congrats you have a str!
+		if (op->args[i] && op->args[i][j] == ':')
 			op->curlabels[i] = op->args[i] + j + 1;
 		else
 			op->nargs[i] = atoli(op->args[i] + j);
@@ -38,9 +38,9 @@ int			get_args(t_op *op)
 	return (0);
 }
 
-int			get_types(t_op *op, t_hero *hero)
+int				get_types(t_op *op, t_hero *hero)
 {
-	int 			i;
+	int				i;
 	unsigned char	type;
 	unsigned int	offset;
 
@@ -66,9 +66,9 @@ int			get_types(t_op *op, t_hero *hero)
 
 unsigned int	index_count(t_hero *hero)
 {
-	unsigned int bcsz;
-	int i;
-	t_op	*beg;
+	unsigned int	bcsz;
+	int				i;
+	t_op			*beg;
 
 	beg = hero->op;
 	i = 0;
@@ -84,17 +84,22 @@ unsigned int	index_count(t_hero *hero)
 
 int				translator(t_hero *hero, char **av)
 {
-	unsigned char 	bc[2192] = {0};
+	unsigned char	bc[2192];
 	t_op			*beg;
 	unsigned int	bcsz;
+	int				i;
 
+	i = -1;
+	while (++i < 2192)
+		bc[i] = 0;
 	bcsz = index_count(hero);
 	beg = hero->op;
 	while (beg)
 	{
 		if (!(op_code(beg, hero)))
 		{
-			printf("LABEL_ERROR_DOUBLE\n");
+			printf("OPi=%d\n", beg->idop);
+			write(1, "LABEL_ERROR_DOUBLE\n", 19);
 			return (12);
 		}
 		beg = beg->next;
@@ -103,7 +108,7 @@ int				translator(t_hero *hero, char **av)
 	return (0);
 }
 
-void		init_op_add(t_op *op)
+void			init_op_add(t_op *op)
 {
 	int i;
 
@@ -114,4 +119,3 @@ void		init_op_add(t_op *op)
 		op->nargs[i] = INT64_MAX;
 	}
 }
-
