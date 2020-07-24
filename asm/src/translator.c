@@ -6,7 +6,7 @@
 /*   By: ddratini <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/24 17:02:24 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 01:48:05 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ int				translator(t_hero *hero, char **av)
 	i = -1;
 	while (++i < 2192)
 		bc[i] = 0;
+	i = -1;
+	while (++i < BCSZ)
+		hero->excode[i] = 0;
+	hero->p = 0;
 	bcsz = index_count(hero);
 	beg = hero->op;
 	while (beg)
 	{
 		if (!(op_code(beg, hero)))
 		{
-			printf("OPi=%d\n", beg->idop);
-			write(1, "LABEL_ERROR_DOUBLE\n", 19);
 			return (12);
 		}
 		beg = beg->next;

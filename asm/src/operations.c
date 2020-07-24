@@ -6,7 +6,7 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 20:32:29 by student           #+#    #+#             */
-/*   Updated: 2020/07/24 21:49:05 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 01:46:28 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,13 @@ int			is_arg_labels(t_op *la, t_hero *hero)
 			beg = hero->op;
 			while (beg)
 			{
-			//	if (beg->idop != la->idop)
-			//	{
-					if (search_label(beg, i, la->curlabels[i], la))
+				if (search_label(beg, i, la->curlabels[i], la))
 						return (1);
-			//	}
-				if (!beg->next)
-					printf("BEGi=%d LAI=%d\n", beg->idop, la->idop);
-				beg = beg->next;
+				if (!beg->next){
+					ft_printf("No such label %s\n", la->curlabels[i]);
+					printf("BEGii=%d LAI=%d cop=%d llab=%s i=%d curi=%s\n", 
+							beg->idop, la->idop,la->code,la->labels[i],i, la->curlabels[i]);
+				}beg = beg->next;
 			}
 			return (NO_LABEL_PNT);
 		}

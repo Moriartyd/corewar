@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/24 15:13:17 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 01:49:39 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,11 @@ int		main(int ac, char **av)
 	arg = ac > 2 ? ac - 1 : 1;
 	if (/*ac < 2 ||*/ (fd = open(av[arg], O_RDONLY)) <= 0)
 		ft_quit(-1, 0);
-	printf("nowinit fd=%d\n", fd);
 	hero = init_hero();
-	printf("nowireadt\n");
-	read_file(fd, &hero);	printf("nowinit\n");
-
-	close(fd);printf("FTR!");
+	read_file(fd, &hero);
+	close(fd);
 	translator(hero, av + 1);
-//	show_hero(hero);
+	//show_hero(hero);
 	del_hero(&hero);
 	return (0);
 }
