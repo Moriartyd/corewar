@@ -118,7 +118,7 @@ int			get_types(t_op *op, t_hero *hero)
 		offset /= 2 * 2;
 	}
 	hero->excode[hero->p++] = type;
-	ft_print_bits(type);
+	//ft_print_bits(type);
 	return (1);
 }
 
