@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 18:26:17 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/25 15:52:53 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static char	*parse_label(char *str, t_vldop *op, int i)
 		i++;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
-	if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
+	if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR
+		&& str[i] != ALT_COMMENT_CHAR)
 		return (&str[i]);
 	else
 		return (NULL);

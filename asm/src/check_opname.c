@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 19:48:26 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/24 21:03:32 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/25 15:51:16 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	is_blank(char *str)
 int	sep_char(char c)
 {
 	if (c == '\t' || c == ' '
-		|| c == SEPARATOR_CHAR || c == '\n' || c == COMMENT_CHAR)
+		|| c == SEPARATOR_CHAR || c == '\n' || c == COMMENT_CHAR
+			|| c == ALT_COMMENT_CHAR)
 		return (1);
 	return (0);
 }

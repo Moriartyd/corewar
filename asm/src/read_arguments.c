@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:48:08 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:47:58 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/25 15:56:09 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static char	*first_arg(char *str, int args[3], t_vldop *op)
 	i = 0;
 	while (str[i] && !sep_char(str[i]))
 		i++;
-	if (!(op->arg1 = ft_strnewncp(str, i)))
-		quit(EN_MALLOC, NULL, NULL);
+	(!(op->arg1 = ft_strnewncp(str, i))) ? quit(EN_MALLOC, NULL, NULL) : 0;
 	while (args[1] && str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	str[i] == SEPARATOR_CHAR && args[1] ? i++ : 0;
@@ -45,7 +44,8 @@ static char	*first_arg(char *str, int args[3], t_vldop *op)
 		quit(EN_ARGS4, op, NULL);
 	if (!args[1])
 	{
-		if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
+		if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR
+			&& str[i] != ALT_COMMENT_CHAR)
 			quit(EN_TRASH, NULL, NULL);
 		return (NULL);
 	}
@@ -74,8 +74,8 @@ static char	*second_arg(char *str, int args[3], t_vldop *op)
 	(args[2] && (!str[i] || str[i] == '\n')) ? quit(EN_ARGS4, op, NULL) : 0;
 	if (!args[2])
 	{
-		if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
-			quit(EN_TRASH, NULL, NULL);
+		(str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR
+			&& str[i] != ALT_COMMENT_CHAR) ? quit(EN_TRASH, NULL, NULL) : 0;
 		return (NULL);
 	}
 	return (&str[i]);
@@ -88,8 +88,7 @@ static char	*third_arg(char *str, int args[3], t_vldop *op)
 
 	if (!str)
 		return (NULL);
-	if ((t = get_arg_type(*str)) < 0)
-		quit(EN_ARGS2, op, NULL);
+	((t = get_arg_type(*str)) < 0) ? quit(EN_ARGS2, op, NULL) : 0;
 	if (!(t & args[2]))
 		quit(EN_ARGS3, op, NULL);
 	args[2] = t;
@@ -100,7 +99,8 @@ static char	*third_arg(char *str, int args[3], t_vldop *op)
 		quit(EN_MALLOC, NULL, NULL);
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
-	if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR)
+	if (str[i] && str[i] != '\n' && str[i] != COMMENT_CHAR
+		&& str[i] != ALT_COMMENT_CHAR)
 		quit(EN_TRASH, NULL, NULL);
 	return (&str[i]);
 }
