@@ -6,7 +6,7 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/25 15:57:29 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 16:05:04 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_print_bits(unsigned char octet)
 
 int		print_byte_int(int x)
 {
-	ft_printf("MH=%d\n", x);
 	ft_print_bits(x);
 	ft_print_bits(x >> 8);
 	ft_print_bits(x >> 16);
