@@ -6,7 +6,7 @@
 /*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/25 02:00:30 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 14:39:43 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,27 @@ long	atoli(char *str)
 	return (res * sign);
 }
 
-int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
+int		file_name(char **fn)
+{
+	int  i;
+	char *beg;
+
+	i = ft_strlen(*fn);
+	while (--i > 0)
+	{
+		if ((*fn)[i] == '.')
+		{
+			beg = ft_strsub(*fn, 0, i);//malloci -1
+			*fn = ft_strjoin(beg, ".cor");
+			free(beg);
+			printf("FIN=%s\n", *fn);
+			return (1);
+		}
+	}
+	return (-1);
+}
+
+int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char *fn)
 {
 	int		fd;
 	char	*fname;
@@ -78,11 +98,10 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
 	bc[3] = 243;
 	ft_memccpy(bc + 4, hero->name, 0, PROG_NAME_LENGTH);
 	ft_memccpy(bc + 140, hero->comment, 0, COMMENT_LENGTH);
-	fname = "x.cor";
-	fn += 0;
+	fname = file_name(&fn) > 0 ? fn : ".cor";
 //	fd = open("name1.cor", O_RDWR | O_TRUNC | O_CREAT , 0666);////O_RDWR);
 	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR, 0666);////O_RDWR);
-////	printf("FDopened some file CREAT=%d\n",fd);
+	printf("FDopened some file CREAT=%d\n",fd);
 //	fd = open("name1.cor", O_RDWR);
 	/////printf("FDopened some file RDWR=%d\n",fd);
 	write(fd, bc, 4);
@@ -96,5 +115,7 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn)
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
 	write(fd, hero->excode, s);
+	ft_printf("Wrtiting output program to %s\n", fname);
+	//free(fname);
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: ddratini <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/25 01:48:05 by student          ###   ########.fr       */
+/*   Updated: 2020/07/25 13:06:55 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ unsigned int	index_count(t_hero *hero)
 	return (bcsz);
 }
 
-int				translator(t_hero *hero, char **av)
+int				translator(t_hero *hero, char *av)
 {
 	unsigned char	bc[2192];
 	t_op			*beg;
