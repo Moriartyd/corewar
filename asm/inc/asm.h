@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 18:18:17 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/25 13:07:28 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ typedef struct  s_hero
 	char        	*name;
 	char        	*comment;
 	t_op			*op;
-	unsigned char	excode[BCSZ];//[CHAMP_MAX_SIZE + 1]
+	unsigned char	excode[BCSZ];
 	int 			p;
 }               t_hero;
 
@@ -205,9 +205,9 @@ int			op_code(t_op *op, t_hero *h);
 int			get_types(t_op *op, t_hero *h);
 int			get_args(t_op *op);
 
-int			translator(t_hero *hero, char **av);
+int			translator(t_hero *hero, char *av);
 long		atoli(char *str);
-int			write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char **fn);
+int			write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char *fn);
 
 
 /*
