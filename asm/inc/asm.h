@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/25 17:01:16 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 16:43:05 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "libft.h"
 #include "op.h"
 #include <stdio.h>
+
+#	define USAGE_VM_M "usage:"
+#	define USAGE_VM_L 6
 
 /*
 **	Errors
@@ -153,6 +156,10 @@
 #	define STR_FORK		"fork"
 #	define STR_ZJMP		"zjmp"
 
+#	define BCSZ 10000
+#	define NO_LABEL_PNT 0
+#	define NO_LABEL_ARG 2
+
 /*
 **	Bytes - сколько байт занимает данная операция
 */
@@ -175,6 +182,9 @@ typedef struct	s_op
 	char		*args[3];
 	int			bytes;
 	char		*labels[LABELS];
+	char 		*curlabels[3];
+	long		nargs[3];
+	int			idop;
 	struct s_op	*prev;
 	struct s_op	*next;
 }				t_op;
@@ -184,7 +194,20 @@ typedef struct	s_hero
 	char		*name;
 	char		*comment;
 	t_op		*op;
+	unsigned char	excode[BCSZ];
+	int 			p;
 }				t_hero;
+
+void		ft_print_bits(unsigned char octet);
+int 		print_byte_int(int x);
+void		init_op_add(t_op *op);
+int			op_code(t_op *op, t_hero *h);
+int			get_types(t_op *op, t_hero *h);
+int			get_args(t_op *op);
+
+int			translator(t_hero *hero, char *av);
+long		atoli(char *str);
+int			write_filler(unsigned char *b, t_hero *h, unsigned int s, char *f);
 
 /*
 **	* ft_read_until_ch	-	читает файл посимвольно до символа c,
