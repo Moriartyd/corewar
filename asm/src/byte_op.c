@@ -3,49 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   byte_op.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/25 16:05:04 by student          ###   ########.fr       */
+/*   Updated: 2020/07/26 15:39:03 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	ft_print_bits(unsigned char octet)
-{
-	int i;
-	int buf;
-
-	i = 128;
-	while (i != 0)
-	{
-		buf = octet & i;
-		i /= 2;
-		if (buf > 0)
-		{
-			ft_printf("1");
-		}
-		else if (buf == 0)
-		{
-			ft_printf("0");
-		}
-	}
-	ft_printf("\n");
-}
-
-int		print_byte_int(int x)
-{
-	ft_print_bits(x);
-	ft_print_bits(x >> 8);
-	ft_print_bits(x >> 16);
-	ft_print_bits(x >> 24);
-	ft_print_bits(x >> 31);
-	ft_printf("\n");
-	return (0);
-}
-
-long	atoli(char *str)
+long		atoli(char *str)
 {
 	int		i;
 	long	res;
@@ -66,7 +33,7 @@ long	atoli(char *str)
 	return (res * sign);
 }
 
-int		file_name(char **fn)
+static int	file_name(char **fn)
 {
 	int		i;
 	char	*beg;
@@ -86,7 +53,15 @@ int		file_name(char **fn)
 	return (-1);
 }
 
-int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char *fn)
+static void	normal_output(char *fn)
+{
+	write(1, "Writing output program to ", 28);
+	write(1, fn, ft_strlen(fn));
+	write(1, "\n", 1);
+}
+
+void		write_filler(unsigned char *bc,\
+				t_hero *hero, unsigned int s, char *fn)
 {
 	int		fd;
 
@@ -109,6 +84,5 @@ int		write_filler(unsigned char *bc, t_hero *hero, unsigned int s, char *fn)
 	write(fd, bc + 140, 2048);
 	write(fd, bc + 2188, 4);
 	write(fd, hero->excode, s);
-	ft_printf("Writing output program to %s\n", fn);
-	return (fd);
+	normal_output(fn);
 }

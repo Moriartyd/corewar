@@ -6,32 +6,12 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/25 12:39:47 by student          ###   ########.fr       */
+/*   Updated: 2020/07/26 15:39:26 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include <stdio.h>
-
-void	show_hero(t_hero *hero)
-{
-	t_op	*op;
-	int		i;
-
-	op = hero->op;
-	printf("name:\t\t'%s'\ncomment:\t'%s'\n", hero->name, hero->comment);
-	while (op)
-	{
-		i = 0;
-		while (op->labels[i])
-		{
-			printf("%s:\n", op->labels[i]);
-			i++;
-		}
-		printf("%d %s %s %s\n", op->code, op->args[0], op->args[1], op->args[2]);
-		op = op->next;
-	}
-}
 
 int		main(int ac, char **av)
 {
@@ -41,13 +21,12 @@ int		main(int ac, char **av)
 
 	arg = ac > 2 ? ac - 1 : 1;
 	fd = -1;
-	if (ac < 2 || (fd = open(av[arg], O_RDONLY)) <= 0)
+	if (ac < 2 || (fd = open(av[arg], O_RDONLY)) <= 0)//Переделать
 		ft_quit(-1, 0);
 	hero = init_hero();
 	read_file(fd, &hero);
 	close(fd);
 	translator(hero, av[1]);
-	//show_hero(hero);
 	del_hero(&hero);
 	return (0);
 }

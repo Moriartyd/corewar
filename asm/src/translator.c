@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   translator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddratini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/25 13:06:55 by student          ###   ########.fr       */
+/*   Updated: 2020/07/26 15:32:32 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int				get_args(t_op *op)
+int					get_args(t_op *op)
 {
 	int i;
 	int j;
@@ -38,7 +38,7 @@ int				get_args(t_op *op)
 	return (0);
 }
 
-int				get_types(t_op *op, t_hero *hero)
+int					get_types(t_op *op, t_hero *hero)
 {
 	int				i;
 	unsigned char	type;
@@ -64,7 +64,7 @@ int				get_types(t_op *op, t_hero *hero)
 	return (1);
 }
 
-unsigned int	index_count(t_hero *hero)
+static unsigned int	index_count(t_hero *hero)
 {
 	unsigned int	bcsz;
 	int				i;
@@ -82,7 +82,7 @@ unsigned int	index_count(t_hero *hero)
 	return (bcsz);
 }
 
-int				translator(t_hero *hero, char *av)
+int					translator(t_hero *hero, char *av)
 {
 	unsigned char	bc[2192];
 	t_op			*beg;
@@ -108,16 +108,4 @@ int				translator(t_hero *hero, char *av)
 	}
 	write_filler(bc, hero, bcsz, av);
 	return (0);
-}
-
-void			init_op_add(t_op *op)
-{
-	int i;
-
-	i = -1;
-	while (++i < 3)
-	{
-		op->curlabels[i] = 0;
-		op->nargs[i] = INT64_MAX;
-	}
 }

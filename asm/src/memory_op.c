@@ -6,13 +6,25 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/24 21:55:57 by student          ###   ########.fr       */
+/*   Updated: 2020/07/26 15:30:35 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_op	*new_op(void)
+static void	init_op_add(t_op *op)
+{
+	int i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		op->curlabels[i] = 0;
+		op->nargs[i] = INT64_MAX;
+	}
+}
+
+t_op		*new_op(void)
 {
 	t_op	*res;
 	int		i;
@@ -37,7 +49,7 @@ t_op	*new_op(void)
 	return (res);
 }
 
-void	del_ops(t_op *op)
+void		del_ops(t_op *op)
 {
 	t_op	*tmp;
 	int		i;
@@ -67,7 +79,7 @@ void	del_ops(t_op *op)
 **	Добавляет в конец списка новую инструкцию
 */
 
-t_op	*add_op(t_op *op)
+t_op		*add_op(t_op *op)
 {
 	t_op	*res;
 
