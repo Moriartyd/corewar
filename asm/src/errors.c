@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:09:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:23:03 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 16:53:54 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ void		ft_quit(int e, char c)
 	else if (e == -3)
 	{
 		write(STDERR_FILENO, E_SYMBOL, ft_strlen(E_SYMBOL));
-		write(STDERR_FILENO, &c, 1);
+		if (c == '\n')
+			write(STDERR_FILENO, "\\n", 2);
+		else
+			write(STDERR_FILENO, &c, 1);
 		write(STDERR_FILENO, "]\n", 2);
 	}
 	exit(0);
