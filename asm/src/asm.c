@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:18:25 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:36:53 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 17:04:08 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		main(int ac, char **av)
 	hero = init_hero();
 	read_file(fd, &hero);
 	close(fd);
+	translator(hero, av[1]);
 	show_hero(hero);
 	del_hero(&hero);
 	return (0);

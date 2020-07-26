@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/08 16:28:00 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/22 18:19:26 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/24 21:48:20 by student          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC				=	asm.c ft_read_until_ch.c get_type.c check_name.c\
 					asm_parser.c memory_hero.c memory_op.c\
 					letter_check.c check_opname.c parse_inst.c\
 					read_arguments.c is_labelinst.c memory_vldop.c\
-					args_patterns.c converter.c args_checker.c errors.c
+					args_patterns.c converter.c args_checker.c errors.c\
+					translator.c operations.c byte_op.c
 SRCS			=	$(addprefix $(SRC_DIR)/,$(SRC))
 
 LIBFT			=	$(LIBFT_DIR)/libft.a
