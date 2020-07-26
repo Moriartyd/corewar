@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 20:21:24 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/24 21:01:56 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 16:44:56 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_op	*new_op(void)
 		res->args[i] = 0;
 		i++;
 	}
+	init_op_add(res);
 	i = -1;
 	while (++i < LABELS)
 		res->labels[i] = NULL;
