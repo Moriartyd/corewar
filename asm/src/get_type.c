@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 19:41:22 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/24 21:12:34 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/25 16:51:32 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ int			get_type(char **str, int bytes, int fd, t_hero **hero)
 			return (type);
 	if ((type = is_labelinst(s)) > 0)
 		return (parse_instruct(s, type, fd, hero));
-	return (-1);
+	return (ft_strdel(&s) * (-1));
 }

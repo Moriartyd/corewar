@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:10:58 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 18:18:17 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/25 17:01:16 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include "libft.h"
 #include "op.h"
 #include <stdio.h>
-
-#	define USAGE_VM_M "usage:"
-#	define USAGE_VM_L 6
 
 /*
 **	Errors

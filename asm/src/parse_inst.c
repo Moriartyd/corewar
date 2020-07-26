@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/25 15:52:53 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 15:18:59 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ int			parse_instruct(char *str, int type, int fd, t_hero **hero)
 			if (!(tmp = parse_label(str, op, t)))
 			{
 				ft_strdel(&str);
-				ft_read_until_ch(fd, '\n', &str);
+				if (ft_read_until_ch(fd, '\n', &str) < 0)
+					quit(EN_INST, NULL, NULL);
 			}
 			else
 			{
