@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/asm/test",
-			"args": ["../vm_champs/champs/examples/fluttershy.s"],
+			"args": ["../../SK/test/champs/examples/fluttershy.s"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/asm",
 			"environment": [],

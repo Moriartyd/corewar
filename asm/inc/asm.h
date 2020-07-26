@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 16:44:48 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/26 16:44:50 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 18:22:08 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,5 +264,6 @@ void					vldop_del(t_vldop **op);
 
 void					quit(int e, t_vldop *op, char *arg);
 void					ft_quit(int e, char c);
+void					write_label(char *l);
 
 #	endif

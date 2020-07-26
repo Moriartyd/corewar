@@ -6,11 +6,18 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/26 15:32:32 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 18:21:48 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void				write_label(char *l)
+{
+	write(STDERR_FILENO, "No such label ", 15);
+	write(STDERR_FILENO, l, ft_strlen(l));
+	write(STDERR_FILENO, "\n", 1);
+}
 
 int					get_args(t_op *op)
 {

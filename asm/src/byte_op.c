@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/26 15:39:03 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/26 17:58:35 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	file_name(char **fn)
 
 static void	normal_output(char *fn)
 {
-	write(1, "Writing output program to ", 28);
+	write(1, "Writing output program to ", 27);
 	write(1, fn, ft_strlen(fn));
 	write(1, "\n", 1);
 }

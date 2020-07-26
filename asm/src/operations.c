@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 20:32:29 by student           #+#    #+#             */
-/*   Updated: 2020/07/25 01:57:29 by student          ###   ########.fr       */
+/*   Updated: 2020/07/26 18:22:29 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			is_arg_labels(t_op *la, t_hero *hero)
 				if (search_label(beg, i, la->curlabels[i], la))
 					return (1);
 				if (!beg->next)
-					ft_printf("No such label %s\n", la->curlabels[i]);
+					write_label(la->curlabels[i]);
 				beg = beg->next;
 			}
 			return (NO_LABEL_PNT);

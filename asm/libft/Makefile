@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 14:33:12 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/15 15:59:02 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/26 18:48:40 by cpollich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,28 +15,8 @@ NAME = libft.a
 INC_DIR		= ./inc
 SRC_DIR		= ./src
 OBJ_DIR		= ./obj
-PFT_DIR		= ./ft_printf
-PFT_SRC_DIR	= $(PFT_DIR)/src
-PFT_OBJ_DIR	= $(PFT_DIR)/obj
 
 HEAD		= $(INC_DIR)/libft.h
-HEAD_PFT	= $(INC_DIR)/ft_ptintf.h
-
-PFT_SRC	=	ft_printf.c parser.c			\
-			print_char.c print_dec.c		\
-			print_octal.c print_hex.c		\
-			print_pointer.c print_string.c	\
-			helper.c print_num.c			\
-			print_unsigned.c float_dec.c 	\
-			float_div.c float_help.c 		\
-			float_round.c float_sign.c 		\
-			float_str.c float_sum.c 		\
-			float_width.c ft_print_float.c 	\
-			kostyl.c print_double.c 		\
-			dbl_to_str.c bin_transform.c 	\
-			str_adding.c ft_str_op.c
-
-PFT_OBJS	=	$(addprefix $(PFT_OBJ_DIR)/,$(PFT_SRC:%.c=%.o))
 
 SRC		=	ft_memset.c ft_bzero.c					\
 			ft_memcpy.c	ft_memccpy.c				\
@@ -92,22 +72,17 @@ all: $(NAME)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(PFT_OBJ_DIR):
-	@mkdir -p $(PFT_OBJ_DIR)
-
-$(NAME): $(OBJ_DIR) $(OBJS) $(HEAD) $(PFT_OBJ_DIR) $(PFT_OBJS) $(PFT_HEAD)
-	@ar rc $(NAME) $(OBJS) $(PFT_OBJS)
+$(NAME): $(OBJ_DIR) $(OBJS) $(HEAD)
+	@echo "\033[35mCompiling libft.a\033[0m"
+	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@echo "\033[1;32mlibft.a was built\033[0m"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@gcc $F -g -c $< -I$(INC_DIR) -o$@
 
-$(PFT_OBJ_DIR)/%.o: $(PFT_SRC_DIR)/%.c
-	@gcc $F -g -c $< -I$(INC_DIR) -o$@
-
 clean:
-	@rm -Rf $(OBJ_DIR) $(PFT_OBJ_DIR)
+	@rm -Rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
