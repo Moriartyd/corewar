@@ -2,7 +2,7 @@
 
 ## TO-DO List:
 - [X] Написать TO-DO list
-- [ ] Champion      (easy)          :boom:
+- [X] Champion      (easy)          :boom:
 - [X] Validator     (medium)        :boom::boom:
     - [X] Считывать только 1 аргумент
     - [X] Проверка имени
