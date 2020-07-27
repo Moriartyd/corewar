@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 18:02:00 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/22 17:36:10 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:22:53 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	odnostrok(char *str, int len, int type)
 	return (type);
 }
 
-static void	mnogostrok(char **str, int fd, int c)
+static int	mnogostrok(char **str, int fd, int c)
 {
 	char	*protail;
 	char	*tail;
@@ -87,8 +87,8 @@ static void	mnogostrok(char **str, int fd, int c)
 		tmp = protail;
 	}
 	ft_strdel(str);
-	ft_strdel(&protail);
 	*str = tmp;
+	return (ft_strdel(&tail) & ft_strdel(&protail));
 }
 
 int			check_namecomm(char **str, int type, int fd, t_hero **hero)

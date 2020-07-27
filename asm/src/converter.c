@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 19:39:05 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/26 15:20:06 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 18:10:36 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int		get_bytes(t_vldop *op)
 
 	i = 0;
 	bytes = 1;
+	if (!op->code)
+		return (0);
 	if (get_argt(op->code))
 		bytes += 1;
 	while (i < 3 && op->args[i])
@@ -65,8 +67,7 @@ int				convert_vldop_op(t_vldop *op, t_hero **hero, int type)
 	p = (*hero)->op;
 	while (p && p->next)
 		p = p->next;
-	(op->labels[0] && !op->code) ? quit(EN_INST, NULL, NULL) : 0;
-	check_args(op);
+	op->code > 0 ? check_args(op) : 0;
 	p->bytes = get_bytes(op);
 	p->code = op->code;
 	i = 0;
@@ -78,9 +79,9 @@ int				convert_vldop_op(t_vldop *op, t_hero **hero, int type)
 		i++;
 	}
 	i = 3;
-	while (--i >= 0)
+	while (op->code && --i >= 0)
 		p->types[i] = op->args[i];
-	convert_charargs(op, p);
+	op->code > 0 ? convert_charargs(op, p) : 0;
 	vldop_del(&op);
 	return (type);
 }

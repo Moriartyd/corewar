@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 19:56:11 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/26 17:26:27 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:02:03 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			get_dirsize(int code)
 	return (2);
 }
 
-static char	*parse_label(char *str, t_vldop *op, int i)
+char		*parse_label(char *str, t_vldop *op, int i)
 {
 	int	j;
 	int	k;
@@ -56,55 +56,46 @@ static char	*parse_label(char *str, t_vldop *op, int i)
 		return (NULL);
 }
 
-static void	read_inst(char *str, t_vldop *op)
+static void	read_inst(char **str, t_vldop *op)
 {
 	int		i;
 	char	*ops;
 
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+	while ((*str)[i] && ((*str)[i] == ' ' || (*str)[i] == '\t'))
 		i++;
-	ops = &str[i];
-	while (str[i] && !need_char(str[i]))
+	ops = &(*str)[i];
+	while ((*str)[i] && !need_char((*str)[i]))
 		i++;
 	op->code = check_opname(ops);
-	if (op->code == -1 && op->labels[0])
-		quit(EN_INST, NULL, NULL);
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+	if (op->code == -1)
+	{
+		ops[ft_strlen(ops) - 1] = 0;
+		quit(EN_INOP, NULL, ops);
+	}
+	while ((*str)[i] && ((*str)[i] == ' ' || (*str)[i] == '\t'))
 		i++;
-	if (!str[i] || str[i] == '\n')
+	if (!(*str)[i] || (*str)[i] == '\n')
 		quit(EN_ARGS1, op, NULL);
-	read_arguments(&str[i], op);
-	if (str[ft_strlen(str) - 1] != '\n')
+	read_arguments(&(*str)[i], op);
+	if ((*str)[ft_strlen((*str)) - 1] != '\n')
 		quit(EN_LASTSTR, NULL, NULL);
-	ft_strdel(&str);
+	ft_strdel(str);
 }
 
 int			parse_instruct(char *str, int type, int fd, t_hero **hero)
 {
-	char	*tmp;
 	t_vldop	*op;
-	int		t;
 
 	!(op = vldop_init()) ? quit(EN_MALLOC, NULL, NULL) : 0;
 	if (type == 3)
 	{
-		while ((t = is_label(str)) || is_blank(str))
-			if (!(tmp = parse_label(str, op, t)))
-			{
-				ft_strdel(&str);
-				if ((t = ft_read_until_ch(fd, '\n', &str)) <= 0)
-					ft_quit(t, '\n');
-			}
-			else
-			{
-				!(tmp = ft_strnewncp(tmp, ft_strlen(tmp))) ?\
-					quit(EN_MALLOC, NULL, NULL) : ft_strdel(&str);
-				str = tmp;
-				break ;
-			}
-		read_inst(str, op);
+		thanks_norminette(&str, &op, fd);
+		if (is_inst(str))
+			read_inst(&str, op);
+		else
+			op->code = 0;
 	}
-	(type == 4) ? read_inst(str, op) : 0;
+	(type == 4) ? read_inst(&str, op) : ft_strdel(&str);
 	return (convert_vldop_op(op, hero, type));
 }

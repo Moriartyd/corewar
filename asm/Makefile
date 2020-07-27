@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/08 16:28:00 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/26 18:49:14 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/27 19:19:58 by cpollich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_ASM)
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS) $(INC_ASM)
 		@echo "\033[35mCompiling ./asm\033[0m"
-		@gcc $F -O3 -I $(LIBFT_INC_DIR) -I $(INC_DIR) -L $(LIBFT_DIR)/ -lft\
+		@gcc $F -I $(LIBFT_INC_DIR) -I $(INC_DIR) -L $(LIBFT_DIR)/ -lft\
 			-o $(NAME) $(OBJS)
 		@echo "\033[1;32m./asm was built\033[0m"
 

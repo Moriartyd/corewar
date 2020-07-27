@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 19:48:26 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/25 15:51:16 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 14:58:48 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	is_blank(char *str)
 	if (!(s = ft_str_white_trim(str)))
 		return (1);
 	if (ft_strlen(s) == 1 && *s == '\n')
+		return (ft_strdel(&s));
+	if (*s == COMMENT_CHAR || *s == ALT_COMMENT_CHAR)
 		return (ft_strdel(&s));
 	ft_strdel(&s);
 	return (0);

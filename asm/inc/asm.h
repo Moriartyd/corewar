@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 16:44:48 by cpollich          #+#    #+#             */
-/*   Updated: 2020/07/26 18:22:08 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:17:24 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include "op.h"
 #include <stdio.h>
 
-#	define USAGE_VM_M	"usage:"
-#	define USAGE_VM_L	6
+#	define ERRSTREAM 1
 
 /*
 **	Errors
@@ -44,6 +43,7 @@
 #	define E_NOINST		"No instructions in file\n"
 #	define E_FILE		"Can't read or open file"
 #	define E_SYMBOL		"The file ended before I found a symbol ["
+#	define E_INOP		"Invalid operation ["
 
 #	define EN_DIR		1
 #	define EN_IND		2
@@ -63,6 +63,7 @@
 #	define EN_ARGS3		16
 #	define EN_ARGS4		17
 #	define EN_NOINST	18
+#	define EN_INOP		19
 
 /*
 **	ASM
@@ -234,6 +235,8 @@ int						get_dirsize(int code);
 int						get_argt(int code);
 int						check_args(t_vldop *op);
 int						convert_vldop_op(t_vldop *op, t_hero **hero, int type);
+char					*parse_label(char *str, t_vldop *op, int i);
+void					thanks_norminette(char **str, t_vldop **op, int fd);
 
 /*
 **	letter_check.c

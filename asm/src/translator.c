@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:21:34 by ddratini          #+#    #+#             */
-/*   Updated: 2020/07/26 18:21:48 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:13:21 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void				write_label(char *l)
 {
-	write(STDERR_FILENO, "No such label ", 15);
-	write(STDERR_FILENO, l, ft_strlen(l));
-	write(STDERR_FILENO, "\n", 1);
+	write(ERRSTREAM, "No such label ", 15);
+	write(ERRSTREAM, l, ft_strlen(l));
+	write(ERRSTREAM, "\n", 1);
 }
 
 int					get_args(t_op *op)
@@ -108,9 +108,7 @@ int					translator(t_hero *hero, char *av)
 	while (beg)
 	{
 		if (!(op_code(beg, hero)))
-		{
-			return (12);
-		}
+			exit(0);
 		beg = beg->next;
 	}
 	write_filler(bc, hero, bcsz, av);

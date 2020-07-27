@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 16:11:52 by student           #+#    #+#             */
-/*   Updated: 2020/07/26 17:58:35 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:33:33 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ static int	file_name(char **fn)
 		if ((*fn)[i] == '.')
 		{
 			beg = ft_strsub(*fn, 0, i);
+			ft_strdel(fn);
 			*fn = ft_strjoin(beg, ".cor");
-			free(beg);
+			ft_strdel(&beg);
 			return (1);
 		}
 	}
+	ft_strdel(fn);
 	*fn = ft_strdup(".cor");
 	return (-1);
 }
@@ -58,6 +60,7 @@ static void	normal_output(char *fn)
 	write(1, "Writing output program to ", 27);
 	write(1, fn, ft_strlen(fn));
 	write(1, "\n", 1);
+	ft_strdel(&fn);
 }
 
 void		write_filler(unsigned char *bc,\
