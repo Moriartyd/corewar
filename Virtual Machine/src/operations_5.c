@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_5.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 17:57:02 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:02:52 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 18:16:30 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		ret_asm_in1_four(int code, int i, t_car *car)
 	if (code == 0x40 && g_arena[car->pc + i] > 0 &&
 	g_arena[car->pc + i] <= REG_NUMBER)
 		in1 = to_int_from_reg(car, g_arena[car->pc + i]);
-	if (code == 0x80)
+	else if (code == 0x80)
 		in1 = to_int_size(car->pc + i, 4);
-	if (code == 0xc0)
+	else if (code == 0xc0)
 	{
 		in1 = to_int(g_arena[car->pc + i], g_arena[car->pc + i + 1]);
 		if ((car->pc + in1 % IDX_MOD) % MEM_SIZE >= 0)
@@ -30,6 +30,8 @@ int		ret_asm_in1_four(int code, int i, t_car *car)
 			in1 = to_int_size(MEM_SIZE + (car->pc + in1 % IDX_MOD) % MEM_SIZE,
 			4);
 	}
+	else
+		in1 = 0;
 	return (in1);
 }
 
@@ -40,15 +42,17 @@ int		ret_asm_in2_four(int code, int i, t_car *car)
 	if (code == 0x10 && g_arena[car->pc + i] > 0
 	&& g_arena[car->pc + i] <= REG_NUMBER)
 		in2 = to_int_from_reg(car, g_arena[car->pc + i]);
-	if (code == 0x20)
+	else if (code == 0x20)
 		in2 = to_int_size(car->pc + i, 4);
-	if (code == 0x30)
+	else if (code == 0x30)
 	{
 		in2 = to_int(g_arena[car->pc + i], g_arena[car->pc + i + 1]);
 		in2 = (car->pc + in2 % IDX_MOD) % MEM_SIZE >= 0 ?
 		to_int_size((car->pc + in2 % IDX_MOD) % MEM_SIZE, 4) :
 		to_int_size(MEM_SIZE + (car->pc + in2 % IDX_MOD) % MEM_SIZE, 4);
 	}
+	else 
+		in2 = 0;
 	return (in2);
 }
 
