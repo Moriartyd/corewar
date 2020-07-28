@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:08:38 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:48:56 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,14 @@ int		main(int arc, char **argv)
 	int		n;
 	int		i;
 
-	ft_bzero(&g_arena, MEM_SIZE);
+	//ft_bzero(&g_arena, MEM_SIZE);
 	champ = init_champ(arc - 1, argv);
 	n = champ->num_ch;
 	arena_set(champ);
 	game_start(champ);
 	i = 0;
+	while (champ->player)
+		champ->player = time_to_die(champ->player);
 	while (i < n)
 		free(champ->champions[i++].code);
 	while (champ->player)

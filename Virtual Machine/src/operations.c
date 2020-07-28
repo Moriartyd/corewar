@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 21:10:47 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:46:50 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_car	*ft_lld(t_car *car)
 	int		i;
 
 	i = 2;
-	arg = malloc(sizeof(int) * 3);
+	arg = ft_memalloc(sizeof(int) * 3);
 	arg = read_arg(arg, g_arena[car->pc + 1], 4);
 	if (arg[0] == 4)
 		in1 = to_int_size(car->pc + i, 4);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 16:53:48 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:33:24 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_car	*ft_lfork(t_car *car)
 	car->pc = (car->pc + 3) % MEM_SIZE;
 	while (car && car->next)
 		car = car->next;
+	copy->next = NULL;
 	car->next = copy;
 	return (start);
 }
@@ -103,9 +104,9 @@ t_car	*ft_fork(t_car *car)
 	else
 		copy->pc = MEM_SIZE + (car->pc + in1 % IDX_MOD) % MEM_SIZE;
 	car->pc = (car->pc + 3) % MEM_SIZE;
-	while (car->next)
+	while (car && car->next)
 		car = car->next;
-	car->next = copy;
 	copy->next = NULL;
+	car->next = copy;
 	return (start);
 }

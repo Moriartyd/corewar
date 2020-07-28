@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:41:09 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:32:10 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int cycles_to_die, t_core *champ)
 		}
 		car = car->next;
 	}
+	if (car && !car->next && (car->cycle_live < cycle - cycles_to_die
+	|| (cycles_to_die <= 0)))
+		car = time_to_die(car);
 	return (buf);
 }
 

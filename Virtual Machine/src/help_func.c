@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:02:30 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:11:51 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_car	*copy_car(t_car *copy, t_car *car)
 	copy->time = -1;
 	i = 0;
 	j = 0;
-	while (i < REG_NUMBER)
+	while (i <= REG_NUMBER)
 	{
 		while (j < REG_SIZE)
 		{
