@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:08:38 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 19:54:50 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/28 21:49:11 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_core	*init_champ_two(void)
 	champ->player = NULL;
 	champ->d_cycle = -1;
 	champ->dump = DUMP;
+	champ->s_dump = -1;
 	return (champ);
 }
 
@@ -92,9 +93,11 @@ t_core	*init_champ(int n, char **argv)
 	nums = parse_num(argv, n);
 	while (i <= n)
 	{
+		if (ft_strequ(argv[i], "-show") && i + 1 < n)
+			champ->s_dump = ft_atoi(argv[++i]);
 		if (ft_strequ(argv[i], "-help"))
 			usage();
-		if (ft_strequ(argv[i], "-dump") || ft_strequ(argv[i], "-d"))
+		if ((ft_strequ(argv[i], "-dump") || ft_strequ(argv[i], "-d")) && i + 1 < n)
 			champ->d_cycle = ft_atoi(argv[++i]);
 		if (ft_strstr(argv[i++], ".cor"))
 		{

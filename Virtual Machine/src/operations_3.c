@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 17:12:59 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 21:11:04 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_car	*ft_live(t_car *car)
 	int		k;
 
 	k = -to_int_size(car->pc + 1, 4);
-	if (k > 0)
+	if (k > 0 && k < 5)
 		car->num = k;
 	car->pc = (car->pc + 5) % MEM_SIZE;
 	return (car);

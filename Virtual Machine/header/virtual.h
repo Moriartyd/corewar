@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:59:40 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 19:54:46 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/28 21:39:11 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_core
 	t_car			*player;
 	t_champ			champions[4];
 	int				dump;
+	int				s_dump;
 	int				d_cycle;
 	int				end;
 }				t_core;

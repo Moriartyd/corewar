@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 17:21:07 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:56:22 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 21:36:49 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_car		*ft_st(t_car *car)
 		if (arg[1] == 1 && g_arena[car->pc + 3] > 0
 		&& g_arena[car->pc + 3] <= REG_NUMBER)
 			car = to_reg_from_int(car, g_arena[car->pc + 3], in1);
-		else
+		else if (arg[1] == 2)
 		{
 			in2 = to_int(g_arena[car->pc + 3], g_arena[car->pc + 4]);
 			if (g_arena[car->pc + 2] > 0 && g_arena[car->pc + 2] <= REG_NUMBER)

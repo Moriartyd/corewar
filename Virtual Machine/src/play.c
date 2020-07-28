@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:19:12 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:04:26 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 21:48:17 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ void	game_start(t_core *champ)
 	start = champ->player;
 	while (champ->player && game->cycle != champ->d_cycle)
 	{
+		if (game->cycle == champ->s_dump)
+		{
+			champ->s_dump = -1;
+			print_arena(64);
+			ft_printf("\n");
+		}
 		if ((game->cycles_to_die <= 0) || (game->cycle == game->end_cycle))
 		{
 			check_cycle_die(champ, game);
