@@ -1,7 +1,7 @@
 test_asm_invalid() {
 	CHAMPS=$(find ./vm_champs/champs/invalid -name '*.s')
 	for CHAMP in $CHAMPS; do
-		OUTPUT=$(./asm/asm $CHAMP | grep -i 'you\|some\|\[')
+		OUTPUT=$(./asm $CHAMP | grep -i 'you\|some\|\[')
 		if [ -z $CHAMP ]; then
 			printf "%s: \e[1;31mKO\e[0m\n" "$CHAMP"
 			rm -rf ${CHAMP%.s}.cor
@@ -15,7 +15,7 @@ test_asm_invalid() {
 test_asm_valid() {
 	CHAMPS=$(find ./vm_champs/champs/championships ./vm_champs/champs/valid -name '*.s')
 	for CHAMP in $CHAMPS; do
-		OUTPUT=$(./asm/asm $CHAMP | grep -i 'you\|some\|\[')
+		OUTPUT=$(./asm $CHAMP | grep -i 'you\|some\|\[')
 		if [[ $OUTPUT ]]; then
 			printf "%s: \e[1;31mKO\e[0m\n" "$CHAMP"
 		else
@@ -37,19 +37,25 @@ test_asm_valid() {
 }
 
 if [ $1 = 'valid' ]; then
-	make -C ./asm > /dev/null
+	make -C ../Assembler > /dev/null
+	cp ../Assembler/asm .
 	test_asm_valid
+	rm -f ./asm
 fi
 
 if [ $1 = 'invalid' ]; then
-	make -C ./asm > /dev/null
+	make -C ../Assembler > /dev/null
+	cp ../Assembler/asm .
 	test_asm_invalid
+	rm -f ./asm
 fi
 
 if [ $1 = 'all' ]; then
-	make -C ./asm > /dev/null
-	echo "TESTING VALID CHAMPIONS"
+	make -C ../Assembler > /dev/null
+	cp ../Assembler/asm .
+	printf "\e[1;32mTESTING VALID CHAMPIONS\e[0m\n"
 	test_asm_valid
-	echo "TESTING IN_VALID CHAMPIONS"
+	printf "\e[1;32mTESTING IN_VALID CHAMPIONS\e[0m\n"
 	test_asm_invalid
+	rm -f ./asm
 fi
