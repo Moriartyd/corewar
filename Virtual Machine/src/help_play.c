@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 17:01:52 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 17:50:56 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/28 19:57:31 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,21 @@ t_car	*ft_zjmp(t_car *car)
 		car->pc = (car->pc + 3) % MEM_SIZE;
 	}
 	return (car);
+}
+
+void	usage(void)
+{
+	ft_printf("for help usage: -help\n");
+	ft_printf("for dump memory usage: -dump or -d\n");
+	ft_printf("for set number champion usage: -n\n");
+	exit(0);
+}
+
+t_core	*parse_cor(int num, int *nums, t_core *champ)
+{
+	champ->num_ch = num;
+	free(nums);
+	if (num == 0)
+		ft_error(EINVAL, -2);
+	return (champ);
 }

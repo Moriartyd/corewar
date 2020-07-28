@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 16:53:48 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 18:23:52 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/28 19:57:14 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ t_car	*ft_lldi(t_car *car)
 	int		in2;
 	int		i;
 
-	i = 2;
 	arg = ft_memalloc(sizeof(int) * 3);
 	arg = read_arg(arg, g_arena[car->pc + 1], 4);
-	in1 = ret_asm_in1(g_arena[car->pc + 1] & 0xc0, i, car);
-	i = i + arg[0];
+	in1 = ret_asm_in1(g_arena[car->pc + 1] & 0xc0, 2, car);
+	i = 2 + arg[0];
 	in2 = 0;
 	if ((g_arena[car->pc + 1] & 0x30) == 0x20)
 		in2 = to_int(g_arena[car->pc + i], g_arena[car->pc + i + 1]);

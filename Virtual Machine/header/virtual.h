@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:59:40 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:21 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 19:54:46 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,4 +145,6 @@ int				ret_asm_in1_four(int code, int i, t_car *car);
 int				ret_asm_in2_four(int code, int i, t_car *car);
 t_car			*parse_func_champ(t_car *champ, t_core *core, int cycle);
 t_car			*init_champions(t_car *player, int j, t_core *champ);
+void			usage(void);
+t_core			*parse_cor(int num, int *nums, t_core	*champ);
 #endif

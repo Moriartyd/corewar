@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 17:57:02 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 18:16:30 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/28 19:56:37 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ret_asm_in2_four(int code, int i, t_car *car)
 		to_int_size((car->pc + in2 % IDX_MOD) % MEM_SIZE, 4) :
 		to_int_size(MEM_SIZE + (car->pc + in2 % IDX_MOD) % MEM_SIZE, 4);
 	}
-	else 
+	else
 		in2 = 0;
 	return (in2);
 }

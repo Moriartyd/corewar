@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:08:38 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 15:48:56 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/28 19:54:50 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ t_core	*init_champ(int n, char **argv)
 	nums = parse_num(argv, n);
 	while (i <= n)
 	{
+		if (ft_strequ(argv[i], "-help"))
+			usage();
 		if (ft_strequ(argv[i], "-dump") || ft_strequ(argv[i], "-d"))
 			champ->d_cycle = ft_atoi(argv[++i]);
 		if (ft_strstr(argv[i++], ".cor"))
@@ -101,10 +103,7 @@ t_core	*init_champ(int n, char **argv)
 			champ = parse(champ, num++);
 		}
 	}
-	champ->num_ch = num;
-	free(nums);
-	if (num == 0)
-		ft_error(EINVAL, -2);
+	parse_cor(num, nums, champ);
 	return (champ);
 }
 
@@ -115,7 +114,8 @@ int		main(int arc, char **argv)
 	int		n;
 	int		i;
 
-	//ft_bzero(&g_arena, MEM_SIZE);
+	if (arc == 1)
+		usage();
 	champ = init_champ(arc - 1, argv);
 	n = champ->num_ch;
 	arena_set(champ);
