@@ -138,7 +138,7 @@ int cycles_to_die, t_core *champ);
 t_car			*time_to_die(t_car *car);
 t_car			*init_reg(t_car *car);
 unsigned int	change_arena(t_champ champ, int n, int num_ch);
-void			ft_error(int ex, int code);
+int			ft_error(int ex, int code);
 int				ret_asm_in1(int code, int i, t_car *car);
 int				ret_asm_in2(int code, int i, t_car *car);
 int				ret_asm_in1_four(int code, int i, t_car *car);

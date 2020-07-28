@@ -6,12 +6,12 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/27 22:25:37 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/28 00:05:25 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/28 15:23:16 by ddratini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	corewar
-F			=	-Wall -Wextra -Werror
+F			=	-Wall -Wextra -Werror -g
 LFT_DIR		=	./libft
 PFT_DIR		=	./ft_printf
 SRC_DIR		= 	./src
