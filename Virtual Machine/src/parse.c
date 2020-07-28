@@ -15,11 +15,13 @@
 
 extern t_op		g_op_tab[17];
 
-void	ft_error(int ex, int code)
+int	ft_error(int ex, int code)
 {
 	errno = ex;
 	perror("Error");
-	exit(code);
+    printf("COde_ERROR=%d!\n", code);
+
+    exit(code);
 }
 
 t_core	*magic_champ(t_core *champ, int num)

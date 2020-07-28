@@ -13,6 +13,39 @@
 #include "virtual.h"
 #include <stdio.h>
 
+int	ft_strequ(char const *s1, char const *s2)
+{
+    int i;
+
+    i = 0;
+    if (s1 && s2)
+    {
+        while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+        {
+            i++;
+        }
+        if (s1[i] == '\0' && s2[i] == '\0')
+            return (1);
+        else
+            return (0);
+    }
+    return (0);
+}
+
+void	*ft_memalloc(size_t size)
+{
+    unsigned char	*s;
+
+    s = (unsigned char*)malloc(size);
+    if (s != NULL)
+    {
+        ft_bzero(s, size);
+        return ((void*)s);
+    }
+    else
+        return (NULL);
+}
+
 int		*parse_num_two(int *nums, int j, int i, int max)
 {
 	int		flag;
@@ -104,7 +137,12 @@ t_core	*init_champ(int n, char **argv)
 	champ->num_ch = num;
 	free(nums);
 	if (num == 0)
-		ft_error(EINVAL, -2);
+    {
+        int ret = ft_error(EINVAL, -2);
+        printf("ERRRET=%d\n", ret);
+        printf("LOL what!\n");
+        exit(0);///
+    }
 	return (champ);
 }
 
@@ -116,7 +154,10 @@ int		main(int arc, char **argv)
 	int		i;
 
 	ft_bzero(&g_arena, MEM_SIZE);
+	printf("VMRUN!\n");
 	champ = init_champ(arc - 1, argv);
+    printf("VMRUN!2\n");
+
 	n = champ->num_ch;
 	arena_set(champ);
 	game_start(champ);
