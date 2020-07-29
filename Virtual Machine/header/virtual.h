@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:59:40 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 21:39:11 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/29 13:36:11 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ t_car			*ft_lldi(t_car *car);
 t_car			*ft_lfork(t_car *car);
 t_car			*ft_aff(t_car *car);
 t_car			*ft_fork(t_car *car);
-t_core			*init_champ(int n, char **argv);
+t_core			*init_champ(int n, char **argv, int i);
 int				*parse_num(char **argv, int n);
 void			game_start(t_core *champ);
 void			arena_set(t_core *champ);

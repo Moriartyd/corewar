@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:08:38 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 21:49:11 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/29 13:36:44 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ t_core	*init_champ_two(void)
 	return (champ);
 }
 
-t_core	*init_champ(int n, char **argv)
+t_core	*init_champ(int n, char **argv, int i)
 {
 	t_core	*champ;
-	int		i;
 	int		num;
 	int		*nums;
 
@@ -95,9 +94,9 @@ t_core	*init_champ(int n, char **argv)
 	{
 		if (ft_strequ(argv[i], "-show") && i + 1 < n)
 			champ->s_dump = ft_atoi(argv[++i]);
-		if (ft_strequ(argv[i], "-help"))
-			usage();
-		if ((ft_strequ(argv[i], "-dump") || ft_strequ(argv[i], "-d")) && i + 1 < n)
+		(ft_strequ(argv[i], "-help")) ? usage() : 0;
+		if ((ft_strequ(argv[i], "-dump")
+				|| ft_strequ(argv[i], "-d")) && i + 1 < n)
 			champ->d_cycle = ft_atoi(argv[++i]);
 		if (ft_strstr(argv[i++], ".cor"))
 		{
@@ -119,7 +118,7 @@ int		main(int arc, char **argv)
 
 	if (arc == 1)
 		usage();
-	champ = init_champ(arc - 1, argv);
+	champ = init_champ(arc - 1, argv, 0);
 	n = champ->num_ch;
 	arena_set(champ);
 	game_start(champ);

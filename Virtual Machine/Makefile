@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mriley <mriley@student.42.fr>              +#+  +:+       +#+         #
+#    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/27 22:25:37 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/28 14:38:45 by mriley           ###   ########.fr        #
+#    Updated: 2020/07/29 13:47:55 by cpollich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	corewar
-F			=	-Wall -Wextra -Werror -g
+F			=	-Wall -Wextra -Werror
 LFT_DIR		=	./libft
 PFT_DIR		=	./ft_printf
 SRC_DIR		= 	./src

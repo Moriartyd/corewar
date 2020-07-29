@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:41:09 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 15:32:10 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/29 13:28:52 by cpollich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int cycles_to_die, t_core *champ)
 	while (car && (car->cycle_live < cycle - cycles_to_die
 	|| (cycles_to_die <= 0)))
 	{
-		if (car && !car->next)
-			print_hello(champ, car->num);
+		(car && !car->next) ? print_hello(champ, car->num) : 0;
 		car = time_to_die(car);
 		champ->num_ch = champ->num_ch - 1;
 	}
@@ -49,9 +48,8 @@ int cycles_to_die, t_core *champ)
 		}
 		car = car->next;
 	}
-	if (car && !car->next && (car->cycle_live < cycle - cycles_to_die
-	|| (cycles_to_die <= 0)))
-		car = time_to_die(car);
+	(car && !car->next && (car->cycle_live < cycle - cycles_to_die \
+	|| (cycles_to_die <= 0))) ? car = time_to_die(car) : 0;
 	return (buf);
 }
 
