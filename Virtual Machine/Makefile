@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
+#    By: mriley <mriley@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/27 22:25:37 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/29 13:47:55 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/29 15:15:49 by mriley           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LFT	=	$(LFT_DIR)/libft.a
 
 SRC = virtual.c op.c operations.c operations_2.c operations_3.c operations_4.c\
 		operations_5.c arena.c help_func.c help_parse.c main.c parse.c\
-			play.c help_play.c
+			play.c help_play.c operations_6.c
 
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 INCS = $(addprefix $(INC_DIR)/,$(INC))

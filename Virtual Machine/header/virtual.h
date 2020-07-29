@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:59:40 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/29 13:36:11 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/29 15:14:45 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,4 +148,5 @@ t_car			*parse_func_champ(t_car *champ, t_core *core, int cycle);
 t_car			*init_champions(t_car *player, int j, t_core *champ);
 void			usage(void);
 t_core			*parse_cor(int num, int *nums, t_core	*champ);
+void			show(t_core *champ);
 #endif

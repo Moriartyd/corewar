@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 17:57:02 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 19:56:37 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/29 14:58:13 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ t_car	*ft_and(t_car *car)
 	in2 = ret_asm_in2_four(g_arena[car->pc + 1] & 0x30, i, car);
 	i = i + arg[1];
 	in1 = in1 & in2;
-	car->carry = in1 == 0 ? 1 : 0;
 	if ((g_arena[car->pc + 1] & 0x0c) == 0x04 && g_arena[car->pc + i] > 0
 	&& g_arena[car->pc + i] <= REG_NUMBER)
+	{
 		car = to_reg_from_int(car, g_arena[car->pc + i], in1);
+		car->carry = in1 == 0 ? 1 : 0;
+	}
 	car->pc = (car->pc + 2 + arg[0] + arg[1] + arg[2]) % MEM_SIZE;
 	free(arg);
 	return (car);
@@ -93,10 +95,12 @@ t_car	*ft_or(t_car *car)
 	in2 = ret_asm_in2_four(g_arena[car->pc + 1] & 0x30, i, car);
 	i = i + arg[1];
 	in1 = in1 | in2;
-	car->carry = in1 == 0 ? 1 : 0;
 	if ((g_arena[car->pc + 1] & 0x0c) == 0x04 && g_arena[car->pc + i] > 0
 	&& g_arena[car->pc + i] <= REG_NUMBER)
+	{
 		car = to_reg_from_int(car, g_arena[car->pc + i], in1);
+		car->carry = in1 == 0 ? 1 : 0;
+	}
 	car->pc = (car->pc + 2 + arg[0] + arg[1] + arg[2]) % MEM_SIZE;
 	free(arg);
 	return (car);
@@ -116,10 +120,12 @@ t_car	*ft_xor(t_car *car)
 	in2 = ret_asm_in2_four(g_arena[car->pc + 1] & 0x30, i, car);
 	i = i + arg[1];
 	in1 = in1 ^ in2;
-	car->carry = in1 == 0 ? 1 : 0;
 	if ((g_arena[car->pc + 1] & 0x0c) == 0x04 && g_arena[car->pc + i] > 0
 	&& g_arena[car->pc + i] <= REG_NUMBER)
+	{
 		car = to_reg_from_int(car, g_arena[car->pc + i], in1);
+		car->carry = in1 == 0 ? 1 : 0;
+	}
 	car->pc = (car->pc + 2 + arg[0] + arg[1] + arg[2]) % MEM_SIZE;
 	free(arg);
 	return (car);

@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:19:12 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/28 21:48:17 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/29 15:16:38 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,7 @@ void	game_start(t_core *champ)
 	while (champ->player && game->cycle != champ->d_cycle)
 	{
 		if (game->cycle == champ->s_dump)
-		{
-			champ->s_dump = -1;
-			print_arena(64);
-			ft_printf("\n");
-		}
+			show(champ);
 		if ((game->cycles_to_die <= 0) || (game->cycle == game->end_cycle))
 		{
 			check_cycle_die(champ, game);

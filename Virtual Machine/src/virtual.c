@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:41:09 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/29 13:28:52 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/29 14:24:57 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int cycles_to_die, t_core *champ)
 	int		i;
 
 	i = 0;
-	buf = car;
 	while (car && (car->cycle_live < cycle - cycles_to_die
 	|| (cycles_to_die <= 0)))
 	{
