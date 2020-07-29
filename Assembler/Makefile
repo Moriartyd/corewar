@@ -6,7 +6,7 @@
 #    By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/08 16:28:00 by cpollich          #+#    #+#              #
-#    Updated: 2020/07/29 13:47:31 by cpollich         ###   ########.fr        #
+#    Updated: 2020/07/29 15:16:59 by cpollich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT_INC_DIR	=	$(LIBFT_DIR)/inc
 INC_DIR			=	./inc
 SRC_DIR			=	./src
 OBJ_DIR			=	./obj
-INC_ASM			=	$(INC_DIR)/asm.h
+INC_ASM			=	$(INC_DIR)/asm.h $(INC_DIR)/op.h
 
 SRC				=	asm.c ft_read_until_ch.c get_type.c check_name.c\
 					asm_parser.c memory_hero.c memory_op.c\
