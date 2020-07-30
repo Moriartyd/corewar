@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:59:40 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/29 15:14:45 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/30 21:33:48 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ t_core			*read_champ(char *s, t_core *core, int num);
 void			print_mem(unsigned int n);
 void			print_char(char k);
 void			print_hello(t_core *champ, int n);
-t_car			*check_die(t_car *car, int cycle,
+t_car			*check_die(int cycle,
 int cycles_to_die, t_core *champ);
 t_car			*time_to_die(t_car *car);
 t_car			*init_reg(t_car *car);

@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:19:12 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/29 15:16:38 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/30 21:33:59 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_game	*init_game_str(t_game *game, t_core *champ)
 void	check_cycle_die(t_core *champ, t_game *game)
 {
 	champ->player =
-	check_die(champ->player, game->cycle, game->cycles_to_die, champ);
+	check_die(game->cycle, game->cycles_to_die, champ);
 	if (game->nbr_live >= NBR_LIVE || game->checks >= MAX_CHECKS)
 	{
 		game->cycles_to_die = game->cycles_to_die - CYCLE_DELTA;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:08:38 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/29 13:36:44 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/30 20:39:38 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		*parse_num(char **argv, int n)
 	{
 		if (ft_strstr(argv[i], ".cor"))
 			j++;
-		if (ft_strequ(argv[i], "-n") == 1 && i + 1 < n)
+		if (ft_strequ(argv[i], "-n") == 1 && i + 1 < n && ft_atoi(argv[i + 1]) < n)
 			nums[j] = ft_atoi(argv[++i]);
 		i++;
 	}
@@ -96,7 +96,7 @@ t_core	*init_champ(int n, char **argv, int i)
 			champ->s_dump = ft_atoi(argv[++i]);
 		(ft_strequ(argv[i], "-help")) ? usage() : 0;
 		if ((ft_strequ(argv[i], "-dump")
-				|| ft_strequ(argv[i], "-d")) && i + 1 < n)
+				|| ft_strequ(argv[i], "-d")) && i + 1 <= n)
 			champ->d_cycle = ft_atoi(argv[++i]);
 		if (ft_strstr(argv[i++], ".cor"))
 		{

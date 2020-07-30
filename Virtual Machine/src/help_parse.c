@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 20:05:37 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/30 20:35:57 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ void	print_char(char k)
 void	print_hello(t_core *champ, int n)
 {
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	ft_printf("Introducing contestants...\n");
 	while (i < 4 && champ->champions[i].num != 0)
 	{
@@ -90,6 +92,13 @@ void	print_hello(t_core *champ, int n)
 		i++;
 	}
 	if (n > 0 && n < 5)
-		ft_printf("Contestant %d, \"%s\", has won !\n", n,
-		champ->champions[n - 1].mem.prog_name);
+	{
+		while (j < 4 && champ->champions[j].num != 0)
+		{
+			if (champ->champions[j].num == n)
+				ft_printf("Contestant %d, \"%s\", has won !\n", n,
+				champ->champions[j].mem.prog_name);
+			j++;
+		}
+	}
 }

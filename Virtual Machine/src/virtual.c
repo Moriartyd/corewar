@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:41:09 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/29 14:24:57 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/30 22:07:56 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,41 @@ t_car			*time_to_die(t_car *car)
 
 	new = car->next;
 	free(car);
+	car = NULL;
 	return (new);
 }
 
-t_car			*check_die(t_car *car, int cycle,
+t_car			*check_die(int cycle,
 int cycles_to_die, t_core *champ)
 {
 	t_car	*buf;
 	int		i;
 
 	i = 0;
-	while (car && (car->cycle_live < cycle - cycles_to_die
+	while (champ->player && (champ->player->cycle_live < cycle - cycles_to_die
 	|| (cycles_to_die <= 0)))
 	{
-		(car && !car->next) ? print_hello(champ, car->num) : 0;
-		car = time_to_die(car);
+		(champ->player && !champ->player->next) ? print_hello(champ, champ->player->num) : 0;
+		champ->player = time_to_die(champ->player);
 		champ->num_ch = champ->num_ch - 1;
 	}
-	buf = car;
-	while (car && car->next)
+	buf = champ->player;
+	while (champ->player)
 	{
-		while (car && car->next && (car->next->cycle_live
+		while (champ->player && champ->player->next && (champ->player->next->cycle_live
 		< cycle - cycles_to_die || (cycles_to_die <= 0)))
 		{
-			car->next = time_to_die(car->next);
+			champ->player->next = time_to_die(champ->player->next);
 			champ->num_ch = champ->num_ch - 1;
 		}
-		car = car->next;
+		if (champ->player && (champ->player->cycle_live
+		< cycle - cycles_to_die || (cycles_to_die <= 0)))
+		{
+			champ->player = time_to_die(champ->player);
+			champ->num_ch = champ->num_ch - 1;
+		}
+		champ->player = champ->player->next;
 	}
-	(car && !car->next && (car->cycle_live < cycle - cycles_to_die \
-	|| (cycles_to_die <= 0))) ? car = time_to_die(car) : 0;
 	return (buf);
 }
 
