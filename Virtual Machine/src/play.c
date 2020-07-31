@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 19:19:12 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/30 21:33:59 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/31 17:18:04 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	game_start(t_core *champ)
 			show(champ);
 		if ((game->cycles_to_die <= 0) || (game->cycle == game->end_cycle))
 		{
+			champ->player = start;
 			check_cycle_die(champ, game);
 			start = champ->player;
 		}

@@ -6,7 +6,7 @@
 /*   By: mriley <mriley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:41:09 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/30 22:07:56 by mriley           ###   ########.fr       */
+/*   Updated: 2020/07/31 16:44:07 by mriley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,7 @@ int cycles_to_die, t_core *champ)
 	buf = champ->player;
 	while (champ->player)
 	{
-		while (champ->player && champ->player->next && (champ->player->next->cycle_live
-		< cycle - cycles_to_die || (cycles_to_die <= 0)))
-		{
-			champ->player->next = time_to_die(champ->player->next);
-			champ->num_ch = champ->num_ch - 1;
-		}
-		if (champ->player && (champ->player->cycle_live
+		while (champ->player  && (champ->player->cycle_live
 		< cycle - cycles_to_die || (cycles_to_die <= 0)))
 		{
 			champ->player = time_to_die(champ->player);
