@@ -1,0 +1,19 @@
+{
+    DisableAutoLoginButtonIsHidden = 0;
+    "NSOutlineView Items DSKSourceOfPicturesOutlineView" =     (
+        DSKAppleRootSource
+    );
+    NSQuitAlwaysKeepsWindows = 0;
+    "NSSplitView Subview Frames keyboard.shortcuts.splitview" = "0.000000, 0.000000, 174, 0, NO, N";
+    "NSWindow Frame Main Window Frame SystemPreferencesApp 8.0" = "1626 607 668 543 0 0 2560 1417 ";
+    SecurityPrefTab = Privacy;
+    ThirdPartyCount = 0;
+    "com.apple.PreferenceSync.ExcludeSyncKeys" =     (
+        "Main Window Frame SystemPreferencesApp 8.0",
+        "com.apple.preference.keyboard.lastselectedtab"
+    );
+    "com.apple.SecurityPref.Privacy.LastSourceSelected" = 6;
+    "com.apple.dtandsspref.lastselectedtab" = "com.apple.preference.desktopscreeneffect.desktop";
+    "com.apple.preference.keyboard.lastselectedtab" = hotkeysTabIdentifier;
+    keyboard = 0;
+}

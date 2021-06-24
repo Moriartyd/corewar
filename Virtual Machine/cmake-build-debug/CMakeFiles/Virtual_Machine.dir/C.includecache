@@ -1,0 +1,52 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../ft_printf/inc/ft_printf.h
+stdarg.h
+-
+libft.h
+../ft_printf/inc/libft.h
+
+../ft_printf/inc/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+
+../header/op.h
+
+../header/virtual.h
+fcntl.h
+-
+sys/stat.h
+-
+sys/types.h
+-
+unistd.h
+-
+stdio.h
+-
+stdlib.h
+-
+libft.h
+../header/libft.h
+ft_printf.h
+../header/ft_printf.h
+op.h
+../header/op.h
+errno.h
+-
+
+/Users/ddratini/corewar-dir/corewaront/Virtual Machine/src/virtual.c
+virtual.h
+/Users/ddratini/corewar-dir/corewaront/Virtual Machine/src/virtual.h
+stdio.h
+-
+

@@ -6,7 +6,7 @@
 /*   By: cpollich <cpollich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 16:41:09 by mriley            #+#    #+#             */
-/*   Updated: 2020/07/27 23:10:55 by cpollich         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:48:44 by ddratini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_car			*time_to_die(t_car *car)
 	t_car	*new;
 
 	new = car->next;
-	free(car);
+	//free(car);
 	return (new);
 }
 

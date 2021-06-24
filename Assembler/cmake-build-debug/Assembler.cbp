@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Assembler"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Assembler">
+				<Option output="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Assembler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ddratini/corewar-dir/corewaront/Assembler/inc"/>
+					<Add directory="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/inc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 Assembler"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Assembler/fast">
+				<Option output="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Assembler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ddratini/corewar-dir/corewaront/Assembler/inc"/>
+					<Add directory="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/inc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 Assembler/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ddratini/corewar-dir/corewaront/Assembler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/inc/asm.h">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/inc/op.h">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/inc/libft.h">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_abs.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_atoi.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_bzero.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_chjoinstr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_copyuntil.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_countch.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_doublematrixdel.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_doublestrdel.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_intpower.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_isalnum.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_isalpha.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_isascii.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_isdigit.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_isnumeric.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_isprint.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_iswhitespace.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_itoa.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_itoa_base.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_itoa_ubase.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstadd.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstclr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstdel.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstdelone.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstiter.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstmap.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstnew.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_lstsize.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_ltoa_base.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memalloc.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memccpy.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memchr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memcmp.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memcpy.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memdel.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memmove.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_memset.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_nchjoinstr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putchar.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putchar_fd.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putendl.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putendl_fd.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putnbr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putnbr_fd.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putstr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putstr_fd.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_putstr_until.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_realloc.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_str_white_trim.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_stradd.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strcat.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strchr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strchr_safe.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strclr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strcmp.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strcpy.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strdel.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strdup.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strdup_safe.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strequ.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_striter.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_striteri.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strjoin.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strjoin_leak.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strjoinch.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strjoinchar.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strlcat.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strlen.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strmap.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strmapi.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strncat.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strnchr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strncmp.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strncpy.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strnequ.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strnew.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strnewncp.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strnstr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strrchr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strshift.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strsplit.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strstr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strsub.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strtrim.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_strtrimchr.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_swap.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_tolower.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_toupper.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/ft_wordcount.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/libft/src/get_next_line.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/args_checker.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/args_patterns.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/asm.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/asm_parser.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/byte_op.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/check_name.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/check_opname.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/converter.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/errors.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/ft_read_until_ch.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/get_type.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/is_labelinst.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/letter_check.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/memory_hero.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/memory_op.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/memory_vldop.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/operations.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/parse_inst.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/read_arguments.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/src/translator.c">
+			<Option target="Assembler"/>
+		</Unit>
+		<Unit filename="/Users/ddratini/corewar-dir/corewaront/Assembler/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

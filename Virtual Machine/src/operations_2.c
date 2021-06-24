@@ -30,6 +30,9 @@ t_car	*ft_lldi(t_car *car)
 	g_arena[car->pc + i] > 0 && g_arena[car->pc + i] <= REG_NUMBER)
 		in2 = to_int_from_reg(car, g_arena[car->pc + i]);
 	i = i + arg[1];
+    printf("in1=%d\n",in1);
+    printf("in2=%d\n",in2);
+    printf("car-pc=%d\n",car->pc);
 	in1 = (car->pc + (in1 + in2)) % MEM_SIZE >= 0 ?
 	to_int_size((car->pc + (in1 + in2)) % MEM_SIZE, 4) :
 	to_int_size(MEM_SIZE + (car->pc + (in1 + in2)) % MEM_SIZE, 4);
